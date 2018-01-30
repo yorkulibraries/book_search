@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>MissingBooks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +12,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: "layouts/navbar"%>
+    <main role="main" class="container">
+      <div id="app">
+        <%= yield %>
+      </div>
+    </main><!-- /.container -->
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Footer content will go here. Something like &copy; 2018. York University Libraries.</span>
+      </div>
+    </footer>
   </body>
 </html>
