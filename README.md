@@ -1,24 +1,6 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Missing Books
+An application that allows reporting missing items online, track missing item searches, and notify users about the progress.  
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Contributing
+Review the suggested tools page to see what we are using: [Suggested Gems and Tools]( https://github.com/yorkulibraries/missing_books/wiki/Development:-Suggested-Gems-and-Tools)
