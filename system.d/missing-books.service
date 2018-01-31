@@ -1,0 +1,14 @@
+[Unit]
+Description=Missing Books App
+After=remote-fs.target network-online.target
+Wants = network-online.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+Type=simple
+WorkingDirectory=/home/ubuntu/missing_books
+ExecStart=/bin/bash -lc 'rails server -b 0.0.0.0'
+
+[Install]
+WantedBy=multi-user.target
