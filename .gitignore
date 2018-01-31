@@ -74,3 +74,6 @@ build-iPhoneSimulator/
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 >>>>>>> 30fbea0e8719896d7f6e48c5a4c69ab313465aa4
+
+*.log
+.vagrant
