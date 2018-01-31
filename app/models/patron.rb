@@ -5,7 +5,7 @@ class Patron < ApplicationRecord
 
   ## VALIDATIONS
   validates_uniqueness_of :login_id
-  validates_presence_of :login_id, :name, :email
+  validates_presence_of :login_id, :name, :email 
 
   ## RELATIONS
   # has_many :missing_item_reports
