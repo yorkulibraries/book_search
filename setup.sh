@@ -41,7 +41,7 @@ sudo a2enconf missing-books
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 
-[ -f tmp/libapache2-mod-auth-pyork_2.0.3_amd64.deb ] && sudo dpkg -i apache/libapache2-mod-auth-pyork_2.0.3_amd64.deb && sudo a2enmod auth_pyork
+[ -f tmp/libapache2-mod-auth-pyork_2.0.3_amd64.deb ] && sudo dpkg -i tmp/libapache2-mod-auth-pyork_2.0.3_amd64.deb && sudo a2enmod auth_pyork
 
 sudo systemctl enable apache2
 sudo systemctl restart apache2
