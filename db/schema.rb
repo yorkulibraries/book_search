@@ -10,6 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180201141450) do
+
+  create_table "missing_item_reports", force: :cascade do |t|
+    t.integer "patron_id"
+    t.integer "location_id"
+    t.integer "item_id"
+    t.string "item_callnumber"
+    t.string "item_title"
+    t.text "note"
+    t.string "resolution"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patrons", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "login_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
