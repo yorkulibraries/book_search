@@ -38,9 +38,11 @@ gem 'puma', '~> 3.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
+
+  # Adds support for Capybara system testing and selenium driver + chromehelper
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem "chromedriver-helper" # For system testing with chrome
 
   ## FACTORY BOT (Formerly known as FactoryGirl)
   gem 'factory_bot_rails', "4.8.2"
@@ -54,6 +56,11 @@ group :development, :test do
 
   gem 'guard', "2.14.2" # NOTE: this is necessary in newer versions
   gem 'guard-minitest'
+  gem 'minitest', '5.10.3' # downgraded minitest from 5.11.3 due to errors.
+  
+  # for save_and_open_page in browser
+  # gem "launchy"
+  
 
 end
 
