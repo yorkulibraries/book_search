@@ -77,3 +77,4 @@ build-iPhoneSimulator/
 
 *.log
 .vagrant
+*mod-auth-pyork*.deb
