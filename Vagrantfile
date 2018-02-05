@@ -4,8 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.define "mb"
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.hostname = "mb.local"
   config.vm.provision :shell, path: "vagrant-provision.sh", privileged: false
   config.ssh.forward_agent = true
