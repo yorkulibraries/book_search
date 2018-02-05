@@ -8,7 +8,7 @@ User=ubuntu
 Group=ubuntu
 Type=simple
 WorkingDirectory=/home/ubuntu/missing_books
-ExecStart=/bin/bash -lc 'rails server -b 0.0.0.0'
+ExecStart=/bin/bash -lc 'rails server'
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target vagrant.mount

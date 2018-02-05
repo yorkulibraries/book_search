@@ -41,6 +41,20 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
+  ## FACTORY BOT (Formerly known as FactoryGirl)
+  gem 'factory_bot_rails', "4.8.2"
+
+  gem 'shoulda', "3.5"
+  gem 'shoulda-matchers'
+  gem 'shoulda-context'
+  gem "mocha", require: false
+  gem "ruby-prof", "0.16.2"
+  gem 'database_cleaner', "1.6.1"
+
+  gem 'guard', "2.14.2" # NOTE: this is necessary in newer versions
+  gem 'guard-minitest'
+
 end
 
 group :development do
@@ -50,6 +64,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+
 end
 
 ###### Windows does not include zoneinfo files, so bundle the tzinfo-data gem
