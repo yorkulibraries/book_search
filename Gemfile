@@ -62,6 +62,8 @@ group :development, :test do
   # gem "launchy"
   
 
+  gem 'faker', '1.8.7'
+  gem 'populator', git: "https://github.com/norikt/populator.git"
 end
 
 group :development do

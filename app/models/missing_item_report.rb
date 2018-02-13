@@ -7,11 +7,14 @@ class MissingItemReport < ApplicationRecord
   ## CONSTANTS
   STATUS_OPEN = "open"
   STATUS_CLOSED = "closed"
-  STATUS_CANCELEED = "cancelled"
+  STATUS_CANCELLED = "cancelled"
 
   RESOLUTION_UNKNOWN = "unknown"
   RESOLUTION_FOUND = "found"
   RESOLUTION_NOT_FOUND = "not_found"
+
+  RESOLUTIONS = [RESOLUTION_UNKNOWN, RESOLUTION_FOUND, RESOLUTION_NOT_FOUND]
+  STATUSES = [STATUS_OPEN, STATUS_CLOSED, STATUS_CANCELLED]
 
   ## VALIDATIONS
   validates_uniqueness_of :item_id

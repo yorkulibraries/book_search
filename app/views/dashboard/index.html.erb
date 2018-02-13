@@ -1,2 +1,5 @@
 <h1>Dashboard</h1>
-<p>Fill in your code here</p>
+
+<% @reports.each do |report| %>
+  <p><%= report.item_title %></p>
+<% end %>
