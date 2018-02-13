@@ -55,6 +55,8 @@ group :development, :test do
   gem 'guard', "2.14.2" # NOTE: this is necessary in newer versions
   gem 'guard-minitest'
 
+  gem 'faker', '1.8.7'
+  gem 'populator', git: "https://github.com/norikt/populator.git"
 end
 
 group :development do
