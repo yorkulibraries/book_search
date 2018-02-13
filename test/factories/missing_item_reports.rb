@@ -1,3 +1,5 @@
+require 'populator'
+
 FactoryBot.define do
   factory :missing_item_report do
 

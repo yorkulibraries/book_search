@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class MissingItemReportTest < ActiveSupport::TestCase
+  
+  ## RELATIONSHIPS
+  should belong_to(:patron)
+  
+  ## VALIDATIONS
+  should validate_presence_of(:item_id)
+  should validate_presence_of(:patron_id)
+  should validate_uniqueness_of(:item_id)
+  
   should "create a valid MissingItemReport" do
     assert_difference "MissingItemReport.count", 1 do
       report = build(:missing_item_report)
