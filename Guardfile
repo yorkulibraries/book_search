@@ -25,6 +25,7 @@ guard :minitest,  spring: "bin/rails test", all_on_start: false  do
   watch(%r{^app/controllers/application_controller\.rb}) { 'test/controllers' }
   watch(%r{^app/controllers/(.+)_controller\.rb})        { |m| "test/controllers/#{m[1]}_test.rb" }
   watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| "test/integration/#{m[1]}_test.rb" }
+  watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| "test/system/#{m[1]}_test.rb" }
   watch(%r{^app/views/(.+)_mailer/.+})                   { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
   watch(%r{^app/models/(.+)\.rb})                        { |m| "test/models/#{m[1]}_test.rb" }
   watch(%r{^app/jobs/(.+)\.rb})                        { |m| "test/jobs/#{m[1]}_test.rb" }
@@ -37,17 +38,4 @@ guard :minitest,  spring: "bin/rails test", all_on_start: false  do
   # watch(%r{^lib/(.+)\.rb$})         { |m| "spec/#{m[1]}_spec.rb" }
   # watch(%r{^spec/spec_helper\.rb$}) { 'spec' }
 
-  # Rails 4
-  # watch(%r{^app/(.+)\.rb$})                               { |m| "test/#{m[1]}_test.rb" }
-  # watch(%r{^app/controllers/application_controller\.rb$}) { 'test/controllers' }
-  # watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| "test/integration/#{m[1]}_test.rb" }
-  # watch(%r{^app/views/(.+)_mailer/.+})                    { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
-  # watch(%r{^lib/(.+)\.rb$})                               { |m| "test/lib/#{m[1]}_test.rb" }
-  # watch(%r{^test/.+_test\.rb$})
-  # watch(%r{^test/test_helper\.rb$}) { 'test' }
-
-  # Rails < 4
-  # watch(%r{^app/controllers/(.*)\.rb$}) { |m| "test/functional/#{m[1]}_test.rb" }
-  # watch(%r{^app/helpers/(.*)\.rb$})     { |m| "test/helpers/#{m[1]}_test.rb" }
-  # watch(%r{^app/models/(.*)\.rb$})      { |m| "test/unit/#{m[1]}_test.rb" }
 end
