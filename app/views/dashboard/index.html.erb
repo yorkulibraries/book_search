@@ -1,5 +1,28 @@
 <h1>Dashboard</h1>
 
-<% @reports.each do |report| %>
-  <p><%= report.item_title %></p>
-<% end %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Call Number & Item ID</th>
+    <th>Search Attempts</th>
+    <th>Status & Resolution</th>
+    <th>Location</th>
+  </tr>
+  <% @reports.each do |report| %>
+    <tr>
+      <td><%= report.item_title %></td>
+      <td>
+        <%= report.item_callnumber %><br/>
+        <small><%= report.item_id %></small>
+      </td>
+      <td><%= report.search_attempts.size %></td>
+      <td>
+        <%= report.status.upcase %><br/>
+        <%= report.resolution.upcase %>
+      </td>
+      <td><%= report.location_id %></td>
+    </tr>
+
+  <% end %>
+
+</table>

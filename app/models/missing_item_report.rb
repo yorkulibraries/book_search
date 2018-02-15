@@ -22,6 +22,7 @@ class MissingItemReport < ApplicationRecord
 
   ## RELATIONS
   belongs_to :patron
+  has_many :search_attempts
 
   ## SCOPES
 

@@ -13,6 +13,7 @@ namespace :db do
       # :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
       report.item_callnumber = Faker::Bank.iban
       report.item_title = Faker::Book.title
+      report.item_id = 2900000000..2910000000
       report.patron_id = 1..00
       report.location_id = 1..100
       report.resolution = MissingItemReport::RESOLUTIONS
