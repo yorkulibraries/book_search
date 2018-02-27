@@ -1,0 +1,2 @@
+module MissingItemReports::AssignToEmployeeHelper
+end
