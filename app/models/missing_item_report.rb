@@ -22,6 +22,7 @@ class MissingItemReport < ApplicationRecord
 
   ## RELATIONS
   belongs_to :patron
+  belongs_to :assigned_to, required: false, foreign_key: "assigned_to_id", class_name: "Employee"
   has_many :search_attempts
 
   ## SCOPES

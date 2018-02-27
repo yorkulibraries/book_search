@@ -1,28 +1,11 @@
 <h1>Dashboard</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Call Number & Item ID</th>
-    <th>Search Attempts</th>
-    <th>Status & Resolution</th>
-    <th>Location</th>
-  </tr>
-  <% @reports.each do |report| %>
-    <tr>
-      <td><%= report.item_title %></td>
-      <td>
-        <%= report.item_callnumber %><br/>
-        <small><%= report.item_id %></small>
-      </td>
-      <td><%= report.search_attempts.size %></td>
-      <td>
-        <%= report.status.upcase %><br/>
-        <%= report.resolution.upcase %>
-      </td>
-      <td><%= report.location_id %></td>
-    </tr>
-
+<ul class="nav nav-tabs">
+  <% MissingItemReport::STATUSES.each do |status| %>
+    <li class="nav-item">
+      <a class="nav-link <%= "active" if status == @current_status  %>" href="<%= root_url(status: status) %>"><%= status.humanize %></a>
+    </li>
   <% end %>
-
-</table>
+</ul>
+<br/>
+<%= render partial: "#{@current_status}_reports" %>

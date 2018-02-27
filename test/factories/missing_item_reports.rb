@@ -10,6 +10,7 @@ FactoryBot.define do
 
     ## associations
     association :patron, factory: :patron
+    association :assigned_to, factory: :employee
     location_id 1
 
   end

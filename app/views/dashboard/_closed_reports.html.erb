@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Call Number & Item ID</th>
+    <th>Search Attempts</th>
+    <th>Resolution</th>    
+  </tr>
+  <% @reports.each do |report| %>
+    <tr>
+      <td><%= report.item_title %></td>
+      <td>
+        <%= report.item_callnumber %><br/>
+        <small><%= report.item_id %></small>
+      </td>
+      <td><%= report.search_attempts.size %></td>
+
+      <td>
+        <%= report.resolution.upcase %>
+      </td>
+    </tr>
+
+  <% end %>
+
+</table>

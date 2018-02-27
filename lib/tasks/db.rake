@@ -17,6 +17,8 @@ namespace :db do
       e.active = true
     end
 
+    employee_ids = Employee.ids
+
     Patron.populate(100..200) do |patron|
       patron.name = Faker::GameOfThrones.character
       patron.email = Faker::Internet.safe_email(patron.name)
@@ -32,6 +34,8 @@ namespace :db do
         report.resolution = MissingItemReport::RESOLUTIONS
         report.status = MissingItemReport::STATUSES
         report.note = Faker::WorldOfWarcraft.quote
+
+        report.assigned_to_id = employee_ids
       end
     end
 

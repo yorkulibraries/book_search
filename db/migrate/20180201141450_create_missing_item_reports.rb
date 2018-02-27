@@ -10,6 +10,7 @@ class CreateMissingItemReports < ActiveRecord::Migration[5.1]
       t.text :note
       t.string :resolution
       t.string :status
+      t.integer :assigned_to_id
 
       t.timestamps
     end

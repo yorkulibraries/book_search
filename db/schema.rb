@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180213141853) do
     t.text "note"
     t.string "resolution"
     t.string "status"
+    t.integer "assigned_to_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
