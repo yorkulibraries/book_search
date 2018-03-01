@@ -1,4 +1,4 @@
-class MissingItemReport < ApplicationRecord
+class SearchRequest < ApplicationRecord
   # attributes:  :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
 
   ## CALLBACKS

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180213141853) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "missing_item_reports", force: :cascade do |t|
+  create_table "search_requests", force: :cascade do |t|
     t.integer "patron_id"
     t.integer "location_id"
     t.integer "item_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180213141853) do
   end
 
   create_table "search_attempts", force: :cascade do |t|
-    t.integer "missing_item_report_id"
+    t.integer "search_request_id"
     t.integer "employee_id"
     t.string "resolution"
     t.string "found_location"

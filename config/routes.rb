@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  namespace :missing_item_reports do
+  namespace :search_requests do
     get 'assign_to_employee/create'
   end
 
-  namespace :missing_item_reports do
+  namespace :search_requests do
     get 'assign_to_employee/destroy'
   end
 

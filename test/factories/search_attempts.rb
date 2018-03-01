@@ -6,7 +6,7 @@ FactoryBot.define do
 
     ## associations
     association :employee, factory: :employee
-    association :missing_item_report, factory: :missing_item_report
+    association :search_request, factory: :search_request
 
   end
 end

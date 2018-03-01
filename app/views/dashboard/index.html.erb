@@ -1,7 +1,7 @@
 <h1>Dashboard</h1>
 
 <ul class="nav nav-tabs">
-  <% MissingItemReport::STATUSES.each do |status| %>
+  <% SearchRequest::STATUSES.each do |status| %>
     <li class="nav-item">
       <a class="nav-link <%= "active" if status == @current_status  %>" href="<%= root_url(status: status) %>"><%= status.humanize %></a>
     </li>

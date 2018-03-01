@@ -1,0 +1,2 @@
+module SearchRequests::AssignToEmployeeHelper
+end
