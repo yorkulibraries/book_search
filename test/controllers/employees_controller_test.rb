@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EmployeesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @employee = employees(:one)
+    @employee = create(:employee)
   end
 
   test "should get index" do
@@ -17,7 +17,7 @@ class EmployeesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create employee" do
     assert_difference('Employee.count') do
-      post employees_url, params: { employee: { active: @employee.active, email: @employee.email, location_id: @employee.location_id, login_id: @employee.login_id, name: @employee.name, role: @employee.role } }
+      post employees_url, params: { employee: attributes_for(:employee) } 
     end
 
     assert_redirected_to employee_url(Employee.last)

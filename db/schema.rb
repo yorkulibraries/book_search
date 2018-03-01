@@ -23,20 +23,6 @@ ActiveRecord::Schema.define(version: 20180213141853) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "search_requests", force: :cascade do |t|
-    t.integer "patron_id"
-    t.integer "location_id"
-    t.integer "item_id"
-    t.string "item_callnumber"
-    t.string "item_title"
-    t.text "note"
-    t.string "resolution"
-    t.string "status"
-    t.integer "assigned_to_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "patrons", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -51,6 +37,20 @@ ActiveRecord::Schema.define(version: 20180213141853) do
     t.string "resolution"
     t.string "found_location"
     t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "search_requests", force: :cascade do |t|
+    t.integer "patron_id"
+    t.integer "location_id"
+    t.integer "item_id"
+    t.string "item_callnumber"
+    t.string "item_title"
+    t.text "note"
+    t.string "resolution"
+    t.string "status"
+    t.integer "assigned_to_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

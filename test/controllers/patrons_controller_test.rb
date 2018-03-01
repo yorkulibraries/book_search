@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PatronsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @patron = patrons(:one)
+    @patron = create(:patron)
   end
 
   test "should get index" do
@@ -17,7 +17,7 @@ class PatronsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create patron" do
     assert_difference('Patron.count') do
-      post patrons_url, params: { patron: { email: @patron.email, login_id: @patron.login_id, name: @patron.name } }
+      post patrons_url, params: { patron: attributes_for(:patron) } #{ email: @patron.email, login_id: @patron.login_id, name: @patron.name } }
     end
 
     assert_redirected_to patron_url(Patron.last)

@@ -28,9 +28,10 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
+
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
-      else
+      else        
         format.html { render :new }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
