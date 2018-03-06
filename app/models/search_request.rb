@@ -1,4 +1,4 @@
-class MissingItemReport < ApplicationRecord
+class SearchRequest < ApplicationRecord
   # attributes:  :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
 
   ## CALLBACKS
@@ -22,6 +22,8 @@ class MissingItemReport < ApplicationRecord
 
   ## RELATIONS
   belongs_to :patron
+  belongs_to :assigned_to, required: false, foreign_key: "assigned_to_id", class_name: "Employee"
+  has_many :search_attempts
 
   ## SCOPES
 

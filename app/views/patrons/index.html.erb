@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Patrons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Login</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patrons.each do |patron| %>
+      <tr>
+        <td><%= patron.name %></td>
+        <td><%= patron.email %></td>
+        <td><%= patron.login_id %></td>
+        <td><%= link_to 'Show', patron %></td>
+        <td><%= link_to 'Edit', edit_patron_path(patron) %></td>
+        <td><%= link_to 'Destroy', patron, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Patron', new_patron_path %>

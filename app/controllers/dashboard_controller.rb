@@ -1,6 +1,11 @@
 class DashboardController < ApplicationController
   def index
-    @reports = MissingItemReport.all
+    @current_status = params[:status] || SearchRequest::STATUS_OPEN
+
+
+    @reports = SearchRequest.where(status: @current_status)
+
+
   end
 
 end

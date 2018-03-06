@@ -1,5 +1,5 @@
 class SearchAttempt < ApplicationRecord
-  # attributes:  :missing_item_report_id :employee_id :resolution :found_location :note
+  # attributes:  :search_request_id :employee_id :resolution :found_location :note
 
   ## CALLBACKS
   before_create :set_resolution_before_create
@@ -16,11 +16,11 @@ class SearchAttempt < ApplicationRecord
   RESOLUTION_NOT_FOUND = "not_found"
 
   ## VALIDATIONS
-  validates_presence_of :employee_id, :missing_item_report_id
+  validates_presence_of :employee_id, :search_request_id
 
   ## RELATIONS
   belongs_to :employee
-  belongs_to :missing_item_report
+  belongs_to :search_request
 
   ## SCOPES
 

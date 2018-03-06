@@ -1,0 +1,28 @@
+<table class="table table-xsm">
+  <thead class="thead-light">
+    <tr>
+      <th>Title</th>
+      <th>Call Number</th>
+      <th>Item ID</th>
+      <th class="text-center"># of Searches</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @reports.each do |report| %>
+    <tr>
+      <td><%= report.item_title %></td>
+      <td>
+        <%= report.item_callnumber %>
+      </td>
+      <td><%= report.item_id %></td>
+      <td class="text-center"><%= report.search_attempts.size %></td>
+      <td>
+        <% if report.assigned_to %>
+          <%= report.assigned_to.name %> 
+        <% else %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+</table>

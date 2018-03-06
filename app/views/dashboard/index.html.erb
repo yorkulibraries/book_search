@@ -1,5 +1,11 @@
 <h1>Dashboard</h1>
 
-<% @reports.each do |report| %>
-  <p><%= report.item_title %></p>
-<% end %>
+<ul class="nav nav-tabs">
+  <% SearchRequest::STATUSES.each do |status| %>
+    <li class="nav-item">
+      <a class="nav-link <%= "active" if status == @current_status  %>" href="<%= root_url(status: status) %>"><%= status.humanize %></a>
+    </li>
+  <% end %>
+</ul>
+<br/>
+<%= render partial: "#{@current_status}_reports" %>

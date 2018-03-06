@@ -1,6 +1,6 @@
-class CreateMissingItemReports < ActiveRecord::Migration[5.1]
+class CreateSearchRequests < ActiveRecord::Migration[5.1]
   def change
-    create_table :missing_item_reports do |t|
+    create_table :search_requests do |t|
 
       t.integer :patron_id
       t.integer :location_id
@@ -10,6 +10,7 @@ class CreateMissingItemReports < ActiveRecord::Migration[5.1]
       t.text :note
       t.string :resolution
       t.string :status
+      t.integer :assigned_to_id
 
       t.timestamps
     end

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @patron.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @patron.email %>
+</p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @patron.login_id %>
+</p>
+
+<%= link_to 'Edit', edit_patron_path(@patron) %> |
+<%= link_to 'Back', patrons_path %>

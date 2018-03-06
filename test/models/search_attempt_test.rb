@@ -9,7 +9,7 @@ class SearchAttemptTest < ActiveSupport::TestCase
   end
 
   should "not create an invalid SearchAttempt" do
-    assert ! build(:search_attempt, missing_item_report_id: nil).valid?, "Item ID is required"
+    assert ! build(:search_attempt, search_request_id: nil).valid?, "Item ID is required"
     assert ! build(:search_attempt, employee: nil).valid?, "Employee is required"
 
   end
