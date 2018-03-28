@@ -1,5 +1,5 @@
 [Unit]
-Description=Missing Books App
+Description=Book Search App
 After=remote-fs.target network-online.target
 Wants = network-online.target
 
@@ -7,7 +7,7 @@ Wants = network-online.target
 User=ubuntu
 Group=ubuntu
 Type=simple
-WorkingDirectory=/home/ubuntu/missing_books
+WorkingDirectory=/home/ubuntu/book_search
 ExecStart=/bin/bash -lc 'rails server'
 
 [Install]

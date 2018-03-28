@@ -18,26 +18,26 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 rbenv install 2.5.0
 rbenv global 2.5.0
 
-echo "gem: --no-document" >> ~/.gemrc 
+echo "gem: --no-document" >> ~/.gemrc
 
 gem install bundler
 gem install rails
 
-cd ~/missing_books
+cd ~/book_search
 bundle
 rails db:migrate
 rails db:seed
 
-cat system.d/missing-books.service | sed 's/ubuntu/ubuntu/g' > /tmp/missing-books.service
-sudo cp /tmp/missing-books.service /lib/systemd/system/
+cat system.d/book-search.service | sed 's/ubuntu/ubuntu/g' > /tmp/book-search.service
+sudo cp /tmp/book-search.service /lib/systemd/system/
 
 sudo systemctl daemon-reload
-sudo systemctl enable missing-books
-sudo systemctl start missing-books
-sudo systemctl status missing-books
+sudo systemctl enable book-search
+sudo systemctl start book-search
+sudo systemctl status book-search
 
-sudo cp apache/missing-books.conf /etc/apache2/conf-available/
-sudo a2enconf missing-books
+sudo cp apache/book-search.conf /etc/apache2/conf-available/
+sudo a2enconf book-search
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 
@@ -46,4 +46,3 @@ sudo a2enmod proxy_http
 sudo systemctl enable apache2
 sudo systemctl restart apache2
 sudo systemctl status apache2
-

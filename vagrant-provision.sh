@@ -2,9 +2,8 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-ln -s /vagrant missing_books
+ln -s /vagrant book_search
 
-cd missing_books
+cd book_search
 
 ./setup.sh
-
