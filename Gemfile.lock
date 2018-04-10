@@ -46,6 +46,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    archive-zip (0.7.0)
+      io-like (~> 0.3.0)
     arel (8.0.0)
     autoprefixer-rails (7.2.5)
       execjs
@@ -65,6 +67,9 @@ GEM
       xpath (>= 2.0, < 4.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (1.1.0)
+      archive-zip (~> 0.7.0)
+      nokogiri (~> 1.6)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -104,6 +109,7 @@ GEM
       minitest (>= 3.0)
     i18n (0.9.3)
       concurrent-ruby (~> 1.0)
+    io-like (0.3.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -126,7 +132,7 @@ GEM
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.11.3)
+    minitest (5.10.3)
     mocha (1.2.1)
       metaclass (~> 0.0.1)
     multi_json (1.13.1)
@@ -242,6 +248,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0)
   byebug
   capybara (~> 2.13)
+  chromedriver-helper
   coffee-rails (~> 4.2)
   database_cleaner (= 1.6.1)
   factory_bot_rails (= 4.8.2)
@@ -251,6 +258,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  minitest (= 5.10.3)
   mocha
   populator!
   puma (~> 3.7)
@@ -271,4 +279,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.1
+   1.16.1

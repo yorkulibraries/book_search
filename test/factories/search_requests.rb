@@ -1,3 +1,5 @@
+require 'populator'
+
 FactoryBot.define do
   factory :search_request do
 

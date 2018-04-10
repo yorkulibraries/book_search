@@ -1,0 +1,41 @@
+<h1>List of Missing Items: Report</h1>
+      <!-- report.item_callnumber = Faker::Bank.iban
+      report.item_title = Faker::Book.title
+      report.patron_id = 1..100
+      report.location_id = 1..100
+      report.resolution = MissingItemReport::RESOLUTIONS
+      report.status = MissingItemReport::STATUSES
+      report.note = Faker::WorldOfWarcraft.quote -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="table-responsive">
+      <table class="table table-sm table-striped">
+        <caption>List of Items</caption>
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">MIR ID</th>
+            <th scope="col">Item Title</th>
+            <th scope="col">Reported By</th>
+            <th scope="col">Location</th>
+            <th scope="col">Status</th>
+            <th scope="col">Resolution</th>
+            <th scope="col">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for r in @reports %>
+            <tr>
+              <th scope="row"><%= r.id %></th>
+              <td><%= r.item_title %></td>
+              <td><%= r.patron_id %></td>
+              <td><%= r.location_id %></td>
+              <td><%= r.status %></td>
+              <td><%= r.resolution %></td>
+              <td colspan="2"><%= r.note %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
