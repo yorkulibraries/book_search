@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:item_callnumber) { |n| "CF BD 20#{n+20}" }
     sequence(:item_title) { |n| "Item Title Title - #{n}" }
     resolution SearchRequest::RESOLUTION_UNKNOWN
-    status SearchRequest::STATUS_OPEN
+    status SearchRequest::STATUS_NEW
     note "Some NOTE"
 
     ## associations

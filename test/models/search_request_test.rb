@@ -20,7 +20,7 @@ class SearchRequestTest < ActiveSupport::TestCase
   should "set status and resolution on create to default values" do
     report = build(:search_request)
     report.save
-    assert_equal SearchRequest::STATUS_OPEN, report.status
+    assert_equal SearchRequest::STATUS_NEW, report.status
     assert_equal SearchRequest::RESOLUTION_UNKNOWN, report.resolution
   end
 
