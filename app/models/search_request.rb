@@ -30,6 +30,7 @@ class SearchRequest < ApplicationRecord
   has_many :search_attempts
 
   ## SCOPES
+  scope :new_requests, -> { where(status: STATUS_NEW) }
 
   ## METHODS
 

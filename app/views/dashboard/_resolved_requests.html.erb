@@ -5,14 +5,14 @@
     <th>Search Attempts</th>
     <th>Cancelled By</th>
   </tr>
-  <% @reports.each do |report| %>
+  <% @requests.each do |request| %>
     <tr>
-      <td><%= report.item_title %></td>
+      <td><%= request.item_title %></td>
       <td>
-        <%= report.item_callnumber %><br/>
-        <small><%= report.item_id %></small>
+        <%= request.item_callnumber %><br/>
+        <small><%= request.item_id %></small>
       </td>
-      <td><%= report.search_attempts.size %></td>
+      <td><%= request.search_attempts.size %></td>
       <td>
         Who Cancelled it and why
       </td>

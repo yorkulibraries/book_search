@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
 
-  namespace :search_requests do
-    get 'assign_to_employee/create'
+  namespace :sl1 do
+    resources :new_requests, only: :index
   end
 
-  namespace :search_requests do
-    get 'assign_to_employee/destroy'
-  end
 
   resources :patrons
   resources :employees

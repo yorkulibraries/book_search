@@ -1,0 +1,28 @@
+<table class="table table-xsm">
+  <thead class="thead-light">
+    <tr>
+      <th>Title</th>
+      <th>Call Number</th>
+      <th>Item ID</th>
+      <th class="text-center"># of Searches</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @request.each do |request| %>
+    <tr>
+      <td><%= request.item_title %></td>
+      <td>
+        <%= request.item_callnumber %>
+      </td>
+      <td><%= request.item_id %></td>
+      <td class="text-center"><%= request.search_attempts.size %></td>
+      <td>
+        <% if request.assigned_to %>
+          <%= request.assigned_to.name %> 
+        <% else %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+</table>

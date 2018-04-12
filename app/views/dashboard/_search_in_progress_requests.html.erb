@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Call Number & Item ID</th>
+    <th>Search Attempts</th>
+    <th>Resolution</th>
+  </tr>
+  <% @requests.each do |request| %>
+    <tr>
+      <td><%= request.item_title %></td>
+      <td>
+        <%= request.item_callnumber %><br/>
+        <small><%= request.item_id %></small>
+      </td>
+      <td><%= request.search_attempts.size %></td>
+
+      <td>
+        <%= request.resolution.upcase %>
+      </td>
+    </tr>
+
+  <% end %>
+
+</table>

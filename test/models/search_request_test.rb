@@ -24,4 +24,12 @@ class SearchRequestTest < ActiveSupport::TestCase
     assert_equal SearchRequest::RESOLUTION_UNKNOWN, report.resolution
   end
 
+  should "show new requests only" do
+    create(:search_request, status: SearchRequest::STATUS_NEW)
+    create(:search_request, status: SearchRequest::STATUS_RESOLVED)
+
+    assert_equal 1, SearchRequest.new_requests.size, "Should just be one"
+  end
+
+
 end

@@ -1,3 +1,6 @@
+<h1>New Search Requests</h1>
+
+
 <table class="table table-xsm">
   <thead class="thead-light">
     <tr>
@@ -8,17 +11,17 @@
       <th></th>
     </tr>
   </thead>
-  <% @reports.each do |report| %>
+  <% @requests.each do |request| %>
     <tr>
-      <td><%= report.item_title %></td>
+      <td><%= request.item_title %></td>
       <td>
-        <%= report.item_callnumber %>
+        <%= request.item_callnumber %>
       </td>
-      <td><%= report.item_id %></td>
-      <td class="text-center"><%= report.search_attempts.size %></td>
+      <td><%= request.item_id %></td>
+      <td class="text-center"><%= request.search_attempts.size %></td>
       <td>
-        <% if report.assigned_to %>
-          <%= report.assigned_to.name %> 
+        <% if request.assigned_to %>
+          <%= request.assigned_to.name %>
         <% else %>
         <% end %>
       </td>
