@@ -5,16 +5,20 @@ class SearchRequest < ApplicationRecord
   before_create :set_status_and_resolution_before_create
 
   ## CONSTANTS
-  STATUS_OPEN = "open"
-  STATUS_CLOSED = "closed"
-  STATUS_CANCELLED = "cancelled"
+  STATUS_NEW = "new"
+  STATUS_SEARCH_IN_PROGRESS = "search_in_progress"
+  STATUS_ESCALATED_TO_LEVEL_2 = "escalated_to_level_2"
+  STATUS_RESOLVED = "resolved"
+
 
   RESOLUTION_UNKNOWN = "unknown"
   RESOLUTION_FOUND = "found"
   RESOLUTION_NOT_FOUND = "not_found"
+  RESOLUTION_CANCELLED = "cancelled"
+  RESOLUTION_DUPLICATE = "duplicate"
 
-  RESOLUTIONS = [RESOLUTION_UNKNOWN, RESOLUTION_FOUND, RESOLUTION_NOT_FOUND]
-  STATUSES = [STATUS_OPEN, STATUS_CLOSED, STATUS_CANCELLED]
+  RESOLUTIONS = [RESOLUTION_UNKNOWN, RESOLUTION_FOUND, RESOLUTION_NOT_FOUND, RESOLUTION_CANCELLED, RESOLUTION_DUPLICATE]
+  STATUSES = [STATUS_NEW, STATUS_SEARCH_IN_PROGRESS, STATUS_ESCALATED_TO_LEVEL_2, STATUS_RESOLVED]
 
   ## VALIDATIONS
   validates_uniqueness_of :item_id
@@ -33,7 +37,7 @@ class SearchRequest < ApplicationRecord
   private
 
   def set_status_and_resolution_before_create
-    status = STATUS_OPEN
+    status = STATUS_NEW
     resolution = RESOLUTION_UNKNOWN
   end
 
