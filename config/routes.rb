@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :sl1 do
     resources :new_requests, only: :index
+    resource :start_search, only: :update
   end
 
 
