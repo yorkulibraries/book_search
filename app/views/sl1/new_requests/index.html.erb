@@ -4,21 +4,22 @@
 <table class="table table-xsm">
   <thead class="thead-light">
     <tr>
+      <th></th>
       <th>Title</th>
       <th>Call Number</th>
       <th>Item ID</th>
-      <th class="text-center"># of Searches</th>
+      <th class="text-left">Assigned To</th>
       <th></th>
     </tr>
   </thead>
   <% @requests.each do |request| %>
     <tr>
+      <td><input type="checkbox"></td>
       <td><%= request.item_title %></td>
       <td>
         <%= request.item_callnumber %>
       </td>
       <td><%= request.item_id %></td>
-      <td class="text-center"><%= request.search_attempts.size %></td>
       <td>
         <% if request.assigned_to %>
           <%= request.assigned_to.name %>

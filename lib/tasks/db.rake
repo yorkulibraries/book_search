@@ -35,7 +35,7 @@ namespace :db do
         report.status = SearchRequest::STATUSES
         report.note = Faker::WorldOfWarcraft.quote
 
-        report.assigned_to_id = employee_ids
+        report.assigned_to_id = employee_ids.push(0)
       end
     end
 
