@@ -1,6 +1,6 @@
 <h1>New Search Requests</h1>
 
-
+<br/>
 <table class="table table-xsm">
   <thead class="thead-light">
     <tr>
@@ -24,9 +24,16 @@
         <% if request.assigned_to %>
           <%= request.assigned_to.name %>
         <% else %>
+          <a href="#" class="btn btn-sm btn-primary btn-block">Start Search</a>
         <% end %>
+
+      </td>
+      <td>
+        <a href="#" class="btn btn-sm btn-outline-dark">i</a>
       </td>
     </tr>
   <% end %>
 
 </table>
+
+<a href="#" class="btn btn-sm btn-primary">Start Search</a>
