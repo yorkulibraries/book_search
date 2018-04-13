@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Search Areas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Primary</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_areas.each do |search_area| %>
+      <tr>
+        <td><%= search_area.name %></td>
+        <td><%= search_area.location_id %></td>
+        <td><%= search_area.primary %></td>
+        <td><%= link_to 'Show', search_area %></td>
+        <td><%= link_to 'Edit', edit_search_area_path(search_area) %></td>
+        <td><%= link_to 'Destroy', search_area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search Area', new_search_area_path %>

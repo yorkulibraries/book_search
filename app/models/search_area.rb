@@ -1,0 +1,2 @@
+class SearchArea < ApplicationRecord
+end

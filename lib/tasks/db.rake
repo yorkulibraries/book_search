@@ -6,7 +6,7 @@ namespace :db do
   task populate: :environment do
 
     # CLEAR THE DATABASE FIRST
-    [SearchRequest, Patron, Employee].each(&:delete_all)
+    [SearchRequest, Patron, Employee, Location, SearchArea].each(&:delete_all)
 
     Employee.populate(20..40) do |e|
       e.name = Faker::WorldOfWarcraft.hero
@@ -18,6 +18,21 @@ namespace :db do
     end
 
     employee_ids = Employee.ids
+
+    Location.populate(2..5) do |l|
+      l.name = Faker::HarryPotter.location
+      l.address = Faker::HarryPotter.house
+      l.email = Faker::Internet.safe_email(l.name)
+      l.phone = Faker::PhoneNumber.extension
+
+      SearchArea.populate(4..8) do |sa|
+        sa.name = Faker::Dune.planet
+        sa.location_id = l.id
+        sa.primary = [true, false]
+      end
+    end
+
+    location_ids = Location.ids
 
     Patron.populate(100..200) do |patron|
       patron.name = Faker::GameOfThrones.character

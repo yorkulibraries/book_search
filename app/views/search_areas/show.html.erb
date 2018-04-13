@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @search_area.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @search_area.location_id %>
+</p>
+
+<p>
+  <strong>Primary:</strong>
+  <%= @search_area.primary %>
+</p>
+
+<%= link_to 'Edit', edit_search_area_path(@search_area) %> |
+<%= link_to 'Back', search_areas_path %>

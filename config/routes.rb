@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :locations
+  resources :search_areas
   namespace :sl1 do
     resources :new_requests, only: :index
     resource :start_search, only: :update

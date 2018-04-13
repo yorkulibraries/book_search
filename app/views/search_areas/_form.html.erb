@@ -1,0 +1,32 @@
+<%= form_with(model: search_area, local: true) do |form| %>
+  <% if search_area.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(search_area.errors.count, "error") %> prohibited this search_area from being saved:</h2>
+
+      <ul>
+      <% search_area.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :search_area_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= form.number_field :location_id, id: :search_area_location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :primary %>
+    <%= form.check_box :primary, id: :search_area_primary %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
