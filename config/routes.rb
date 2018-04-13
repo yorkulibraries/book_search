@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :search_areas
   namespace :sl1 do
     resources :new_requests, only: :index
-    resource :start_search, only: :update
+    resource :start_search, only: [:update, :put]
   end
 
 

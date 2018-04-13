@@ -1,6 +1,8 @@
 <h1>New Search Requests</h1>
 
 <br/>
+<%= form_tag sl1_start_search_path, method: :put do %>
+
 <table class="table table-xsm">
   <thead class="thead-light">
     <tr>
@@ -8,23 +10,26 @@
       <th>Title</th>
       <th>Call Number</th>
       <th>Item ID</th>
+      <th>Status</th>
       <th class="text-left">Assigned To</th>
       <th></th>
     </tr>
   </thead>
   <% @requests.each do |request| %>
     <tr>
-      <td><input type="checkbox"></td>
+      <td><%= check_box_tag "search_request_ids[]", request.id %> <%= request.id %></td>
       <td><%= request.item_title %></td>
       <td>
         <%= request.item_callnumber %>
       </td>
       <td><%= request.item_id %></td>
+      <td><%= request.status %></td>
       <td>
         <% if request.assigned_to %>
           <%= request.assigned_to.name %>
         <% else %>
-          <a href="#" class="btn btn-sm btn-primary btn-block">Start Search</a>
+          ---
+          <!-- <a href="#" class="btn btn-sm btn-primary btn-block">Start Search</a> -->
         <% end %>
 
       </td>
@@ -33,7 +38,10 @@
       </td>
     </tr>
   <% end %>
-
+  <tr>
+    <td colspan="2"><%= submit_tag "Start Search Now!"%></td>
+  <tr>
+  <% end %>
 </table>
 
 <a href="#" class="btn btn-sm btn-primary">Start Search</a>
