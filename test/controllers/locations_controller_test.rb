@@ -2,7 +2,8 @@ require 'test_helper'
 
 class LocationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @location = locations(:one)
+    # @location = locations(:one)
+    @location = create(:location)
   end
 
   test "should get index" do

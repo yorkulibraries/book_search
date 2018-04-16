@@ -21,7 +21,6 @@ class SearchRequest < ApplicationRecord
   STATUSES = [STATUS_NEW, STATUS_SEARCH_IN_PROGRESS, STATUS_ESCALATED_TO_LEVEL_2, STATUS_RESOLVED]
 
   ## VALIDATIONS
-  validates_uniqueness_of :item_id
   validates_presence_of :item_id, :patron_id
 
   ## RELATIONS

@@ -2,7 +2,8 @@ require 'test_helper'
 
 class SearchAreasControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @search_area = search_areas(:one)
+    # @search_area = search_areas(:one)
+    @search_area = create(:search_area)
   end
 
   test "should get index" do
