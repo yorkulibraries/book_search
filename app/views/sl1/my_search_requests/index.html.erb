@@ -1,7 +1,6 @@
-<h1>New Search Requests</h1>
+<h1>My Search Requests</h1>
 
 <br/>
-<%= form_tag sl1_start_search_path, method: :put do %>
 
 <table class="table table-xsm">
   <thead class="thead-light">
@@ -25,22 +24,16 @@
       <td><%= request.item_id %></td>
       <td><%= request.status %></td>
       <td>
-        <% if request.assigned_to %>
           <%= request.assigned_to.name %>
-        <% else %>
-          ---
-          <!-- <a href="#" class="btn btn-sm btn-primary btn-block">Start Search</a> -->
-        <% end %>
-
       </td>
       <td>
-        <a href="#" class="btn btn-sm btn-outline-dark">i</a>
+        <a href="#" class="btn btn-sm btn-primary">Log Search Attempt</a>
       </td>
     </tr>
   <% end %>
-  <tr>
-    <td colspan="2"><%= submit_tag "Start Search Now!", class: "btn btn-sm btn-primary"%></td>
-  <tr>
-  <% end %>
 </table>
 
+<%= link_to "SL1 New Requests", sl1_new_requests_path, class: "btn btn-sm btn-link btn-primary" %>
+
+<br/>
+<br/>
