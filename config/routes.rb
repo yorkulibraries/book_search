@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :new_requests, only: :index
     resource :start_search, only: [:update, :put]
     resources :my_search_requests, only: :index
-    resource :search_attempt, only: [:new, :create, :show]
+    resources :search_request, only: [:edit, :update, :show]
+    
   end
 
 
