@@ -1,5 +1,24 @@
-<h1>Search Request Details</h1>
+<div class="card">
+  <div class="card-header">
+    Search Request Details
+  </div>
+  <div class="card-body">
+     <h5 class="card-title"><%= @request.item_title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @request.assigned_to_name %> </h6>
+    <blockquote class="blockquote mb-0">
+      <p><%= @request.item_callnumber %></p>
+      <p><%= @request.item_id %> </p>
+    </blockquote>
 
-# details
+    <hr/>
 
-# attempt
+    search attempt info will go here
+
+  </div>
+  <div class="card-footer text-muted">
+    Created
+    <span class="timeago" title="<%= @request.created_at.getutc.iso8601 %>">
+       <%= time_ago_in_words @request.created_at %> ago by <cite title="Source Title"> <%= @request.patron.name %> </cite>
+    </span>
+  </div>
+</div>

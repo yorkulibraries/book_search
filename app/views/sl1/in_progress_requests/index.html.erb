@@ -5,7 +5,7 @@
 
 <table class="table table-xsm">
   <thead class="thead-light">
-    <tr>      
+    <tr>
       <th>Title</th>
       <th>Call Number</th>
       <th>Item ID</th>
@@ -26,7 +26,7 @@
         <%= request.assigned_to.name if request.assigned_to %>
       </td>
       <td>
-        <a href="#" class="btn btn-sm btn-outline-dark">i</a>
+        <a href="<%= sl1_search_request_path(request) %>" class="btn btn-sm btn-outline-dark">i</a>
       </td>
     </tr>
   <% end %>

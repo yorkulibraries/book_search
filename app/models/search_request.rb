@@ -33,7 +33,13 @@ class SearchRequest < ApplicationRecord
   scope :in_progress_requests, -> { where(status: STATUS_SEARCH_IN_PROGRESS) }
 
   ## METHODS
-
+  def assigned_to_name
+    if assigned_to == nil
+      "Nobody"
+    else
+      assigned_to.name
+    end
+  end
 
   private
 

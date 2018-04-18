@@ -12,7 +12,7 @@ class Sl1::SearchRequestControllerTest < ActionDispatch::IntegrationTest
 
     get sl1_search_request_path(sr)
     assert_response :success
-    assert_select "h1", "Search Request Details"
+    assert_select ".card-header", "Search Request Details"
   end
 
   should "display the search attempt form if request has no search attemps, only for STATUS_SEARCH_IN_PROGRESS requests" do
