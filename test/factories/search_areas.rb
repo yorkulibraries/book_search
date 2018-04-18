@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :search_area do
-    name "MyString"
-    location_id 1
-    primary false
+    name "Stacks"
+    primary true
+    association :location, factory: :location
   end
 end
