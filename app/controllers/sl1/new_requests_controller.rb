@@ -1,6 +1,9 @@
 class Sl1::NewRequestsController < ApplicationController
+
   def index
-    # @requests = SearchRequest.new_requests
-    @requests = SearchRequest.all    
+    @requests = SearchRequest.new_requests
   end
+
+  
+
 end

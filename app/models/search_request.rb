@@ -30,6 +30,7 @@ class SearchRequest < ApplicationRecord
 
   ## SCOPES
   scope :new_requests, -> { where(status: STATUS_NEW) }
+  scope :in_progress_requests, -> { where(status: STATUS_SEARCH_IN_PROGRESS) }
 
   ## METHODS
 

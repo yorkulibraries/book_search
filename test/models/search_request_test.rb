@@ -31,5 +31,12 @@ class SearchRequestTest < ActiveSupport::TestCase
     assert_equal 1, SearchRequest.new_requests.size, "Should just be one"
   end
 
+  should "show new requests only" do
+    create(:search_request, status: SearchRequest::STATUS_SEARCH_IN_PROGRESS)
+    create(:search_request, status: SearchRequest::STATUS_RESOLVED)
+
+    assert_equal 1, SearchRequest.in_progress_requests.size, "Should just be one"
+  end
+
 
 end

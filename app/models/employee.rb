@@ -3,9 +3,10 @@ class Employee < ApplicationRecord
 
   ## CONSTANTS
   ROLE_MANAGER="manager"
-  ROLE_SUPERVISOR="supervisor"
-  ROLE_STAFF="staff"
-  ROLES = [ ROLE_MANAGER, ROLE_SUPERVISOR, ROLE_STAFF ]
+  ROLE_COORDINATOR="coordinator"
+  ROLE_LEVEL_ONE ="service_level_one"
+  ROLE_LEVEL_TWO ="service_level_two"
+  ROLES = [ ROLE_MANAGER, ROLE_COORDINATOR, ROLE_LEVEL_ONE, ROLE_LEVEL_TWO ]
 
   ## VALIDATIONS
   validates_uniqueness_of :login_id

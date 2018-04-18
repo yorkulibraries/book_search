@@ -18,7 +18,7 @@ class ActionDispatch::IntegrationTest
   include ActionMailer::TestHelper
 
   def log_user_in(user)
-    get login_url, headers: { "HTTP_PYORK_USER" => user.uid }
+    #get login_url, headers: { "HTTP_PYORK_USER" => user.uid }
   end
 
   def get_instance_var(what)

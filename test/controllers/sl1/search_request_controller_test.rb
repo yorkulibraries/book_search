@@ -3,8 +3,8 @@ require 'test_helper'
 class Sl1::SearchRequestControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @user = create(:employee, role: Employee::ROLE_MANAGER)
-    #log_user_in(@user)
+    @user = create(:employee, role: Employee::ROLE_LEVEL_ONE)
+    log_user_in(@user)
   end
 
   should "display the details for a search request" do
@@ -34,12 +34,10 @@ class Sl1::SearchRequestControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to sl1_search_request_path(sr)
     end
 
-    puts SearchAttempt.first.inspect
-    puts sr.search_attempts.size
-    puts sr.id
+    sr.reload
 
     assert_equal 1, sr.search_attempts.size
-    assert_equal assert_equal SearchRequest::STATUS_SEARCH_IN_PROGRESS, sr.status, "Status shouldn't change"
+    assert_equal SearchRequest::STATUS_SEARCH_IN_PROGRESS, sr.status, "Status shouldn't change"
   end
 
 
