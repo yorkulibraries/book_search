@@ -1,4 +1,4 @@
-class SearchAttempt < ApplicationRecord
+class SearchRequest::SearchAttempt < ApplicationRecord
   # attributes:  :search_request_id :employee_id :resolution :found_location :note
 
   ## CALLBACKS

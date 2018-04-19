@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :search_attempt do
-    resolution SearchAttempt::RESOLUTION_UNKNOWN
+  factory :search_attempt, class: SearchRequest::SearchAttempt do
+    resolution SearchRequest::SearchAttempt::RESOLUTION_UNKNOWN
     found_location nil
     note "Some NOTE"
 

@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180413162221) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "search_attempts", force: :cascade do |t|
+  create_table "search_request_search_attempts", force: :cascade do |t|
     t.integer "search_request_id"
     t.integer "employee_id"
     t.string "resolution"

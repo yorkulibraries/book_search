@@ -29,7 +29,7 @@ class Sl1::SearchRequestControllerTest < ActionDispatch::IntegrationTest
     assert_equal 0, sr.search_attempts.size , "Precodition: No Search Attempts"
     assert_equal SearchRequest::STATUS_SEARCH_IN_PROGRESS, sr.status, "Precondition: Status = STATUS_SEARCH_IN_PROGRESS"
 
-    assert_difference "SearchAttempt.count", 1 do
+    assert_difference "SearchRequest::SearchAttempt.count", 1 do
       patch sl1_search_request_path(sr)
       assert_redirected_to sl1_search_request_path(sr)
     end

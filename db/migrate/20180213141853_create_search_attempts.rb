@@ -1,6 +1,6 @@
 class CreateSearchAttempts < ActiveRecord::Migration[5.1]
   def change
-    create_table :search_attempts do |t|      
+    create_table :search_request_search_attempts do |t|      
       t.integer :search_request_id
       t.integer :employee_id
       t.string :resolution

@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class SearchAttemptTest < ActiveSupport::TestCase
+class SearchRequest::SearchAttemptTest < ActiveSupport::TestCase
   should "create a valid SearchAttempt" do
-    assert_difference "SearchAttempt.count", 1 do
+    assert_difference "SearchRequest::SearchAttempt.count", 1 do
       sa = build(:search_attempt)
       sa.save
     end
@@ -17,6 +17,6 @@ class SearchAttemptTest < ActiveSupport::TestCase
   should "set resolution on create to default values" do
     sa = build(:search_attempt)
     sa.save
-    assert_equal SearchAttempt::RESOLUTION_UNKNOWN, sa.resolution
+    assert_equal SearchRequest::SearchAttempt::RESOLUTION_UNKNOWN, sa.resolution
   end
 end
