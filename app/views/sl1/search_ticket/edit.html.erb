@@ -1,4 +1,4 @@
-<h1>Record Search Attempt</h1>
+<h1>Record Work Log</h1>
 <div class="card">
   <div class="card-header">
     Search Ticket Details
@@ -19,7 +19,7 @@
 
     <hr/>
     <p class="card-text">I have searched the following areas: </p>
-    <%= form_for @search_attempt, url: sl1_search_ticket_path(@ticket), method: :patch do |f| %>
+    <%= form_for @work_log, url: sl1_search_ticket_path(@ticket), method: :patch do |f| %>
       <ul class="list-inline">
       <% SearchArea.primary.each do |sa| %>
         <li class="list-inline-item">

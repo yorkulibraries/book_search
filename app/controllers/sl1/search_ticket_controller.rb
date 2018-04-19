@@ -7,17 +7,17 @@ class Sl1::SearchTicketController < ApplicationController
   end
 
   def edit
-    @search_attempt = SearchTicket::SearchAttempt.new
+    @work_log = SearchTicket::WorkLog.new
   end
 
   def update
 
-    sa = @ticket.search_attempts.build
+    sa = @ticket.work_logs.build
     #sa.employee = current_user
     sa.search_ticket = @ticket
     sa.save(validate: false)
 
-    redirect_to sl1_search_ticket_path(@ticket), notice: "Search Attempt recorded"
+    redirect_to sl1_search_ticket_path(@ticket), notice: "Work Log recorded"
   end
 
 
@@ -28,7 +28,7 @@ class Sl1::SearchTicketController < ApplicationController
   end
 
   def check_ticket_status
-    if @ticket.status != SearchTicket::STATUS_SEARCH_IN_PROGRESS || @ticket.search_attempts.size > 0
+    if @ticket.status != SearchTicket::STATUS_SEARCH_IN_PROGRESS || @ticket.work_logs.size > 0
       redirect_to sl1_search_ticket_path(@ticket), notice: "Search in progress already."
     end
   end

@@ -15,7 +15,7 @@
         <%= ticket.item_callnumber %>
       </td>
       <td><%= ticket.item_id %></td>
-      <td class="text-center"><%= ticket.search_attempts.size %></td>
+      <td class="text-center"><%= ticket.work_logs.size %></td>
       <td>
         <% if ticket.assigned_to %>
           <%= ticket.assigned_to.name %>

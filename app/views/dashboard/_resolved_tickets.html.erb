@@ -2,7 +2,7 @@
   <tr>
     <th>Title</th>
     <th>Call Number & Item ID</th>
-    <th>Search Attempts</th>
+    <th>Work Logs</th>
     <th>Cancelled By</th>
   </tr>
   <% @tickets.each do |ticket| %>
@@ -12,7 +12,7 @@
         <%= ticket.item_callnumber %><br/>
         <small><%= ticket.item_id %></small>
       </td>
-      <td><%= ticket.search_attempts.size %></td>
+      <td><%= ticket.work_logs.size %></td>
       <td>
         Who Cancelled it and why
       </td>

@@ -18,9 +18,9 @@
 
     <hr/>
 
-    <% if @ticket.search_attempts.size == 0 %>
+    <% if @ticket.work_logs.size == 0 %>
       No Search Has Been Done:
-      <a href="<%= edit_sl1_search_ticket_path(@ticket) %>" role="button" class="btn btn-secondary btn-lg btn-block">Record Search Attempt</a>
+      <a href="<%= edit_sl1_search_ticket_path(@ticket) %>" role="button" class="btn btn-secondary btn-lg btn-block">Record Work Log</a>
     <% else %>
 
     <% end %>
