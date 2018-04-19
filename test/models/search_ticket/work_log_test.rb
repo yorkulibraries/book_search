@@ -17,6 +17,6 @@ class SearchTicket::WorkLogTest < ActiveSupport::TestCase
   should "set resolution on create to default values" do
     sa = build(:work_log)
     sa.save
-    assert_equal SearchTicket::WorkLog::RESULT_UNKNOWN, sa.resolution
+    assert_equal SearchTicket::WorkLog::RESULT_UNKNOWN, sa.result
   end
 end

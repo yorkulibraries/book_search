@@ -48,20 +48,21 @@ ActiveRecord::Schema.define(version: 20180419131930) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "search_ticket_work_logs", force: :cascade do |t|
-    t.integer "search_ticket_id"
-    t.integer "employee_id"
-    t.string "resolution"
-    t.string "found_location"
-    t.text "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "search_ticket_searched_areas", force: :cascade do |t|
     t.integer "search_area_id"
     t.integer "work_log_id"
     t.integer "search_ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "search_ticket_work_logs", force: :cascade do |t|
+    t.integer "search_ticket_id"
+    t.integer "employee_id"
+    t.string "result"
+    t.string "found_location"
+    t.text "note"
+    t.string "work_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

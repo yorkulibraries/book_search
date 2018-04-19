@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :work_log, class: SearchTicket::WorkLog do
-    resolution SearchTicket::WorkLog::RESULT_UNKNOWN
+    result SearchTicket::WorkLog::RESULT_UNKNOWN
     found_location nil
     note "Some NOTE"
 
