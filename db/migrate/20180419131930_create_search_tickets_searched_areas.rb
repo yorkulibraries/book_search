@@ -1,4 +1,4 @@
-class CreateSearchTicketSearchedAreas < ActiveRecord::Migration[5.1]
+class CreateSearchTicketsSearchedAreas < ActiveRecord::Migration[5.1]
   def change
     create_table :search_ticket_searched_areas do |t|
       t.integer :search_area_id

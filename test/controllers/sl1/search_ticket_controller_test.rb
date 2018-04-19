@@ -12,7 +12,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     get sl1_search_ticket_path(sr)
     assert_response :success
-    assert_select ".card-header", "Search Ticket Details"
+    assert_select ".card-header span", "Search Ticket Details"
   end
 
   should "display the search attempt form if ticket has no search attemps, only for STATUS_SEARCH_IN_PROGRESS tickets" do

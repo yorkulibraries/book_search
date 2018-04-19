@@ -7,13 +7,13 @@ class Sl1::SearchTicketController < ApplicationController
   end
 
   def edit
-    @search_attempt = SearchTicket::SearchAttempt.new    
+    @search_attempt = SearchTicket::SearchAttempt.new
   end
 
   def update
 
     sa = @ticket.search_attempts.build
-    sa.employee = current_user
+    #sa.employee = current_user
     sa.search_ticket = @ticket
     sa.save(validate: false)
 
