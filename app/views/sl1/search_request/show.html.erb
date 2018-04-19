@@ -18,7 +18,12 @@
 
     <hr/>
 
-    search attempt info will go here
+    <% if @request.search_attempts.size == 0 %>
+      No Search Has Been Done:
+      <a href="<%= edit_sl1_search_request_path(@request) %>" role="button" class="btn btn-secondary btn-lg btn-block">Record Search Attempt</a>
+    <% else %>
+
+    <% end %>
 
   </div>
   <div class="card-footer text-muted">

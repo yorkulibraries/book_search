@@ -19,7 +19,7 @@
 
     <hr/>
     <p class="card-text">I have searched the following areas: </p>
-    <%= form_for @request, url: sl1_search_request_path(@request) do |f| %>
+    <%= form_for @search_attempt, url: sl1_search_request_path(@request), method: :patch do |f| %>
       <ul class="list-inline">
       <% SearchArea.primary.each do |sa| %>
         <li class="list-inline-item">
@@ -29,15 +29,44 @@
       <% end %>
       </ul>
 
-      I have found the book:
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-secondary btn-sm active">
-          <input type="radio" name="options" id="option1" autocomplete="off"> Yes
-        </label>
-        <label class="btn btn-secondary btn-sm">
-          <input type="radio" name="options" id="option2" autocomplete="off"> No
-        </label>
+      <div class="form-group row">
+        <div class="col-sm-3 card-text">
+          Have you found the book?
+        </div>
+        <div class="col-sm-9">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary btn-sm active">
+              <input type="radio" name="options" id="option1" autocomplete="off"> Yes
+            </label>
+            <label class="btn btn-secondary btn-sm">
+              <input type="radio" name="options" id="option2" autocomplete="off"> No
+            </label>
+          </div>
+        </div>
       </div>
+
+
+      <div class="form-group row">
+        <div class="col-sm-3 card-text">
+          If found, where:
+        </div>
+        <div class="col-sm-9">
+          <%= f.text_field :found_location %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-3 card-text">
+          Anything else to add?
+        </div>
+        <div class="col-sm-9">
+          <%= f.text_area :note %>
+        </div>
+      </div>
+
+
+
+
     <% end %>
 
   </div>
