@@ -26,7 +26,7 @@ namespace :db do
       l.phone = Faker::PhoneNumber.extension
 
       SearchArea.populate(4..8) do |sa|
-        sa.name = Faker::Dune.planet
+        sa.name = Faker::Job.field
         sa.location_id = l.id
         sa.primary = [true, false]
       end
@@ -45,12 +45,15 @@ namespace :db do
         report.item_title = Faker::Book.title
         report.item_id = 2900..3910
         report.patron_id = patron.id
-        report.location_id = 1..100
+        report.location_id = location_ids
         report.resolution = SearchTicket::RESOLUTIONS
         report.status = SearchTicket::STATUSES
         report.note = Faker::WorldOfWarcraft.quote
 
-        report.assigned_to_id = employee_ids.push(0)
+        if report.status != SearchTicket::STATUS_NEW
+          report.assigned_to_id = employee_ids
+        end
+
       end
     end
 
