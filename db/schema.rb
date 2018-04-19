@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413162221) do
+ActiveRecord::Schema.define(version: 20180419131930) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20180413162221) do
     t.string "resolution"
     t.string "found_location"
     t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "search_request_searched_areas", force: :cascade do |t|
+    t.integer "search_area_id"
+    t.integer "search_attempt_id"
+    t.integer "search_request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

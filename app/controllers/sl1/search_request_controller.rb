@@ -7,6 +7,7 @@ class Sl1::SearchRequestController < ApplicationController
   end
 
   def edit
+    @search_attempt = SearchRequest::SearchAttempt.new    
   end
 
   def update
