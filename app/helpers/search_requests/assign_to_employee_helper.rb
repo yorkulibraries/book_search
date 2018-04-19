@@ -1,2 +1,0 @@
-module SearchTickets::AssignToEmployeeHelper
-end
