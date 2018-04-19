@@ -1,14 +1,20 @@
 <div class="card">
   <div class="card-header">
     Search Request Details
+    <span class="badge badge-success float-right text-uppercase"><%= @request.status.humanize %></span>
   </div>
   <div class="card-body">
      <h5 class="card-title"><%= @request.item_title %></h5>
     <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @request.assigned_to_name %> </h6>
-    <blockquote class="blockquote mb-0">
-      <p><%= @request.item_callnumber %></p>
-      <p><%= @request.item_id %> </p>
-    </blockquote>
+    <hr/>
+    <dl class="row">
+      <dt class="col-sm-3">Callnumber</dt>
+      <dd class="col-sm-9"><%= @request.item_callnumber %></dd>
+
+      <dt class="col-sm-3">Item ID</dt>
+      <dd class="col-sm-9"><%= @request.item_id %></dd>
+
+    </dl>
 
     <hr/>
 
