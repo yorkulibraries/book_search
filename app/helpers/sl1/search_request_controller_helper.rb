@@ -1,2 +1,2 @@
-module Sl1::SearchRequestControllerHelper
+module Sl1::SearchTicketControllerHelper
 end

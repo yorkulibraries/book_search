@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SearchRequest::SearchedAreaTest < ActiveSupport::TestCase
+class SearchTicket::SearchedAreaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

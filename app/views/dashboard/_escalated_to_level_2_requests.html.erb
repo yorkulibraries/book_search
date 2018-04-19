@@ -5,17 +5,17 @@
     <th>Search Attempts</th>
     <th>Resolution</th>
   </tr>
-  <% @requests.each do |request| %>
+  <% @tickets.each do |ticket| %>
     <tr>
-      <td><%= request.item_title %></td>
+      <td><%= ticket.item_title %></td>
       <td>
-        <%= request.item_callnumber %><br/>
-        <small><%= request.item_id %></small>
+        <%= ticket.item_callnumber %><br/>
+        <small><%= ticket.item_id %></small>
       </td>
-      <td><%= request.search_attempts.size %></td>
+      <td><%= ticket.search_attempts.size %></td>
 
       <td>
-        <%= request.resolution.upcase %>
+        <%= ticket.resolution.upcase %>
       </td>
     </tr>
 

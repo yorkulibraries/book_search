@@ -6,7 +6,7 @@ namespace :db do
   task populate: :environment do
 
     # CLEAR THE DATABASE FIRST
-    [SearchRequest, Patron, Employee, Location, SearchArea].each(&:delete_all)
+    [SearchTicket, Patron, Employee, Location, SearchArea].each(&:delete_all)
 
     Employee.populate(20..40) do |e|
       e.name = Faker::WorldOfWarcraft.hero
@@ -39,15 +39,15 @@ namespace :db do
       patron.email = Faker::Internet.safe_email(patron.name)
       patron.login_id = 9021..9999
 
-      SearchRequest.populate(1..2) do |report|
+      SearchTicket.populate(1..2) do |report|
         # :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
         report.item_callnumber = Faker::Bank.iban
         report.item_title = Faker::Book.title
         report.item_id = 2900..3910
         report.patron_id = patron.id
         report.location_id = 1..100
-        report.resolution = SearchRequest::RESOLUTIONS
-        report.status = SearchRequest::STATUSES
+        report.resolution = SearchTicket::RESOLUTIONS
+        report.status = SearchTicket::STATUSES
         report.note = Faker::WorldOfWarcraft.quote
 
         report.assigned_to_id = employee_ids.push(0)

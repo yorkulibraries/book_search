@@ -1,4 +1,4 @@
-<h1>New Search Requests</h1>
+<h1>New Search Tickets</h1>
 
 <br/>
 <%= form_tag sl1_start_search_path, method: :put do %>
@@ -15,18 +15,18 @@
       <th></th>
     </tr>
   </thead>
-  <% @requests.each do |request| %>
+  <% @tickets.each do |ticket| %>
     <tr>
-      <td><%= check_box_tag "search_request_ids[]", request.id %> <%= request.id %></td>
-      <td><%= request.item_title %></td>
+      <td><%= check_box_tag "search_ticket_ids[]", ticket.id %> <%= ticket.id %></td>
+      <td><%= ticket.item_title %></td>
       <td>
-        <%= request.item_callnumber %>
+        <%= ticket.item_callnumber %>
       </td>
-      <td><%= request.item_id %></td>
-      <td class="search_request_status"><%= request.status %></td>
+      <td><%= ticket.item_id %></td>
+      <td class="search_ticket_status"><%= ticket.status %></td>
       <td>
-        <% if request.assigned_to %>
-          <%= request.assigned_to.name %>
+        <% if ticket.assigned_to %>
+          <%= ticket.assigned_to.name %>
         <% else %>
           ---
           <!-- <a href="#" class="btn btn-sm btn-primary btn-block">Start Search</a> -->
@@ -34,7 +34,7 @@
 
       </td>
       <td>
-        <a href="<%= sl1_search_request_path(request) %>" class="btn btn-sm btn-outline-dark">i</a>
+        <a href="<%= sl1_search_ticket_path(ticket) %>" class="btn btn-sm btn-outline-dark">i</a>
       </td>
     </tr>
   <% end %>

@@ -1,25 +1,25 @@
 <h1>Record Search Attempt</h1>
 <div class="card">
   <div class="card-header">
-    Search Request Details
-    <span class="badge badge-success float-right text-uppercase"><%= @request.status.humanize %></span>
+    Search Ticket Details
+    <span class="badge badge-success float-right text-uppercase"><%= @ticket.status.humanize %></span>
   </div>
   <div class="card-body">
-     <h5 class="card-title"><%= @request.item_title %></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @request.assigned_to_name %> </h6>
+     <h5 class="card-title"><%= @ticket.item_title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
     <hr/>
     <dl class="row">
       <dt class="col-sm-3">Callnumber</dt>
-      <dd class="col-sm-9"><%= @request.item_callnumber %></dd>
+      <dd class="col-sm-9"><%= @ticket.item_callnumber %></dd>
 
       <dt class="col-sm-3">Item ID</dt>
-      <dd class="col-sm-9"><%= @request.item_id %></dd>
+      <dd class="col-sm-9"><%= @ticket.item_id %></dd>
 
     </dl>
 
     <hr/>
     <p class="card-text">I have searched the following areas: </p>
-    <%= form_for @search_attempt, url: sl1_search_request_path(@request), method: :patch do |f| %>
+    <%= form_for @search_attempt, url: sl1_search_ticket_path(@ticket), method: :patch do |f| %>
       <ul class="list-inline">
       <% SearchArea.primary.each do |sa| %>
         <li class="list-inline-item">
@@ -72,8 +72,8 @@
   </div>
   <div class="card-footer text-muted">
     Created
-    <span class="timeago" title="<%= @request.created_at.getutc.iso8601 %>">
-       <%= time_ago_in_words @request.created_at %> ago by <cite title="Source Title"> <%= @request.patron.name %> </cite>
+    <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
+       <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron.name %> </cite>
     </span>
   </div>
 </div>

@@ -1,10 +1,16 @@
+<h1>Search In Progress Tickets</h1>
+
+<br/>
+
+
 <table class="table table-xsm">
   <thead class="thead-light">
     <tr>
       <th>Title</th>
       <th>Call Number</th>
       <th>Item ID</th>
-      <th class="text-center"># of Searches</th>
+      <th>Status</th>
+      <th class="text-left">Assigned To</th>
       <th></th>
     </tr>
   </thead>
@@ -15,14 +21,13 @@
         <%= ticket.item_callnumber %>
       </td>
       <td><%= ticket.item_id %></td>
-      <td class="text-center"><%= ticket.search_attempts.size %></td>
+      <td class="search_ticket_status"><%= ticket.status %></td>
       <td>
-        <% if ticket.assigned_to %>
-          <%= ticket.assigned_to.name %>
-        <% else %>
-        <% end %>
+        <%= ticket.assigned_to.name if ticket.assigned_to %>
+      </td>
+      <td>
+        <a href="<%= sl1_search_ticket_path(ticket) %>" class="btn btn-sm btn-outline-dark">i</a>
       </td>
     </tr>
   <% end %>
-
 </table>

@@ -1,6 +1,6 @@
-class CreateSearchRequests < ActiveRecord::Migration[5.1]
+class CreateSearchTickets < ActiveRecord::Migration[5.1]
   def change
-    create_table :search_requests do |t|
+    create_table :search_tickets do |t|
 
       t.integer :patron_id
       t.integer :location_id

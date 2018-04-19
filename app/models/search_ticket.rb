@@ -1,4 +1,4 @@
-class SearchRequest < ApplicationRecord
+class SearchTicket < ApplicationRecord
   # attributes:  :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
 
   ## CALLBACKS
@@ -29,8 +29,8 @@ class SearchRequest < ApplicationRecord
   has_many :search_attempts
 
   ## SCOPES
-  scope :new_requests, -> { where(status: STATUS_NEW) }
-  scope :in_progress_requests, -> { where(status: STATUS_SEARCH_IN_PROGRESS) }
+  scope :new_tickets, -> { where(status: STATUS_NEW) }
+  scope :in_progress_tickets, -> { where(status: STATUS_SEARCH_IN_PROGRESS) }
 
   ## METHODS
   def assigned_to_name

@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Search Ticket Details
+    <span class="badge badge-success float-right text-uppercase"><%= @ticket.status.humanize %></span>
+  </div>
+  <div class="card-body">
+     <h5 class="card-title"><%= @ticket.item_title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
+    <hr/>
+    <dl class="row">
+      <dt class="col-sm-3">Callnumber</dt>
+      <dd class="col-sm-9"><%= @ticket.item_callnumber %></dd>
+
+      <dt class="col-sm-3">Item ID</dt>
+      <dd class="col-sm-9"><%= @ticket.item_id %></dd>
+
+    </dl>
+
+    <hr/>
+
+    <% if @ticket.search_attempts.size == 0 %>
+      No Search Has Been Done:
+      <a href="<%= edit_sl1_search_ticket_path(@ticket) %>" role="button" class="btn btn-secondary btn-lg btn-block">Record Search Attempt</a>
+    <% else %>
+
+    <% end %>
+
+  </div>
+  <div class="card-footer text-muted">
+    Created
+    <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
+       <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron.name %> </cite>
+    </span>
+  </div>
+</div>

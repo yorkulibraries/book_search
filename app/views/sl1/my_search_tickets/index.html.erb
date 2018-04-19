@@ -1,4 +1,4 @@
-<h1>My Search Requests</h1>
+<h1>My Search Tickets</h1>
 
 <br/>
 
@@ -14,17 +14,17 @@
       <th></th>
     </tr>
   </thead>
-  <% @requests.each do |request| %>
+  <% @tickets.each do |ticket| %>
     <tr>
-      <td><%= check_box_tag "search_request_ids[]", request.id %> <%= request.id %></td>
-      <td><%= request.item_title %></td>
+      <td><%= check_box_tag "search_ticket_ids[]", ticket.id %> <%= ticket.id %></td>
+      <td><%= ticket.item_title %></td>
       <td>
-        <%= request.item_callnumber %>
+        <%= ticket.item_callnumber %>
       </td>
-      <td><%= request.item_id %></td>
-      <td><%= request.status %></td>
+      <td><%= ticket.item_id %></td>
+      <td><%= ticket.status %></td>
       <td>
-          <%= request.assigned_to.name %>
+          <%= ticket.assigned_to.name %>
       </td>
       <td>
         <a href="#" class="btn btn-sm btn-primary">Log Search Attempt</a>
@@ -33,7 +33,7 @@
   <% end %>
 </table>
 
-<%= link_to "SL1 New Requests", sl1_new_requests_path, class: "btn btn-sm btn-link btn-primary" %>
+<%= link_to "SL1 New Tickets", sl1_new_tickets_path, class: "btn btn-sm btn-link btn-primary" %>
 
 <br/>
 <br/>

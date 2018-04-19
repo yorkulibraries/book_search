@@ -1,5 +1,5 @@
-class SearchRequest::SearchAttempt < ApplicationRecord
-  # attributes:  :search_request_id :employee_id :resolution :found_location :note
+class SearchTicket::SearchAttempt < ApplicationRecord
+  # attributes:  :search_ticket_id :employee_id :resolution :found_location :note
 
   ## CALLBACKS
   before_create :set_resolution_before_create
@@ -16,11 +16,11 @@ class SearchRequest::SearchAttempt < ApplicationRecord
   RESOLUTION_NOT_FOUND = "not_found"
 
   ## VALIDATIONS
-  validates_presence_of :employee_id, :search_request_id
+  validates_presence_of :employee_id, :search_ticket_id
 
   ## RELATIONS
   belongs_to :employee
-  belongs_to :search_request
+  belongs_to :search_ticket
 
   has_many :searched_areas
   has_many :search_areas, through: :searched_area

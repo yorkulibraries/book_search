@@ -1,2 +1,2 @@
-module SearchRequests::AssignToEmployeeHelper
+module SearchTickets::AssignToEmployeeHelper
 end

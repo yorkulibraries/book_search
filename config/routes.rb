@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
 
   namespace :sl1 do
-    resources :new_requests, only: :index
-    resources :in_progress_requests, only: :index
+    resources :new_tickets, only: :index
+    resources :in_progress_tickets, only: :index
     resource :start_search, only: [:update, :put]
-    resources :my_search_requests, only: :index
-    resources :search_request, only: [:edit, :update, :show]
+    resources :my_search_tickets, only: :index
+    resources :search_ticket, only: [:edit, :update, :show]
 
   end
 

@@ -1,2 +1,2 @@
-module Sl1::NewSearchRequestsHelper
+module Sl1::NewSearchTicketsHelper
 end

@@ -1,2 +1,2 @@
-module Sl1::InProgressRequestsHelper
+module Sl1::InProgressTicketsHelper
 end
