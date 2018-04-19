@@ -22,6 +22,9 @@ class SearchRequest::SearchAttempt < ApplicationRecord
   belongs_to :employee
   belongs_to :search_request
 
+  has_many :searched_areas
+  has_many :search_areas, through: :searched_area
+
   ## SCOPES
 
   ## METHODS
