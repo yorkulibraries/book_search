@@ -18,12 +18,9 @@
 
     <hr/>
 
-    <% if @ticket.work_logs.size == 0 %>
-      No Search Has Been Done:
-      <a href="<%= edit_sl1_search_ticket_path(@ticket) %>" role="button" class="btn btn-secondary btn-lg btn-block">Record Work Log</a>
-    <% else %>
+    <%= render partial: "#{@ticket.status}_status" %>
 
-    <% end %>
+
 
   </div>
   <div class="card-footer text-muted">
