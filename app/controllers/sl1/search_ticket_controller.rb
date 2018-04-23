@@ -23,6 +23,18 @@ class Sl1::SearchTicketController < ApplicationController
     end
 
     if @work_log.save
+
+      if @work_log.result == SearchTicket::WorkLog::RESULT_FOUND
+        @ticket.status = SearchTicket::STATUS_RESOLVED
+        @ticket.resolution = SearchTicket::RESOLUTION_FOUND
+        @ticket.save
+
+      elsif @work_log.result == SearchTicket::WorkLog::RESULT_NOT_FOUND
+        @ticket.status = SearchTicket::STATUS_ESCALATED_TO_LEVEL_2
+        @ticket.save
+      end
+
+
       redirect_to sl1_search_ticket_path(@ticket), notice: "Work Log recorded"
     else
       render action: :edit
