@@ -1,5 +1,7 @@
 class Sl1::MySearchTicketsController < ApplicationController
 
+  before_action :current_user
+  
   def index
     @tickets = SearchTicket.where(assigned_to_id: current_user.id)
   end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :sl1 do
     resources :new_tickets, only: :index
     resources :in_progress_tickets, only: :index
-    resource :start_search, only: [:update, :put]
+    resource :start_searches, only: [:update]    
     resources :my_search_tickets, only: :index
     resources :search_ticket, only: [:edit, :update, :show]
 
