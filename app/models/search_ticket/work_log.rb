@@ -12,7 +12,8 @@ class SearchTicket::WorkLog < ApplicationRecord
   RESULT_NOT_FOUND = "not_found"
 
   ## VALIDATIONS
-  validates_presence_of :employee_id, :search_ticket_id
+  validates_presence_of :employee_id, :search_ticket_id, :work_type, :result
+  validates_presence_of :found_location, if: Proc.new { |log| log.result == RESULT_FOUND }
 
   ## RELATIONS
   belongs_to :employee

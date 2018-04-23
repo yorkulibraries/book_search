@@ -23,21 +23,28 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Record Work Log"
   end
 
-  should "add a new work log to the ticket, if none are present" do
-    sr = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
+  should "add a new work log to the ticket for Item that is FOUND" do
+    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
 
-    assert_equal 0, sr.work_logs.size , "Precodition: No Work Logs"
-    assert_equal SearchTicket::STATUS_SEARCH_IN_PROGRESS, sr.status, "Precondition: Status = STATUS_SEARCH_IN_PROGRESS"
+    assert_equal 0, ticket.work_logs.size , "Precodition: No Work Logs"
+    assert_equal SearchTicket::STATUS_SEARCH_IN_PROGRESS, ticket.status, "Precondition: Status = STATUS_SEARCH_IN_PROGRESS"
 
     assert_difference "SearchTicket::WorkLog.count", 1 do
-      patch sl1_search_ticket_path(sr)
-      assert_redirected_to sl1_search_ticket_path(sr)
+      patch sl1_search_ticket_path(ticket)
+      assert_redirected_to sl1_search_ticket_path(ticket)
     end
 
-    sr.reload
+    ticket.reload
 
-    assert_equal 1, sr.work_logs.size
-    assert_equal SearchTicket::STATUS_SEARCH_IN_PROGRESS, sr.status, "Status shouldn't change"
+    assert_equal 1, ticket.work_logs.size
+    assert_equal SearchTicket::STATUS_SEARCH_IN_PROGRESS, ticket.status, "Status shouldn't change"
+
+    # check if worklog details were recorded well.
+    wl = ticket.work_logs.first
+    assert_equal wl.work_type, SearchTicket::WorkLog::WORK_TYPE_SEARCH
+    assert_equal wl.result,  SearchTicket::WorkLog::RESULT_FOUND
+    assert_equal current_user.id, wl.employee_id, "Record who did the work"
+    assert_not_nil wl.found_location, "Found location should be filled"    
   end
 
 

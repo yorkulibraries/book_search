@@ -1,8 +1,8 @@
 <div class="jumbotron">
   <h1 class="display-4">Search In Progress</h1>
-  <p class="lead">Some one is searching for this Item </p>
+  <p class="lead"><%= @ticket.assigned_to_name %> is searching for this Item. If it is found, we'll update the patron. </p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p>To update the search progress, please on the Record Progress button.</p>
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="<%= edit_sl1_search_ticket_path(@ticket) %>" role="button">Record Progress</a>
   </p>

@@ -3,6 +3,7 @@ FactoryBot.define do
     result SearchTicket::WorkLog::RESULT_UNKNOWN
     found_location nil
     note "Some NOTE"
+    work_type SearchTicket::WorkLog::WORK_TYPE_SEARCH
 
     ## associations
     association :employee, factory: :employee
