@@ -3,7 +3,7 @@ require 'test_helper'
 class SearchTicket::WorkLogTest < ActiveSupport::TestCase
   should "create a valid WorkLog" do
     assert_difference "SearchTicket::WorkLog.count", 1 do
-      log = build(:work_log)
+      log = build(:work_log)      
       log.save
     end
   end

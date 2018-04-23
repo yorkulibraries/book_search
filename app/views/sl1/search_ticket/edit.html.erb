@@ -23,7 +23,7 @@
       <ul class="list-inline">
       <% SearchArea.primary.each do |sa| %>
         <li class="list-inline-item">
-          <%= check_box_tag "searched_areas[area_ids][]", sa.id, false, id: dom_id(sa) %>
+          <%= check_box_tag "earched_areas[area_ids][]", sa.id, @work_log.searched_area_ids.include?(sa.id), id: dom_id(sa) %>
           <%= label_tag dom_id(sa), sa.name %>
         </li>
       <% end %>
