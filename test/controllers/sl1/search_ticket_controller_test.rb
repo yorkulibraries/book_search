@@ -42,14 +42,11 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to sl1_search_ticket_path
   end
 
-  ### FORM TESTS
-  should "add a new work log to the ticket for Item that is FOUND" do
+  ### FLOW VALIDATION TESTS
+  should "If Item Found: add a new work log to the ticket and change ticket status and resolution" do
     ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
     sa1 = create(:search_area)
     sa2 = create(:search_area)
-
-    assert_equal 0, ticket.work_logs.size , "Precodition: No Work Logs"
-    assert_equal SearchTicket::STATUS_SEARCH_IN_PROGRESS, ticket.status, "Precondition: Status = STATUS_SEARCH_IN_PROGRESS"
 
     assert_difference "SearchTicket::WorkLog.count", 1 do
       assert_difference " SearchTicket::SearchedArea.count", 2 do
@@ -64,7 +61,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     ticket.reload
 
     assert_equal 1, ticket.work_logs.size
-    assert_equal SearchTicket::STATUS_SEARCH_IN_PROGRESS, ticket.status, "Status shouldn't change"
+    assert_equal SearchTicket::STATUS_RESOLVED, ticket.status, "Status change to resovled"
 
     # check if worklog details were recorded well.
     wl = ticket.work_logs.first
@@ -73,6 +70,30 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     assert_equal @user.id, wl.employee_id, "Record who did the work"
     assert_not_nil wl.found_location, "Found location should be filled"
   end
+
+  should "If Item Not Found, add a new work log to the ticket and change ticket status" do
+    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
+    sa1 = create(:search_area)
+    sa2 = create(:search_area)
+
+    assert_difference "SearchTicket::WorkLog.count", 1 do
+      assert_difference " SearchTicket::SearchedArea.count", 2 do
+        patch sl1_search_ticket_path(ticket), params: { search_ticket_work_log:
+          { result:  SearchTicket::WorkLog::RESULT_NOT_FOUND, note: "Some Note",
+            search_area_ids: [sa1.id, sa2.id]
+            } }
+      end
+      assert_redirected_to sl1_search_ticket_path(ticket)
+    end
+
+    ticket.reload
+
+    assert_equal 1, ticket.work_logs.size
+    assert_equal SearchTicket::STATUS_ESCALATED_TO_LEVEL_2, ticket.status, "Status change to ESCALATED"
+    assert_equal SearchTicket::RESOLUTION_UNKNOWN, ticket.resolution, "Resolution shouldn't change"
+  end
+
+  ## ERROR VALIDATION TESTS
 
   should "not redirect to search ticket details if couldn't save progress" do
     ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
