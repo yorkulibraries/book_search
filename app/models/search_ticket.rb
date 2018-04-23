@@ -41,6 +41,14 @@ class SearchTicket < ApplicationRecord
     end
   end
 
+  def patron_name
+    if patron == nil
+      "THIS SHOULDN'T HAPPEN"
+    else
+      patron.name
+    end
+  end
+
   private
 
   def set_status_and_resolution_before_create

@@ -1,9 +1,13 @@
 <div class="jumbotron">
-  <h1 class="display-4">This Search Ticket Is Brand New!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <h1 class="display-4">Just In!</h1>
+  <p class="lead"><%= @ticket.patron_name %> has submitted this ticket
+    <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
+       <%= time_ago_in_words @ticket.created_at %> ago.
+    </span>
+  </p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p>If you would like to search for this item, please click on Start Search button.</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="<%= edit_sl1_search_ticket_path(@ticket) %>" role="button">Start Search</a>
+    <%= link_to 'Start Search', sl1_start_search_path(search_ticket_ids: @ticket.id), method: :put, class: "btn btn-primary btn-lg"  %>
   </p>
 </div>
