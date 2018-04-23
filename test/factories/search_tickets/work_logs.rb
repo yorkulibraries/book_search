@@ -9,5 +9,8 @@ FactoryBot.define do
     association :employee, factory: :employee
     association :search_ticket, factory: :search_ticket
 
+    after(:build) do |log|
+      log.searched_areas.push build(:searched_area)
+    end
   end
 end

@@ -49,7 +49,13 @@ GEM
     arel (8.0.0)
     autoprefixer-rails (7.2.5)
       execjs
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
@@ -76,7 +82,9 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     database_cleaner (1.6.1)
+    debug_inspector (0.0.3)
     erubi (1.7.0)
+    erubis (2.7.0)
     execjs (2.7.0)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
@@ -198,6 +206,9 @@ GEM
     shoulda-context (1.2.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simple_form (4.0.0)
+      actionpack (> 4)
+      activemodel (> 4)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -239,6 +250,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootstrap (~> 4.0.0)
   byebug
   capybara (~> 2.13)
@@ -261,6 +274,7 @@ DEPENDENCIES
   shoulda (= 3.5)
   shoulda-context
   shoulda-matchers
+  simple_form (= 4.0.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

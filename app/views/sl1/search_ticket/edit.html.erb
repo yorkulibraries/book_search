@@ -19,29 +19,26 @@
 
     <hr/>
     <p class="card-text">I have searched the following areas: </p>
-    <%= form_for @work_log, url: sl1_search_ticket_path(@ticket), method: :patch do |f| %>
+    <%= simple_form_for @work_log, url: sl1_search_ticket_path(@ticket), method: :patch do |f| %>
+      <div class="invalid-feedback d-block"><%= f.full_error :searched_areas %></div>
       <ul class="list-inline">
       <% SearchArea.primary.each do |sa| %>
         <li class="list-inline-item">
-          <%= check_box_tag "searched_areas[area_ids][]", sa.id, false, id: dom_id(sa) %>
+          <%= check_box_tag "earched_areas[area_ids][]", sa.id, @work_log.searched_area_ids.include?(sa.id), id: dom_id(sa) %>
           <%= label_tag dom_id(sa), sa.name %>
         </li>
       <% end %>
       </ul>
+
 
       <div class="form-group row">
         <div class="col-sm-3 card-text">
           Have you found the book?
         </div>
         <div class="col-sm-9">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary btn-sm active">
-              <input type="radio" name="options" id="option1" autocomplete="off"> Yes
-            </label>
-            <label class="btn btn-secondary btn-sm">
-              <input type="radio" name="options" id="option2" autocomplete="off"> No
-            </label>
-          </div>
+            <%= f.input :result,  as: :radio_buttons, label: false, label: false, 
+              collection: [["Yes ", SearchTicket::WorkLog::RESULT_FOUND], ["No",  SearchTicket::WorkLog::RESULT_NOT_FOUND]]
+            %>
         </div>
       </div>
 
@@ -51,7 +48,7 @@
           If found, where:
         </div>
         <div class="col-sm-9">
-          <%= f.text_field :found_location %>
+          <%= f.input :found_location, label: false %>
         </div>
       </div>
 
@@ -60,12 +57,11 @@
           Anything else to add?
         </div>
         <div class="col-sm-9">
-          <%= f.text_area :note %>
+          <%= f.input :note, label: false, input_html: { class: "form-control"} %>
         </div>
       </div>
 
-
-
+      <%= f.submit "Record Progress", class: "btn btn-success" %>
 
     <% end %>
 

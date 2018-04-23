@@ -1,7 +1,8 @@
 FactoryBot.define do
-  factory :search_ticket_searched_area, class: 'SearchTicket::SearchedArea' do
-    search_area_id 1
-    search_ticket_work_log_id 1
-    search_ticket_id 1
+  factory :searched_area, class: 'SearchTicket::SearchedArea' do
+
+    work_log nil
+    association :search_area, factory: :search_area
+    association :search_ticket, factory: :search_ticket  
   end
 end

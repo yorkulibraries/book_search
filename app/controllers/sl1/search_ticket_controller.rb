@@ -12,13 +12,21 @@ class Sl1::SearchTicketController < ApplicationController
 
   def update
 
-    wl = @ticket.work_logs.build(work_log_params)
-    wl.work_type = SearchTicket::WorkLog::WORK_TYPE_SEARCH
-    #sa.employee = current_user
-    wl.search_ticket = @ticket
-    wl.save(validate: false)
+    @work_log = @ticket.work_logs.build(work_log_params)
+    @work_log.work_type = SearchTicket::WorkLog::WORK_TYPE_SEARCH
+    @work_log.employee = current_user
+    @work_log.search_ticket = @ticket
 
-    redirect_to sl1_search_ticket_path(@ticket), notice: "Work Log recorded"
+    # add search_ticket id to searched_areas
+    @work_log.searched_areas.each do |sa|
+      sa.search_ticket = @ticket
+    end
+
+    if @work_log.save
+      redirect_to sl1_search_ticket_path(@ticket), notice: "Work Log recorded"
+    else
+      render action: :edit
+    end
   end
 
 
@@ -35,6 +43,6 @@ class Sl1::SearchTicketController < ApplicationController
   end
 
   def work_log_params
-     params.require(:work_log).permit(:result, :found_location, :note, searched_area_attributes: [:search_area_id])
+     params.require(:search_ticket_work_log).permit(:result, :found_location, :note, search_area_ids: [])
   end
 end

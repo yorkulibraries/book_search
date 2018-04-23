@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.5'
 #gem 'redis', '~> 3.0'
 #gem 'bcrypt', '~> 3.1.7'
 
+gem 'simple_form', "4.0.0"
+
 ## DEPLOYMENT
 gem 'puma', '~> 3.7'
 
@@ -67,7 +69,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-
+  gem "better_errors", group: :development
+  gem "binding_of_caller", group: :development
 end
 
 ###### Windows does not include zoneinfo files, so bundle the tzinfo-data gem
