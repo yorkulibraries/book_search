@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.5'
 #gem 'redis', '~> 3.0'
 #gem 'bcrypt', '~> 3.1.7'
 
+gem 'simple_form', "4.0.0"
+
 ## DEPLOYMENT
 gem 'puma', '~> 3.7'
 

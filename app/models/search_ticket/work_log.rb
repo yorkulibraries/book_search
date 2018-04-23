@@ -15,7 +15,7 @@ class SearchTicket::WorkLog < ApplicationRecord
   validates_presence_of :employee_id, :search_ticket_id, :work_type, :result
   validates_presence_of :found_location, if: Proc.new { |log| log.result == RESULT_FOUND }
   #validate :validate_searched_areas
-  validates :searched_areas, length: { minimum: 1 }
+  validates :searched_areas, length: { minimum: 1, message: " must be selected (at least one)" } 
 
   ## RELATIONS
   belongs_to :employee
