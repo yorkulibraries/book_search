@@ -43,6 +43,6 @@ class Sl1::SearchTicketController < ApplicationController
   end
 
   def work_log_params
-     params.require(:work_log).permit(:result, :found_location, :note, search_area_ids: [])
+     params.require(:search_ticket_work_log).permit(:result, :found_location, :note, search_area_ids: [])
   end
 end

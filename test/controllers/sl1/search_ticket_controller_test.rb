@@ -53,7 +53,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference "SearchTicket::WorkLog.count", 1 do
       assert_difference " SearchTicket::SearchedArea.count", 2 do
-        patch sl1_search_ticket_path(ticket), params: { work_log:
+        patch sl1_search_ticket_path(ticket), params: { search_ticket_work_log:
           { found_location: "Test", result:  SearchTicket::WorkLog::RESULT_FOUND, note: "Some Note",
             search_area_ids: [sa1.id, sa2.id]
             } }
@@ -84,7 +84,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference "SearchTicket::WorkLog.count", 0 do
       assert_difference " SearchTicket::SearchedArea.count", 0 do
-        patch sl1_search_ticket_path(ticket), params: { work_log:
+        patch sl1_search_ticket_path(ticket), params: { search_ticket_work_log:
           { found_location: "Test", note: "Some Note",
             search_area_ids: [sa1.id, sa2.id]
             } }
@@ -103,7 +103,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference "SearchTicket::WorkLog.count", 0 do
       assert_difference " SearchTicket::SearchedArea.count", 0 do
-        patch sl1_search_ticket_path(ticket), params: { work_log:
+        patch sl1_search_ticket_path(ticket), params: { search_ticket_work_log:
           { found_location: "Test", result:  SearchTicket::WorkLog::RESULT_FOUND, note: "Some Note",
             search_area_ids: []
             } }

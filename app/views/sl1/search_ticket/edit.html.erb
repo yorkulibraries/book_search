@@ -35,11 +35,13 @@
         </div>
         <div class="col-sm-9">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary btn-sm active">
-              <input type="radio" name="options" id="option1" autocomplete="off"> Yes
+            <label class="btn btn-secondary btn-sm">
+              <%= f.radio_button :result,  SearchTicket::WorkLog::RESULT_FOUND %>
+               Yes
             </label>
             <label class="btn btn-secondary btn-sm">
-              <input type="radio" name="options" id="option2" autocomplete="off"> No
+              <%= f.radio_button :result,  SearchTicket::WorkLog::RESULT_NOT_FOUND %>
+               No
             </label>
           </div>
         </div>
@@ -63,9 +65,18 @@
           <%= f.text_area :note %>
         </div>
       </div>
+      <% if @work_log.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@work_log.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-
-
+    <ul>
+    <% @work_log.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+      <%= f.submit "Record Progress", class: "btn btn-success" %>
 
     <% end %>
 
