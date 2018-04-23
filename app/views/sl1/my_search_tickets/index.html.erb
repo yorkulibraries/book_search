@@ -22,12 +22,12 @@
         <%= ticket.item_callnumber %>
       </td>
       <td><%= ticket.item_id %></td>
-      <td><%= ticket.status %></td>
+      <td class="search_ticket_status"><%= ticket.status %></td>
       <td>
           <%= ticket.assigned_to.name %>
       </td>
       <td>
-        <a href="#" class="btn btn-sm btn-primary">Log Work Log</a>
+        <a href="#" class="btn btn-sm btn-primary">Log Work</a>
       </td>
     </tr>
   <% end %>
