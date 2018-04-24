@@ -1,22 +1,11 @@
-<h1>Record Work Log</h1>
+<h1>Record Search Result</h1>
 <div class="card">
   <div class="card-header">
     Search Ticket Details
     <span class="badge badge-success float-right text-uppercase"><%= @ticket.status.humanize %></span>
   </div>
   <div class="card-body">
-     <h5 class="card-title"><%= @ticket.item_title %></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
-    <hr/>
-    <dl class="row">
-      <dt class="col-sm-3">Callnumber</dt>
-      <dd class="col-sm-9"><%= @ticket.item_callnumber %></dd>
-
-      <dt class="col-sm-3">Item ID</dt>
-      <dd class="col-sm-9"><%= @ticket.item_id %></dd>
-
-    </dl>
-
+    <%= render partial: "ticket_details" %>
     <hr/>
     <p class="card-text">I have searched the following areas: </p>
     <%= simple_form_for @work_log, url: sl1_search_ticket_path(@ticket), method: :patch do |f| %>
@@ -36,7 +25,7 @@
           Have you found the book?
         </div>
         <div class="col-sm-9">
-            <%= f.input :result,  as: :radio_buttons, label: false, label: false,
+            <%= f.input :result,  as: :radio_buttons, label: false, 
               collection: [["Yes ", SearchTicket::WorkLog::RESULT_FOUND], ["No",  SearchTicket::WorkLog::RESULT_NOT_FOUND]]
             %>
         </div>
@@ -61,7 +50,7 @@
         </div>
       </div>
 
-      <%= f.submit "Record Progress", class: "btn btn-success" %>
+      <%= f.submit "Record Search Result", class: "btn btn-success" %>
 
     <% end %>
 
@@ -69,7 +58,7 @@
   <div class="card-footer text-muted">
     Created
     <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
-       <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron.name %> </cite>
+       <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron_name %> </cite>
     </span>
   </div>
 </div>

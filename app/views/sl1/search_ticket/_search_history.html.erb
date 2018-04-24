@@ -1,0 +1,38 @@
+<% if @ticket.work_logs.size > 0 %>
+<h3>Search History</h3>
+<table class="table table-responsive-sm table-sm">
+  <thead>
+    <tr>
+      <th>Who</th>
+      <th>Where</th>
+      <th>When</th>
+      <th>Result</th>
+      <th>Location</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ticket.work_logs.each do |log| %>
+    <tr>
+      <td><%= log.employee.name %></td>
+      <td>
+        <%= log.search_areas.map { |sa| sa.name}.join(", ") %>
+      </td>
+      <td>
+        <span class="timeago" title="<%= log.created_at.getutc.iso8601 %>">
+           <%= log.created_at.strftime("%Y-%m-%d") %>
+        </span>
+      </td>
+      <td>
+        <span class="badge badge-<%= log.result == SearchTicket::WorkLog::RESULT_FOUND ? "success" : "danger" %>">
+          <%= log.result.humanize.capitalize %>
+        </span>
+      </td>
+      <td><%= log.found_location %></td>
+      <td><%= log.note %></td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
