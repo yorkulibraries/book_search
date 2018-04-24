@@ -2,5 +2,5 @@
 
 <%= render 'form', search_area: @search_area %>
 
-<%= link_to 'Show', @search_area %> |
-<%= link_to 'Back', search_areas_path %>
+<%= link_to 'Show', [:admin, @search_area] %> |
+<%= link_to 'Back', admin_search_areas_path %>

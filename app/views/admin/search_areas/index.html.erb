@@ -18,9 +18,9 @@
         <td><%= search_area.name %></td>
         <td><%= search_area.location_id %></td>
         <td><%= search_area.primary %></td>
-        <td><%= link_to 'Show', search_area %></td>
-        <td><%= link_to 'Edit', edit_search_area_path(search_area) %></td>
-        <td><%= link_to 'Destroy', search_area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [:admin, search_area] %></td>
+        <td><%= link_to 'Edit', edit_admin_search_area_path(search_area) %></td>
+        <td><%= link_to 'Destroy', [:admin, search_area], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Search Area', new_search_area_path %>
+<%= link_to 'New Search Area', new_admin_search_area_path %>

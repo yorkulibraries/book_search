@@ -1,4 +1,4 @@
-<%= form_with(model: search_area, local: true) do |form| %>
+<%= form_with(model: [:admin, search_area], local: true) do |form| %>
   <% if search_area.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(search_area.errors.count, "error") %> prohibited this search_area from being saved:</h2>
