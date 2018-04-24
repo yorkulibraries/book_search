@@ -4,22 +4,13 @@
     <span class="badge badge-success float-right text-uppercase"><%= @ticket.status.humanize %></span>
   </div>
   <div class="card-body">
-     <h5 class="card-title"><%= @ticket.item_title %></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
-    <hr/>
-    <dl class="row">
-      <dt class="col-sm-3">Callnumber</dt>
-      <dd class="col-sm-9"><%= @ticket.item_callnumber %></dd>
-
-      <dt class="col-sm-3">Item ID</dt>
-      <dd class="col-sm-9"><%= @ticket.item_id %></dd>
-
-    </dl>
+    <%= render partial: "ticket_details" %>
 
     <hr/>
 
     <%= render partial: "#{@ticket.status}_status" %>
 
+    <%= render partial: "search_history" %>
 
 
   </div>

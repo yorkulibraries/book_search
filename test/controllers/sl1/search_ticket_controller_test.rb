@@ -20,7 +20,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     get edit_sl1_search_ticket_path(sr)
     assert_response :success
-    assert_select "h1", "Record Work Log"
+    assert_select "h1", "Record Search Result"
   end
 
 

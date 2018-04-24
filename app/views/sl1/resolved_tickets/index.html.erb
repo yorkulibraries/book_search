@@ -1,0 +1,29 @@
+<h1>Search Resolved Tickets</h1>
+
+<br/>
+
+
+<table class="table table-xsm">
+  <thead class="thead-light">
+    <tr>
+      <th>Title</th>
+      <th>Call Number</th>
+      <th>Status</th>
+      <th>Resolution</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.item_title %></td>
+      <td>
+        <%= ticket.item_callnumber %>
+      </td>    
+      <td class="search_ticket_status"><%= ticket.status.humanize.upcase %></td>
+      <td><%= ticket.resolution.humanize.capitalize %></td>
+      <td>
+        <a href="<%= sl1_search_ticket_path(ticket) %>" class="btn btn-sm btn-outline-dark">i</a>
+      </td>
+    </tr>
+  <% end %>
+</table>
