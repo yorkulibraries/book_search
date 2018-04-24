@@ -13,11 +13,12 @@ Rails.application.routes.draw do
 
   end
 
-
-  resources :patrons
-  resources :employees
-  resources :locations
-  resources :search_areas
+  namespace :admin do
+    resources :patrons
+    resources :employees
+    resources :locations
+    resources :search_areas
+  end
 
   root "dashboard#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
