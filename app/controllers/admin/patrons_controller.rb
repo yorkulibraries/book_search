@@ -28,7 +28,7 @@ class Admin::PatronsController < ApplicationController
 
     respond_to do |format|
       if @patron.save
-        format.html { redirect_to @patron, notice: 'Patron was successfully created.' }
+        format.html { redirect_to [:admin, @patron], notice: 'Patron was successfully created.' }
         format.json { render :show, status: :created, location: @patron }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::PatronsController < ApplicationController
   def update
     respond_to do |format|
       if @patron.update(patron_params)
-        format.html { redirect_to @patron, notice: 'Patron was successfully updated.' }
+        format.html { redirect_to [:admin, @patron], notice: 'Patron was successfully updated.' }
         format.json { render :show, status: :ok, location: @patron }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::PatronsController < ApplicationController
   def destroy
     @patron.destroy
     respond_to do |format|
-      format.html { redirect_to patrons_url, notice: 'Patron was successfully destroyed.' }
+      format.html { redirect_to admin_patrons_url, notice: 'Patron was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

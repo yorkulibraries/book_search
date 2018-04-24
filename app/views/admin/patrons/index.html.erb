@@ -18,9 +18,9 @@
         <td><%= patron.name %></td>
         <td><%= patron.email %></td>
         <td><%= patron.login_id %></td>
-        <td><%= link_to 'Show', patron %></td>
-        <td><%= link_to 'Edit', edit_patron_path(patron) %></td>
-        <td><%= link_to 'Destroy', patron, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [:admin, patron] %></td>
+        <td><%= link_to 'Edit', edit_admin_patron_path(patron) %></td>
+        <td><%= link_to 'Destroy', [:admin, patron], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Patron', new_patron_path %>
+<%= link_to 'New Patron', new_admin_patron_path %>

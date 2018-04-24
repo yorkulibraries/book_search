@@ -2,5 +2,5 @@
 
 <%= render 'form', patron: @patron %>
 
-<%= link_to 'Show', @patron %> |
-<%= link_to 'Back', patrons_path %>
+<%= link_to 'Show',[:admin, @patron] %> |
+<%= link_to 'Back', admin_patrons_path %>

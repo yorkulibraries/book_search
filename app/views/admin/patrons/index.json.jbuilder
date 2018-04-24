@@ -1,1 +1,1 @@
-json.array! @patrons, partial: 'patrons/patron', as: :patron
+json.array! @patrons, partial: 'admin/patrons/patron', as: :patron

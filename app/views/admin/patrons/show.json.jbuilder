@@ -1,1 +1,1 @@
-json.partial! "patrons/patron", patron: @patron
+json.partial! "adminpatrons/patron", patron: @patron
