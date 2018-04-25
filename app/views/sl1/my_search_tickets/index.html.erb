@@ -26,14 +26,18 @@
       <td>
           <%= ticket.assigned_to.name %>
       </td>
-      <td>
-        <a href="#" class="btn btn-sm btn-primary">Log Work</a>
+      <td class="action_buttons">
+        <% if ticket.status != SearchTicket::STATUS_RESOLVED %>
+          <%= link_to "Record Search Result", edit_sl1_search_ticket_path(ticket), class: "btn btn-sm btn-primary action_button"%> 
+        <% else %>
+          <%= link_to "View Search Result", sl1_search_ticket_path(ticket), class: "btn btn-sm btn-info action_button"%>         
+        <% end %>
       </td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to "SL1 New Tickets", sl1_new_tickets_path, class: "btn btn-sm btn-link btn-primary" %>
+<%= link_to "<- SL1 New Tickets", sl1_new_tickets_path, class: "btn btn-sm btn-link btn-primary" %>
 
 <br/>
 <br/>

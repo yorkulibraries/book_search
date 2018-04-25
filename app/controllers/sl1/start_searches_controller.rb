@@ -18,7 +18,7 @@ class Sl1::StartSearchesController < ApplicationController
       
       # Update items to be assigned to current user and update status to in progress
       params[:search_ticket_ids].each do |sreq|          
-        @ticket.update(assigned_to: @current_user, status: " #{SearchTicket::STATUS_SEARCH_IN_PROGRESS}")          
+        @ticket.update(assigned_to: @current_user, status: "#{SearchTicket::STATUS_SEARCH_IN_PROGRESS}")          
       end
       
       redirect_to sl1_my_search_tickets_url, notice: "successfully assigned tickets"
