@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
 
+
   namespace :sl1 do
+
+    resource :dashboard, only: :show, controller: "dashboard"
+
     resources :new_tickets, only: :index
     resources :in_progress_tickets, only: :index
     resources :escalated_tickets, only: :index
