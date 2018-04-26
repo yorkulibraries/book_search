@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user = Employee.first
   end
+  helper_method :current_user
 end
