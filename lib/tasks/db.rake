@@ -6,10 +6,10 @@ namespace :db do
   task populate: :environment do
 
     # CLEAR THE DATABASE FIRST
-    [SearchTicket, Patron, Employee, Location, SearchArea].each(&:delete_all)
+    [SearchTicket, Patron, Employee, Location, SearchArea, SearchTicket::WorkLog, SearchTicket::SearchedArea].each(&:delete_all)
 
-    Employee.populate(20..40) do |e|
-      e.name = Faker::WorldOfWarcraft.hero
+    Employee.populate(5..10) do |e|
+      e.name = Faker::FamilyGuy.unique.character
       e.email = Faker::Internet.safe_email(e.name)
       e.role = Employee::ROLES
       e.login_id = 8021..9021
@@ -38,24 +38,39 @@ namespace :db do
       patron.name = Faker::GameOfThrones.character
       patron.email = Faker::Internet.safe_email(patron.name)
       patron.login_id = 9021..9999
+    end
+    patron_ids = Patron.ids
 
-      SearchTicket.populate(1..2) do |report|
+
+    SearchTicket::STATUSES.each do |status|
+
+      SearchTicket.populate(5..10) do |report|
         # :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
-        report.item_callnumber = Faker::Bank.iban
-        report.item_title = Faker::Book.title
-        report.item_id = 2900..3910
-        report.patron_id = patron.id
+        report.item_callnumber = Faker::Code.unique.asin
+        report.item_title = Faker::Book.unique.title
+        report.item_id = 2900020030020..3910020030020
+        report.patron_id = patron_ids
         report.location_id = location_ids
-        report.resolution = SearchTicket::RESOLUTIONS
-        report.status = SearchTicket::STATUSES
+
+        report.status = status
         report.note = Faker::WorldOfWarcraft.quote
 
-        if report.status != SearchTicket::STATUS_NEW
+        if status == SearchTicket::STATUS_RESOLVED
+          report.resolution = SearchTicket::RESOLUTIONS
+          
+        else
+          report.resolution = SearchTicket::RESOLUTION_UNKNOWN
+        end
+
+        if status == SearchTicket::STATUS_NEW
+          report.assigned_to_id = 0
+        else
           report.assigned_to_id = employee_ids
         end
 
       end
     end
+
 
   end
 

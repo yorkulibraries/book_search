@@ -3,12 +3,32 @@
     <span>New Search Tickets</span>
     <span class="badge badge-success float-right text-uppercase"><%= SearchTicket::STATUS_NEW %></span>
   </div>
-  <div class="card-body">
-    New Tickets go here
-
-
-  </div>
+<%= form_tag sl1_start_search_path, method: :patch do %>
+  <table class="table table-sm table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th>Book Title</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @new_tickets.each do |ticket| %>
+      <tr>
+        <td><%= check_box_tag "search_ticket_ids[]", ticket.id %></td>
+        <td>
+          <strong><%= ticket.item_title %> Make this Title a Little bit Longer</strong><br/>
+          <small>Call Number: <span class="text-muted"><%= ticket.item_callnumber %></span></small>
+        </td>
+        <td>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-primary"%></td>
+    <tr>
+    <% end %>
+  </table>
   <div class="card-footer text-muted">
-    Total:
+    Total: <%= @new_tickets.size %>
   </div>
 </div>
