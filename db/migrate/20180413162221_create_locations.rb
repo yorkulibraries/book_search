@@ -5,6 +5,7 @@ class CreateLocations < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :email
       t.string :phone
+      t.string :ils_code
 
       t.timestamps
     end

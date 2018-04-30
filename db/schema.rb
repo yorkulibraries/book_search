@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180419131930) do
     t.string "address"
     t.string "email"
     t.string "phone"
+    t.string "ils_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,6 +74,11 @@ ActiveRecord::Schema.define(version: 20180419131930) do
     t.integer "item_id"
     t.string "item_callnumber"
     t.string "item_title"
+    t.string "item_author"
+    t.string "item_volume"
+    t.string "item_issue"
+    t.string "item_year"
+    t.string "item_location"
     t.text "note"
     t.string "resolution"
     t.string "status"

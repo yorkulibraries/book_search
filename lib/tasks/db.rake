@@ -24,6 +24,7 @@ namespace :db do
       l.address = Faker::HarryPotter.house
       l.email = Faker::Internet.safe_email(l.name)
       l.phone = Faker::PhoneNumber.extension
+      l.ils_code = ["SCOTT", "STEACIE", "FROST", "BRONFMAN"]
 
       SearchArea.populate(4..8) do |sa|
         sa.name = Faker::Job.field
@@ -46,18 +47,20 @@ namespace :db do
 
       SearchTicket.populate(5..10) do |report|
         # :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
+        report.location_id = location_ids
         report.item_callnumber = Faker::Code.unique.asin
         report.item_title = Faker::Book.unique.title
-        report.item_id = 2900020030020..3910020030020
+        report.item_author = Faker::Book.unique.author
+        report.item_id = 2900020030020..2900020040020
+        report.item_location = Location.find(report.location_id).ils_code
         report.patron_id = patron_ids
-        report.location_id = location_ids
 
         report.status = status
         report.note = Faker::WorldOfWarcraft.quote
 
         if status == SearchTicket::STATUS_RESOLVED
           report.resolution = SearchTicket::RESOLUTIONS
-          
+
         else
           report.resolution = SearchTicket::RESOLUTION_UNKNOWN
         end
