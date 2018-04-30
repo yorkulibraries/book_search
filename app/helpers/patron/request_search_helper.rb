@@ -1,0 +1,2 @@
+module Patron::RequestSearchHelper
+end
