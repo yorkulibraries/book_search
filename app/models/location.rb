@@ -4,7 +4,7 @@ class Location < ApplicationRecord
   ## CONSTANTS
 
   ## VALIDATIONS
-  validates_presence_of :name, :email
+  validates_presence_of :name, :email, :ils_code
 
   ## RELATIONS
   # has_many :search_tickets
@@ -14,4 +14,5 @@ class Location < ApplicationRecord
   ## SCOPES
 
   ## METHODS
+
 end

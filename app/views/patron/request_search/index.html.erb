@@ -9,12 +9,13 @@
   <% ticket.item_callnumber = "CD #{Faker::Code.unique.asin}" %>
   <% ticket.item_author = Faker::Book.unique.author %>
   <% ticket.item_id = rand(2900020030020..2900020040020)%>
-  <% ticket.item_volume = %>
-  <% ticket.item_issue = %>
+  <% ticket.item_volume = "Vol 1"%>
+  <% ticket.item_issue = "Issue 2" %>
   <% ticket.item_year = rand(1998..2017) %>
   <% ticket.patron = patron %>
   <% tickets<< ticket %>
 <% end %>
+<% Faker::UniqueGenerator.clear %>
 
 <div class="card card-table">
   <div class="card-header">Search Ticket Examples

@@ -9,9 +9,11 @@ class Patron::RequestSearchController < ApplicationController
   end
 
   def new
-    @search_ticket = SearchTicket.new(search_ticket_params)
+    @ticket = SearchTicket.new(search_ticket_params)
     @patron = Patron.new(patron_params)
     @location = Location.find_by_ils_code(params[:location])
+    @ticket.location = @location
+    @ticket.patron = @patron
   end
 
   def create
@@ -21,7 +23,7 @@ class Patron::RequestSearchController < ApplicationController
   private
   def search_ticket_params
     params.require(:search_ticket).permit(:item_id, :item_callnumber, :item_title, :item_author,
-                                          :item_volume, :item_issue, :item_year, :item_location )
+                                          :item_volume, :item_issue, :item_year, :location_id )
   end
 
   def patron_params

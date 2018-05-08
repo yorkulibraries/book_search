@@ -26,6 +26,8 @@ class SearchTicket < ApplicationRecord
   ## RELATIONS
   belongs_to :patron
   belongs_to :assigned_to, required: false, foreign_key: "assigned_to_id", class_name: "Employee"
+  belongs_to :location
+
   has_many :work_logs
 
   ## SCOPES
@@ -48,6 +50,14 @@ class SearchTicket < ApplicationRecord
       "THIS SHOULDN'T HAPPEN"
     else
       patron.name
+    end
+  end
+
+  def location_name
+    if location == nil
+      "THIS SHOULDN'T HAPPEN"
+    else
+      location.name
     end
   end
 

@@ -1,5 +1,4 @@
 <h5 class="card-title"><%= @ticket.item_title %></h5>
-<h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
 <hr/>
 <dl class="row">
  <dt class="col-sm-3">Callnumber</dt>
@@ -22,10 +21,4 @@
 
  <dt class="col-sm-3">Item ID</dt>
  <dd class="col-sm-9"><%= @ticket.item_id %></dd>
-
- <dt class="col-sm-3">Requested by</dt>
- <dd class="col-sm-9"><%= @ticket.patron_name %></dd>
-
- <dt class="col-sm-3">Status</dt>
- <dd class="col-sm-9"><%= @ticket.status.humanize.upcase %></dd>
 </dl>
