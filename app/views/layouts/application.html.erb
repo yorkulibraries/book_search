@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Book Search</title>
+    <title><%= content_for?(:page_title) ? yield(:page_title) : "Untitled" %> - Book Search</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,14 +18,19 @@
 
     <main role="main" class="container">
       <div id="app">
+        <div class="page-head">
+          <%= content_tag :h2, yield(:page_title) if content_for?(:page_title) %>
+        </div>
+
         <% flash.each do |name, msg| %>
           <div class="alert alert-<%= name == "notice" ? "success" : "primary" %>" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <%= msg %>
           </div>
         <% end %>
-        
-        <%= yield %>
+        <div class="main-content container-fluid">
+          <%= yield %>
+        </div>
       </div>
     </main><!-- /.container -->
 

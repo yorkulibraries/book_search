@@ -1,0 +1,30 @@
+body {
+  font-size: 1rem;
+  background-color: #EEE;
+  line-height: 1.42857143;
+
+
+  main {
+    position: relative;
+    left: 0;
+    margin-left: 230px;
+    min-height: 100%;
+
+
+    .page-head {
+      padding: 0px 15px 10px;
+      position: relative;
+
+      h2 {
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 6px;
+        font-weight: 300;
+        font-size: 2rem;
+        color: #6b6b6b;
+        line-height: 36px;
+      }
+    }
+  }
+
+}
