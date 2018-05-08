@@ -22,6 +22,7 @@ class Patron::RequestSearchController < ApplicationController
     @patron = @ticket.patron
     @location = @ticket.location
 
+    # TODO: rework this to make it more smooth, with Patron and SearchTicket creation
     # check if patron exists, if not make a new one
     @patron.save
     @ticket.patron = @patron
