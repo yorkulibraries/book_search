@@ -18,7 +18,7 @@ class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create location" do
     assert_difference('Location.count') do
-      post admin_locations_url, params: { location: { address: @location.address, email: @location.email, name: @location.name, phone: @location.phone } }
+      post admin_locations_url, params: { location: { address: @location.address, email: @location.email, ils_code: @location.ils_code, name: @location.name, phone: @location.phone } }
     end
 
     assert_redirected_to admin_location_url(Location.last)

@@ -7,12 +7,12 @@
     <span class="badge badge-success float-right text-uppercase"><%= @patron.name %></span>
   </div>
   <div class="card-body">
-    <%= render partial: "ticket_details" %>
-
-    <hr/>
-
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis placerat ut neque ac volutpat. Aliquam fermentum, est ut interdum maximus, ligula arcu faucibus risus, id luctus lectus lectus nec nisi. Mauris ut viverra lorem, non cursus neque. Curabitur feugiat lacus eu ipsum convallis, id gravida ipsum fringilla. Mauris laoreet neque quis suscipit bibendum. Ut sapien diam, ullamcorper et nibh in, pretium lobortis eros. In hac habitasse platea dictumst. Phasellus nibh neque, vehicula sit amet efficitur in, molestie ac quam. Phasellus ut nisl gravida, mollis orci eu, facilisis ex. Fusce non est et nunc iaculis maximus. Donec erat augue, efficitur vel egestas vitae, ultrices tincidunt ipsum. Etiam dictum purus vitae tellus mollis pulvinar sed et mauris. Duis et mattis sapien. Cras et urna rhoncus, convallis risus eu, tincidunt lorem. In mollis felis augue, sodales tincidunt lacus ullamcorper nec. Quisque maximus, lectus et mollis euismod, sapien leo pulvinar magna, quis efficitur sem orci in mauris.
     </p>
+    <hr/>
+
+    <%= render partial: "ticket_details" %>
+
     <hr/>
 
     <%= simple_form_for @ticket, url: patron_request_search_index_path do |f| %>
