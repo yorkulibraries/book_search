@@ -1,0 +1,46 @@
+.card-table .card-body {
+    padding: 0;
+}
+
+.card-table tr td:first-child, .card-table tr th:first-child {
+  padding-left: 20px;
+}
+
+.table-responsive tbody>tr>td {
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+.table {
+  &.table-sm { padding: 7px; }
+
+  tbody tr.online td:first-child {
+    border-left: 3px solid #5f99f5;
+    padding-left: 17px;
+  }
+
+  tbody tr td {
+    font-weight: 400;
+    vertical-align: middle;
+
+    &.user-avatar img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+  }
+  thead tr th {
+      border-bottom-width: 2px;
+      font-weight: 700;
+      vertical-align: bottom;
+      border-bottom: 2px solid #dee2e6;
+  }
+
+  tr td .custom-control, tr th .custom-control {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+  }
+}

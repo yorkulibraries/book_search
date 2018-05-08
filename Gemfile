@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.5'
 #gem 'bcrypt', '~> 3.1.7'
 
 gem 'simple_form', "4.0.0"
+gem "font-awesome-rails", "4.7.0.4"
 
 ## DEPLOYMENT
 gem 'puma', '~> 3.7'

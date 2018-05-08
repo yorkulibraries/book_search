@@ -51,6 +51,9 @@ namespace :db do
         report.item_callnumber = Faker::Code.unique.asin
         report.item_title = Faker::Book.unique.title
         report.item_author = Faker::Book.unique.author
+        report.item_issue = ["March", "Jan", "September"]
+        report.item_volume = ["v1", "v2", "vol 3"]
+        report.item_year = 1998..2017
         report.item_id = 2900020030020..2900020040020
         report.item_location = Location.find(report.location_id).ils_code
         report.patron_id = patron_ids
