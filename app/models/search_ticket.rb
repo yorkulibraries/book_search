@@ -30,6 +30,9 @@ class SearchTicket < ApplicationRecord
 
   has_many :work_logs
 
+  accepts_nested_attributes_for :patron
+
+
   ## SCOPES
   scope :new_tickets, -> { where(status: STATUS_NEW) }
   scope :in_progress_tickets, -> { where(status: STATUS_SEARCH_IN_PROGRESS) }
