@@ -25,9 +25,11 @@
     </div>
   </div>
   <div class="card-body">
-    <p>Sample JSON Params String: </p>
+    <p>Sample Params String: </p>
     <code>
-      <%= simple_format(generate_ticket_params(tickets.first, Location.find(rand(1..Location.last.id)).ils_code, tickets.first.patron).to_json) %>
+      <% sample_link = generate_ticket_params(tickets.first, Location.find(rand(1..Location.last.id)).ils_code, tickets.first.patron) %>
+      Path: <%= new_patron_request_search_path %>
+      <%= URI.unescape sample_link.to_query %>
     </code>
     <table class="table">
       <thead>
@@ -42,7 +44,7 @@
       <tbody>
         <% tickets.each do |ticket| %>
         <% ticket_location = Location.find(rand(1..Location.last.id)).ils_code %>
-        <% link_params = generate_ticket_params(ticket, ticket_location, ticket.patron).to_json %>
+        <% link_params = generate_ticket_params(ticket, ticket_location, ticket.patron).to_hash %>
           <tr>
             <td><%= ticket.item_title %></td>
             <td><%= ticket.item_callnumber %></td>
@@ -50,7 +52,7 @@
             <td><%= ticket.patron.login_id %></td>
             <td class="actions">
 
-              <a href="<%= patron_request_search_path(link_params) %>" class="icon" title="generate search ticket"><i class="fa fa-download"></i></a></td>
+              <a href="<%= new_patron_request_search_path(link_params) %>" class="icon" title="generate search ticket"><i class="fa fa-download"></i></a></td>
           </tr>
         <% end %>
       </tbody>
