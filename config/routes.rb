@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   namespace :patron do
-    resources :request_search, only: [:show, :index]
+    resources :request_search, only: [:new, :create, :show, :index]
   end
 
   namespace :sl1 do

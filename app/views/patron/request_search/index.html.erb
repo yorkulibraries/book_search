@@ -1,5 +1,21 @@
 <% page_title "Search Ticket Generator" %>
 
+<% tickets = [] %>
+<% 10.times do |i| %>
+  <% pname = Faker::GameOfThrones.character;
+     patron = Patron.new(name:pname, email: Faker::Internet.safe_email(pname), login_id: rand(207074001...209000001))  %>
+  <% ticket = SearchTicket.new %>
+  <% ticket.item_title = Faker::Book.unique.title %>
+  <% ticket.item_callnumber = "CD #{Faker::Code.unique.asin}" %>
+  <% ticket.item_author = Faker::Book.unique.author %>
+  <% ticket.item_id = rand(2900020030020..2900020040020)%>
+  <% ticket.item_volume = %>
+  <% ticket.item_issue = %>
+  <% ticket.item_year = rand(1998..2017) %>
+  <% ticket.patron = patron %>
+  <% tickets<< ticket %>
+<% end %>
+
 <div class="card card-table">
   <div class="card-header">Search Ticket Examples
     <div class="card-actions dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
@@ -9,6 +25,10 @@
     </div>
   </div>
   <div class="card-body">
+    <p>Sample JSON Params String: </p>
+    <code>
+      <%= simple_format(generate_ticket_params(tickets.first, Location.find(rand(1..Location.last.id)).ils_code, tickets.first.patron).to_json) %>
+    </code>
     <table class="table">
       <thead>
         <tr>
@@ -20,25 +40,17 @@
         </tr>
       </thead>
       <tbody>
-        <% 10.times do |i| %>
-        <% pname = Faker::GameOfThrones.character;
-           patron = Patron.new(name:pname, email: Faker::Internet.safe_email(pname), login_id: rand(207074001...209000001))  %>
-        <% ticket = SearchTicket.new %>
-        <% ticket.item_title = Faker::Book.unique.title %>
-        <% ticket.item_callnumber = "CD #{Faker::Code.unique.asin}" %>
-        <% ticket.item_author = Faker::Book.unique.author %>
-        <% ticket.item_id = rand(2900020030020..2900020040020)%>
-        <% ticket.item_volume = %>
-        <% ticket.item_issue = %>
-        <% ticket.item_year = rand(1998..2017) %>
-        <% ticket.patron = patron %>
+        <% tickets.each do |ticket| %>
         <% ticket_location = Location.find(rand(1..Location.last.id)).ils_code %>
+        <% link_params = generate_ticket_params(ticket, ticket_location, ticket.patron).to_json %>
           <tr>
             <td><%= ticket.item_title %></td>
             <td><%= ticket.item_callnumber %></td>
-            <td><%= patron.name %></td>
-            <td><%=  patron.login_id %></td>
-            <td class="actions"><a href="#" class="icon"><i class="fa fa-download"></i></a></td>
+            <td><%= ticket.patron.name %></td>
+            <td><%= ticket.patron.login_id %></td>
+            <td class="actions">
+
+              <a href="<%= patron_request_search_path(link_params) %>" class="icon" title="generate search ticket"><i class="fa fa-download"></i></a></td>
           </tr>
         <% end %>
       </tbody>
