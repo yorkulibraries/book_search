@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-
-
   namespace :patron do
     resources :request_search, only: [:new, :create, :show, :index]
+    resources :my_tickets, only: [:index, :show]
   end
 
   namespace :sl1 do
