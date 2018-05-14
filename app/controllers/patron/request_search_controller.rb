@@ -3,7 +3,7 @@ class Patron::RequestSearchController < ApplicationController
     # this is going to be a list of books with buttons to test ticket generation
   end
 
-
+	
   def show
 
   end
