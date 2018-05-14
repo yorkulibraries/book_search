@@ -1,0 +1,59 @@
+<% page_title "My Tickets" %>
+
+<%= current_patron.inspect %>
+
+<div class="card card-table">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-10 col-sm-12">
+        <h3 class="card-title">Active Tickets</h3>
+      </div>
+      <div class="col">
+        <div class="card-actions dropdown">
+          <span class="icon mdi mdi-download"></span>
+          <a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert">Options</span></a>
+          <div role="menu" class="dropdown-menu">
+            <a href="#" class="dropdown-item">Action</a>
+            <a href="#" class="dropdown-item">Another action</a>
+            <a href="#" class="dropdown-item">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">Separated link</a>
+          </div>
+        </div>
+      </div>
+    </div> <!-- row end -->
+  </div> <!-- card-header -->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th> Book Title</th>
+            <th> Callnumber</th>
+            <th> Location</th>          
+            <th> Status</th>
+            <th> Resolution</th>
+            <th class="actions"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @my_tickets.each do |ticket| %>
+          <% ticket_location = Location.find(rand(1..Location.last.id)).ils_code %>
+          <% link_params = generate_ticket_params(ticket, ticket_location, ticket.patron).to_hash %>
+            <!-- <tr><td colspan=5><% ticket.inspect %> </td></tr> -->
+            <tr>
+              <td><%= ticket.item_title %></td>
+              <td><%= ticket.item_callnumber %></td>
+              <td><%= ticket.location.ils_code %></td>            
+              <td><%= ticket.status.humanize %></td>
+              <td><%= ticket.resolution.humanize %></td>
+              <td class="actions">
+
+                <a href="<%= patron_my_ticket_path(ticket) %>" class="btn btn-sm btn-info" title="ticket details"><i class="fa fa-info-circle"></i> Details</a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

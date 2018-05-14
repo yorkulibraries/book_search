@@ -1,0 +1,47 @@
+<% page_title "Ticket Details" %>
+
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-9 col-sm-12">
+        <h3 class="card-title"><%= @my_ticket.item_title %></h3>
+        <h6 class="card-subtitle mb-2 text-muted">Item ID: <%= @my_ticket.item_id %></h6> 
+      </div>
+      <div class="col">
+        <span class="badge badge-success float-top-right text-uppercase"><%= @my_ticket.status.humanize %></span>        
+      </div>
+    </div>
+  </div>
+  <div class="card-body">    
+    <dl class="row">        
+      <div class="col">
+        <dt>Callnumber</dt>
+        <dd><%= @my_ticket.item_callnumber %></dd>
+        <dt>Author:</dt>
+        <dd><%= @my_ticket.item_author %></dd>
+      </div>
+      <div class="col">
+        <dt>Volume</dt>
+        <dd><%= @my_ticket.item_volume %></dd>
+        <dt>Issue</dt>
+        <dd><%= @my_ticket.item_issue %></dd>
+      </div>
+      <div class="col">
+        <dt>Year</dt>
+        <dd><%= @my_ticket.item_year %></dd>
+        <dt>Item Location</dt>
+        <dd><%= @my_ticket.location.name %></dd>
+      </div>
+    </dl> <!-- dl row end -->
+    
+    <dl class="row">
+      <div class="col">
+        <dt>Item Search Note</dt>
+        <dd><%= @my_ticket.note %> <br/> <strong>DEBUG</strong> <br/> <%= @my_ticket.inspect %></dd>
+      </div>      
+    </dl> <!-- dl row end -->
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to 'Back To My Tickets', patron_my_tickets_path, class: 'btn btn-lg btn-block btn-primary' %>
+  </div>
+</div>

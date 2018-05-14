@@ -63,7 +63,6 @@ namespace :db do
 
         if status == SearchTicket::STATUS_RESOLVED
           report.resolution = SearchTicket::RESOLUTIONS
-
         else
           report.resolution = SearchTicket::RESOLUTION_UNKNOWN
         end
@@ -73,11 +72,44 @@ namespace :db do
         else
           report.assigned_to_id = employee_ids
         end
-
+        
       end
+
+      
+    end # End of Status
+
+    # Test Case for Patron Tickets. Ensure first patron in db has data    
+    patron_single = Patron.first
+    
+    SearchTicket.populate(8) do |ticket|
+      ticket.location_id = location_ids
+      ticket.item_title = Faker::Book.unique.title
+      ticket.item_callnumber = "CD #{Faker::Code.unique.asin}"
+      ticket.item_author = Faker::Book.unique.author
+      ticket.item_id = rand(2900020030020..2900020040020)
+      ticket.item_volume = "Vol 1"
+      ticket.item_issue = "Issue 2"
+      ticket.item_year = rand(1998..2017)
+      ticket.patron_id = patron_single
+      ticket.status = SearchTicket::STATUSES
+
+      if ticket.status == SearchTicket::STATUS_RESOLVED
+        ticket.resolution = SearchTicket::RESOLUTIONS
+      else
+        ticket.resolution = SearchTicket::RESOLUTION_UNKNOWN
+      end
+      # if ticket.status == SearchTicket::STATUS_NEW
+      #   ticket.assigned_to_id = 0
+      # else
+      #   ticket.assigned_to_id = employee_ids
+      # end
+      
+      # puts ticket.inspect
+
     end
+    
 
 
-  end
+  end # End of Loop of Tables
 
-end
+end # End of Namespace db
