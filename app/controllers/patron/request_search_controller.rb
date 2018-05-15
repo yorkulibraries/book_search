@@ -9,7 +9,7 @@ class Patron::RequestSearchController < ApplicationController
   end
 
   def new
-
+    # TODO this needs to be extracted from authentication system, if the params aren't present
     p = Patron.new(patron_params)
 
     @patron = Patron.find_by_login_id(p.login_id)
@@ -27,13 +27,8 @@ class Patron::RequestSearchController < ApplicationController
   def create
 
     @ticket = SearchTicket.new(search_ticket_params)
-    @patron = @ticket.patron
     @location = @ticket.location
-
-    # TODO: rework this to make it more smooth, with Patron and SearchTicket creation
-    # check if patron exists, if not make a new one
-    @patron.save
-    @ticket.patron = @patron
+    @patron = @ticket.patron
 
     if @ticket.save
       redirect_to patron_request_search_path(@ticket), notice: "Created search Request"
@@ -46,8 +41,8 @@ class Patron::RequestSearchController < ApplicationController
   private
   def search_ticket_params
     params.require(:search_ticket).permit(:item_id, :item_callnumber, :item_title, :item_author,
-                                          :item_volume, :item_issue, :item_year,:location_id,
-                                        patron_attributes: [:name, :email, :login_id]
+                                          :item_volume, :item_issue, :item_year,:location_id, :patron_id,
+                                        patron_attributes: [:id, :name, :email]
                                       )
   end
 

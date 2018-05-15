@@ -17,7 +17,7 @@
 <% end %>
 <% Faker::UniqueGenerator.clear %>
 
-<div class="card card-table">
+<div class="card">
   <div class="card-header">Search Ticket Examples
     <div class="card-actions dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
       <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
@@ -26,12 +26,31 @@
     </div>
   </div>
   <div class="card-body">
-    <p>Sample Params String: </p>
+    <p>Parameters Description: </p>
     <code>
+      Required Parameters: <br/>
+      &nbsp; location - ILS code for the location <br/>
+      &nbsp; patron[login_id] - Patron's Login <br/>
+      &nbsp; search_ticket[item_id] - ILS Item ID <br/>
+      &nbsp; search_ticket[item_callnumber] - Item's Callnumber <br/>
+      &nbsp; search_ticket[item_title] - Item's Title <br/>
+      &nbsp; search_ticket[item_author] - Item's Author <br/>
+      <br/>
+      Optional Parameters: <br/>
+      &nbsp; search_ticket[item_issue] - Item's Issue Number <br/>
+      &nbsp; search_ticket[item_volume] - Item's Issue Volume <br/>
+      &nbsp; search_ticekt[item_year] - Item's Publication year <br/>
+      &nbsp; patron[email] - Patron's Email (if not provided, it will be extracted from Authentication System) <br/>
+      &nbsp; patron[name] - Patron's Name  (if not provided, it will be extracted from Authentication System) <br/>
+      ---- <br/>
       <% sample_link = generate_ticket_params(tickets.first, Location.find(rand(1..Location.last.id)).ils_code, tickets.first.patron) %>
-      Path: <%= new_patron_request_search_path %>
+      API Path: <%= new_patron_request_search_url %><br/>
+      Sample Query String: <br/>
       <%= URI.unescape sample_link.to_query %>
+      <br/>
     </code>
+    <hr/>
+    <p>Use the generated data below to create tickets for testing. </p>
     <table class="table">
       <thead>
         <tr>

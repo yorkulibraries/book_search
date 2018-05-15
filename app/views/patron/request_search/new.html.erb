@@ -24,15 +24,12 @@
       <%= f.input :item_issue, as: :hidden %>
       <%= f.input :item_year, as: :hidden %>
       <%= f.input :location_id, as: :hidden %>
-      <%= f.input :patron_id, as: :hidden %>
-
 
         <%= f.fields_for  @patron do |pf| %>
           <%= pf.input :name %>
           <%= pf.input :email %>
-          <%= pf.input :id, as: :hidden %>          
+          <%= pf.input :id, as: :hidden %>
         <% end %>
-
 
       <%= f.button :submit, class: "btn btn-success" %>
 
