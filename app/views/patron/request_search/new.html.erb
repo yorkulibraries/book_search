@@ -24,6 +24,7 @@
       <%= f.input :item_issue, as: :hidden %>
       <%= f.input :item_year, as: :hidden %>
       <%= f.input :location_id, as: :hidden %>
+      <%= f.input :patron_id, as: :hidden %>
 
         <%= f.fields_for  @patron do |pf| %>
           <%= pf.input :name %>

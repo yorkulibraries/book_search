@@ -5,7 +5,7 @@ class Patron::RequestSearchController < ApplicationController
 
 
   def show
-
+    @ticket = SearchTicket.find(params[:id])
   end
 
   def new

@@ -9,4 +9,8 @@ module LayoutHelper
       yield block
     end
   end
+
+
+  def dev_navbar_helper    
+  end
 end

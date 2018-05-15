@@ -1,2 +1,14 @@
-<h1>Patron::RequestSearch#show</h1>
-<p>Find me in app/views/patron/request_search/show.html.erb</p>
+<% page_title "Search Ticket Created" %>
+
+
+<div class="card">
+  <div class="card-header">
+    <span>Thank You!!</span>
+    <span class="badge badge-success float-right text-uppercase"><%= @ticket.patron_name %></span>
+  </div>
+  <div class="card-body">
+    We've created the search ticket, someone will be looking for you book shortly.
+
+    <%= link_to 'Back To My Tickets', patron_my_tickets_path, class: 'btn btn-lg btn-block btn-primary' %>
+  </div>
+</div>

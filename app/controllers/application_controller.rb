@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+
   def current_patron
     @current_patron = Patron.first
   end
