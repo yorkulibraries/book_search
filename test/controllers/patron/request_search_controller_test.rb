@@ -30,10 +30,36 @@ class Patron::RequestSearchControllerTest < ActionDispatch::IntegrationTest
     assert_select '#search_ticket_item_issue', { value: @ticket_params[:item_issue] }
     assert_select '#search_ticket_item_author', { value: @ticket_params[:item_author] }
     assert_select '#search_ticket_location_id', { value: @location.id }
+    
+  end
+
+  should "create a new patron if one doesn't exist" do
+    assert_difference "Patron.count" do
+      get new_patron_request_search_path, params: { search_ticket: @ticket_params, patron: @patron_params, location: @location.ils_code }
+      assert_response :success
+    end
+
+    patron = Patron.last
+    assert_equal patron.login_id, @patron_params[:login_id]
+    assert_equal patron.name, @patron_params[:name]
+    assert_equal patron.email, @patron_params[:email]
+  end
+
+
+  should "use an existing patron if it exists" do
+    patron = create(:patron)
+    patron_attrs = patron.slice(:name, :email, :login_id)
+
+    assert_no_difference "Patron.count" do
+      get new_patron_request_search_path, params: { search_ticket: @ticket_params, patron: patron_attrs, location: @location.ils_code }
+      assert_response :success
+    end
 
   end
 
-  should "create a new search ticket and new Patron" do
+
+
+  should "create a new search ticket" do
     @ticket_params[:patron_attributes] = @patron_params
     @ticket_params[:location_id] = @location.id
 

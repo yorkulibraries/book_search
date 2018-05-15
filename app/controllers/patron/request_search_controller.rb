@@ -3,14 +3,22 @@ class Patron::RequestSearchController < ApplicationController
     # this is going to be a list of books with buttons to test ticket generation
   end
 
-	
+
   def show
 
   end
 
   def new
+
+    p = Patron.new(patron_params)
+
+    @patron = Patron.find_by_login_id(p.login_id)
+    if @patron == nil
+      @patron = p
+      @patron.save
+    end
+
     @ticket = SearchTicket.new(search_ticket_params)
-    @patron = Patron.new(patron_params)
     @location = Location.find_by_ils_code(params[:location])
     @ticket.location = @location
     @ticket.patron = @patron

@@ -4,14 +4,14 @@ class CreateSearchTickets < ActiveRecord::Migration[5.1]
 
       t.integer :patron_id
       t.integer :location_id
-      t.integer :item_id
+      t.string :item_id
       t.string :item_callnumber
       t.string :item_title
       t.string :item_author
       t.string :item_volume
       t.string :item_issue
       t.string :item_year
-      t.string :item_location      
+      t.string :item_location
       t.text :note
       t.string :resolution
       t.string :status
