@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180419131930) do
   create_table "search_tickets", force: :cascade do |t|
     t.integer "patron_id"
     t.integer "location_id"
-    t.integer "item_id"
+    t.string "item_id"
     t.string "item_callnumber"
     t.string "item_title"
     t.string "item_author"
