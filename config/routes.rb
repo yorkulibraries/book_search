@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :sl2 do
+    resource :dashboard, only: :show, controller: "dashboard"
+  end
+
   namespace :patron do
     resources :request_search, only: [:new, :create, :show, :index]
     resources :my_tickets, only: [:index, :show]
