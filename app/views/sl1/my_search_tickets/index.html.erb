@@ -39,5 +39,7 @@
 
 <%= link_to "<- SL1 New Tickets", sl1_new_tickets_path, class: "btn btn-sm btn-link btn-primary" %>
 
+<%= link_to "Print Tickets for Search", print_tickets_to_search_path(ticket_ids: @tickets.ids), class: "btn btn-sm btn-primary" %>
+
 <br/>
 <br/>

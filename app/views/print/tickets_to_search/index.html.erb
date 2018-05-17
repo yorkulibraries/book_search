@@ -1,0 +1,89 @@
+<% page_title "Tickets To Search" %>
+
+<% @tickets.each do |ticket| %>
+ <div class="card">
+   <div class="card-header">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <h3 class="card-title"><%= ticket.item_title %></h3>
+      </div>
+      <div class="col">
+        <h6><strong>CallNumber: </strong> <span class="text-muted"><%= ticket.item_callnumber %></h6>
+       </div>
+       <div class="col">
+         <span class="badge badge-secondary float-top-right text-uppercase"><%= ticket.status.humanize %></span>
+       </div>
+      </div>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item pb-0">
+        <dl class="row">        
+          <div class="col">
+            <dt>Item ID</dt><dd><%= ticket.item_id %></dd>
+          </div>
+          <div class="col">
+            <dt>Author:</dt><dd><%= ticket.item_author %></dd>
+          </div>
+          <div class="col">
+            <dt>Volume</dt><dd><%= ticket.item_volume %></dd>
+          </div>
+          <div class="col">
+            <dt>Issue</dt><dd><%= ticket.item_issue %></dd>
+          </div>
+          <div class="col">
+            <dt>Year</dt><dd><%= ticket.item_year %></dd>
+          </div>
+          <div class="col">
+            <dt>Item Location</dt><dd><%= ticket.location.name %></dd>
+          </div>
+        </dl> <!-- dl row end -->
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-auto">
+            <h5>Areas To Search</h5>
+          </div>
+        </div> <!-- row -->
+        <div class="row"> 
+            <!-- Always show primary, secondary for lvl 2 -->        
+           <% SearchArea.primary.where(location_id: ticket.location_id).each do |sa| %>
+           <div class="col-md-3 mt-2"> <!-- bootstrap margin-top (mt) -->
+               <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div>
+           </div>
+           <% end %>
+        <% if ticket.status == SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %>
+          <% SearchArea.secondary.where(location_id: ticket.location_id).each do |sa| %>
+           <div class="col-md-3 mt-2"> <!-- bootstrap margin-top (mt) -->
+               <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div>
+           </div>
+            <% end %>
+        <% end %>    
+        </div> <!-- row -->    
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Have you found the book?</h5>
+          </div>
+          <div class="col-md-2">
+            <h6><span class="fa fa-square fa-border fa-inverse checkbox" ></span> Yes</h6>
+          </div>
+          <div class="col-md-2">
+            <h6><span class="fa fa-square fa-border fa-inverse checkbox" ></span> No </h6>
+          </div>
+          <div class="col-md-4">
+            <!-- <h6>If Yes, Where: ___________________________ </h6> -->
+            <h6>Where: ___________________________________________ </h6>
+          </div>
+        </div> <!-- row -->
+      </li>
+      <li class="list-group-item">
+        <h5>Notes:</h5>
+        <div class="html-text-box">
+        </div>
+      </li>
+    </ul>
+ </div>
+ 
+ <!-- <p class="<%= cycle('', 'page-break-for-print') -%>"></p> -->
+ <% end %>

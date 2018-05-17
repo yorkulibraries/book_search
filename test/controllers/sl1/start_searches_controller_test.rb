@@ -32,11 +32,11 @@ class Sl1::StartSearchesController < ActionDispatch::IntegrationTest
     new_tickets.each do |nt|
       assert_equal SearchTicket::STATUS_NEW, nt.status, "Precondition: Status must be = STATUS_NEW"
       search_ticket_ids_local.push(nt.id.to_s)
-      puts nt.status
+      # puts nt.status
     end
     
-    puts "\nSEARCH TICKET IDS\n"
-    puts search_ticket_ids_local.inspect
+    # puts "\nSEARCH TICKET IDS\n"
+    # puts search_ticket_ids_local.inspect
 
     # put :update, sl1_start_searches_path([search_ticket_ids: search_ticket_ids_local])
     # put sl1_start_searches_path, params: {search_ticket_ids: ["1","2"]}

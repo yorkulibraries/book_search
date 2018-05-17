@@ -29,3 +29,18 @@
   background-color: #218838;
   border-color: #1e7e34;
 }
+
+
+/*** MOVE THIS TO SEPARATE FILE ONCE FINALIZED ***/
+.checkbox, .html-text-box {
+  border: 2px solid $info;
+}
+
+.html-text-box {
+  width: 100%;
+  padding: 35px;
+}
+
+.page-break-for-print {
+  page-break-after: always;
+}

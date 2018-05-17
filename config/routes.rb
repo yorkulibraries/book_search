@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :print do
+    get 'tickets_to_search' => "tickets_to_search#index" 
+  end
+
   namespace :sl2 do
     resource :dashboard, only: :show, controller: "dashboard"
   end
