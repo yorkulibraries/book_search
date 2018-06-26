@@ -18,7 +18,8 @@ class RedirectorController < ApplicationController
       patron = Patron.find(session[:user_id])
       redirect_to patron_my_tickets_path
     else
-      redirect_to invalid_login_url, notice: "You are not authorized to use this application"
+      # Not Logged in so lets log in first
+      redirect_to login_url
     end
   end
 

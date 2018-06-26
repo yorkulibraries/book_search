@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
 
     if Rails.env.development?
       uid = development_mode_login_id
+
+      puts "USING #{uid}"
     else
       uid = request.headers[CAS_LOGIN_ID]
     end
@@ -51,7 +53,20 @@ class SessionsController < ApplicationController
 
   # for development only,
   def development_mode_login_id
-    params[:as] || Employee.first.login_id
+    case params[:as]
+    when Employee::ROLE_MANAGER
+      Employee.where(role: Employee::ROLE_MANAGER).first.id
+    when Employee::ROLE_COORDINATOR
+      Employee.where(role: Employee::ROLE_COORDINATOR).first.id
+    when Employee::ROLE_LEVEL_ONE
+      Employee.where(role: Employee::ROLE_LEVEL_ONE).first.id
+    when Employee::ROLE_LEVEL_TWO
+      Employee.where(role: Employee::ROLE_LEVEL_TWO).first.id
+    when "patron"
+      Patron.first.id
+    else
+      Employee.first.login_id
+    end
   end
 
 end
