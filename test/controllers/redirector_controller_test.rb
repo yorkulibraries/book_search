@@ -10,9 +10,9 @@ class RedirectorControllerTest < ActionDispatch::IntegrationTest
     @patron = create(:patron)
   end
 
-  should "redirect to invalid login page if session[:user_type] is not present" do
+  should "redirect to login page if session[:user_type] is not present" do
     get root_url
-    assert_redirected_to invalid_login_url
+    assert_redirected_to login_url
   end
 
   should "redirect to SL1 dashboard if user is Employee and SL1" do
@@ -40,7 +40,7 @@ class RedirectorControllerTest < ActionDispatch::IntegrationTest
   end
 
   should "redirect to redirect_to_url if it's present in the session" do
-    get root_url,  params: { redirect_to_url:  sl2_dashboard_path }    
+    get root_url,  params: { redirect_to_url:  sl2_dashboard_path }
     assert_redirected_to sl2_dashboard_path
     assert_nil session[:redirect_to_url]
   end
