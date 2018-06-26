@@ -1,2 +1,0 @@
-class AuthenticatedEmployeeControllerController < ApplicationController
-end
