@@ -1,0 +1,2 @@
+class AuthenticatedPatronControllerController < ApplicationController
+end

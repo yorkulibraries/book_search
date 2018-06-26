@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  get "login/invalid" => "invalid_login#show", as: :invalid_login
+  get "login" => "sessions#new"
+  get "logout" => "sessions#destroy"
+
+
   namespace :print do
-    get 'tickets_to_search' => "tickets_to_search#index" 
+    get 'tickets_to_search' => "tickets_to_search#index"
   end
 
   namespace :sl2 do
