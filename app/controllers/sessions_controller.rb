@@ -8,17 +8,15 @@ class SessionsController < ApplicationController
   def new
 
     if Rails.env.development?
-      uid = development_mode_login_id
-
-      puts "USING #{uid}"
+      login_id = development_mode_login_id
     else
-      uid = request.headers[CAS_LOGIN_ID]
+      login_id = request.headers[CAS_LOGIN_ID]
     end
 
     # IMPROTANT: check if Employee is logging in first
-    user = Employee.find_by_login_id(uid)
+    user = Employee.find_by_login_id(login_id)
     # IMPORTANT: check if Patron si logging in second
-    user = Patron.find_by_login_id(uid) if user == nil
+    user = Patron.find_by_login_id(login_id) if user == nil
 
     if user
       session[:user_id] = user.id
@@ -26,7 +24,7 @@ class SessionsController < ApplicationController
       session[:user_type] = user.class.name
 
       ## Redirect to root, which will decide where to redirect to later
-      redirect_to root_url
+      redirect_to root_url, notice: "Welcome back #{user.name}"
     else
 
       # If user doesn't exist, lest make a record for him.
@@ -38,7 +36,7 @@ class SessionsController < ApplicationController
       patron.save(validate: false)
 
       # Redirecting to Patron dashboard here, since it's a brand new user
-      redirect_to patron_my_tickets_path, notice: "Welcome to BookSearch app!"
+      redirect_to patron_my_tickets_path, notice: "Welcome to BookSearch app! #{user}"
     end
 
   end
@@ -55,15 +53,15 @@ class SessionsController < ApplicationController
   def development_mode_login_id
     case params[:as]
     when Employee::ROLE_MANAGER
-      Employee.where(role: Employee::ROLE_MANAGER).first.id
+      Employee.where(role: Employee::ROLE_MANAGER).first.login_id
     when Employee::ROLE_COORDINATOR
-      Employee.where(role: Employee::ROLE_COORDINATOR).first.id
+      Employee.where(role: Employee::ROLE_COORDINATOR).first.login_id
     when Employee::ROLE_LEVEL_ONE
-      Employee.where(role: Employee::ROLE_LEVEL_ONE).first.id
+      Employee.where(role: Employee::ROLE_LEVEL_ONE).first.login_id
     when Employee::ROLE_LEVEL_TWO
-      Employee.where(role: Employee::ROLE_LEVEL_TWO).first.id
+      Employee.where(role: Employee::ROLE_LEVEL_TWO).first.login_id
     when "patron"
-      Patron.first.id
+      Patron.first.login_id
     else
       Employee.first.login_id
     end
