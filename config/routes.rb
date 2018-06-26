@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get "login/invalid" => "invalid_login#show", as: :invalid_login
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
-
+  get "redirector" => "redirectr#index"
+  get "dashboard" => "dashboard#index"
 
   namespace :print do
     get 'tickets_to_search' => "tickets_to_search#index"
@@ -40,6 +41,6 @@ Rails.application.routes.draw do
     resources :search_areas
   end
 
-  root "dashboard#index"
+  root "redirector#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
