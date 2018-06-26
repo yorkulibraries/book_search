@@ -75,6 +75,8 @@ build-iPhoneSimulator/
 .rvmrc
 >>>>>>> 30fbea0e8719896d7f6e48c5a4c69ab313465aa4
 
+.DS_Store
+
 *.log
 .vagrant
 *mod-auth-pyork*.deb
