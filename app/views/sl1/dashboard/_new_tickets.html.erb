@@ -16,7 +16,10 @@
       <tr>
         <td class="text-center"><%= check_box_tag "search_ticket_ids[]", ticket.id %></td>
         <td>
-          <strong><%= ticket.item_title %> Make this Title a Little bit Longer</strong><br/>
+          <%= link_to sl1_search_ticket_path(ticket) do %>
+            <%= ticket.item_title %>
+          <% end %>
+          <br/>
           <small>Call Number: <span class="text-muted"><%= ticket.item_callnumber %></span></small>
         </td>
         <td>
