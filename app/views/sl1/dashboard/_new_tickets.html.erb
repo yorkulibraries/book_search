@@ -14,7 +14,7 @@
     </thead>
     <% @new_tickets.each do |ticket| %>
       <tr>
-        <td><%= check_box_tag "search_ticket_ids[]", ticket.id %></td>
+        <td class="text-center"><%= check_box_tag "search_ticket_ids[]", ticket.id %></td>
         <td>
           <strong><%= ticket.item_title %> Make this Title a Little bit Longer</strong><br/>
           <small>Call Number: <span class="text-muted"><%= ticket.item_callnumber %></span></small>
@@ -24,7 +24,11 @@
       </tr>
     <% end %>
     <tr>
-      <td colspan="2"><%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-primary"%></td>
+      <td>
+      <td colspan="2">
+        <br/>
+        <%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-primary"%>
+      </td>
     <tr>
     <% end %>
   </table>
