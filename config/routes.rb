@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :resolved_tickets, only: :index
 
     resource :start_search, only: [:update, :put]
-    resources :my_search_tickets, only: :index
+    resources :assigned_to_me_tickets, only: :index
     resources :search_ticket, only: [:edit, :update, :show]
 
   end

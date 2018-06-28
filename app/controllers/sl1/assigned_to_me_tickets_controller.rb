@@ -1,6 +1,4 @@
-class Sl1::MySearchTicketsController < AuthenticatedEmployeeController
-
-  before_action :current_user
+class Sl1::AssignedToMeTicketsController < AuthenticatedEmployeeController
 
   def index
     @tickets = SearchTicket.where(assigned_to_id: current_user.id)
