@@ -1,9 +1,14 @@
 require 'test_helper'
 
 class DashboardControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get root_url
-    assert_response :redirect
+
+  setup do
+    @employee = create(:employee, role: Employee::ROLE_MANAGER)
+    log_user_in(@employee)
   end
 
+  should "be logged in" do
+    get dashboard_url
+    assert_response :success
+  end
 end

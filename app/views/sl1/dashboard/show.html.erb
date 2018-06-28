@@ -1,19 +1,11 @@
 <% page_title "Dashboard" %>
 
 <div class="row">
-  <div class="col-md-6">
-    <%= render partial: "new_tickets" %>
-  </div>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <%= render partial: "assigned_tickets" %>
   </div>
-</div>
-<br/><br/>
-<div class="row">
-  <div class="col-md-6">
-    <%= render partial: "in_progress_tickets" %>
-  </div>
-  <div class="col-md-6">
-    <%= render partial: "escalated_tickets" %>
+  
+  <div class="col-md-12">
+    <%= render partial: "new_tickets" %>
   </div>
 </div>

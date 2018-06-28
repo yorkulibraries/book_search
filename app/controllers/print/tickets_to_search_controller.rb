@@ -1,5 +1,5 @@
-class Print::TicketsToSearchController < ApplicationController
-  # before_action :current_user
+class Print::TicketsToSearchController < AuthenticatedEmployeeController
+  
   layout 'print'
   def index
     if params[:ticket_ids]

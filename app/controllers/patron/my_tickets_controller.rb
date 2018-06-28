@@ -1,4 +1,4 @@
-class Patron::MyTicketsController < ApplicationController
+class Patron::MyTicketsController < AuthenticatedPatronController
 
   def index
     @my_tickets = SearchTicket.where(patron: current_patron)
@@ -7,7 +7,7 @@ class Patron::MyTicketsController < ApplicationController
   def show
     @my_ticket = SearchTicket.find(params[:id])
   end
-  
+
   private
 
   # def search_ticket_params
@@ -17,5 +17,5 @@ class Patron::MyTicketsController < ApplicationController
   #     patron_attributes: [:name, :email, :login_id]
   #   )
   # end
-  
+
 end

@@ -8,8 +8,8 @@
         <h3 class="card-title"><%= ticket.item_callnumber %></h3>
       </div>
        <div class="col">
-         <!-- <span class="badge badge-info float-top-right text-uppercase"><%= ticket.status.humanize %></span> -->
-         <image src="<%= image_url('IMG_20180518_115347.jpg') %>" height="50">
+         <img src="<%= ticket.print_barcode(height: 30) %>"/><br/>
+         <%= ticket.item_id %>
        </div>
       </div>
     </div>
@@ -29,8 +29,8 @@
         <h5><span class="text-muted">Search in </span><%= ticket.item_location %>: </h5>
       </div>
     </div> <!-- row -->
-    <div class="row"> 
-        <!-- Always show primary, secondary for lvl 2 -->        
+    <div class="row">
+        <!-- Always show primary, secondary for lvl 2 -->
        <% SearchArea.primary.where(location_id: ticket.location_id).each do |sa| %>
        <div class="col-md-3 mt-2"> <!-- bootstrap margin-top (mt) -->
            <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div>
@@ -42,7 +42,7 @@
            <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div>
        </div>
         <% end %>
-    <% end %>    
+    <% end %>
     </div> <!-- row -->
     <hr class="bg-secondary"/>
     <div class="row">
@@ -65,7 +65,7 @@
       <div class="col-md-2"><h5>Notes:</h5></div>
       <!-- <div class="col"><hr class="bg-secondary"/></div> -->
     </div>
-    <hr class="bg-dark"/> 
+    <hr class="bg-dark"/>
     </div> <!-- card-body -->
  </div> <!-- card -->
  <!-- <p class="<%= cycle('', 'page-break-for-print') -%>"></p> -->

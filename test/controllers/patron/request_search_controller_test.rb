@@ -9,6 +9,7 @@ class Patron::RequestSearchControllerTest < ActionDispatch::IntegrationTest
         :item_title, :item_callnumber, :item_author, :item_id, :item_volume, :item_issue, :item_year)
     @patron_params = attributes_for(:patron).slice(:name, :email, :login_id)
     @location = create(:location)
+        
   end
 
   should "show new search ticket page with details and form for patron information" do

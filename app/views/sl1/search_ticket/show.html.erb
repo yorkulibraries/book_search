@@ -12,16 +12,30 @@
       </div>
     </div>
   </div>
-  <ul class="list-group list-group-flush">
+
+  <!-- <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= render partial: "patron_details" %></li>
     <li class="list-group-item"><%= render partial: "ticket_details" %></li>
     <li class="list-group-item bg-light"><%= render partial: "#{@ticket.status}_status" %></li>
     <li class="list-group-item"><%= render partial: "search_history" %></li>
-  </ul>
-  <!-- <div class="card-footer text-muted">
+  </ul> 
+  -->
+
+  <div class="card-body">
+    <%= render partial: "ticket_details" %>
+
+    <hr/>
+    <img src="<%= @ticket.print_barcode %>"/>
+
+    <%= render partial: "#{@ticket.status}_status" %>
+
+    <%= render partial: "search_history" %>
+
+  </div>
+  <div class="card-footer text-muted">
     Created
     <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
        <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron.name %> </cite>
     </span>
-  </div> -->
+  </div>
 </div>

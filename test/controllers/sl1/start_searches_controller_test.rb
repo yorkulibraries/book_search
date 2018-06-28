@@ -43,7 +43,7 @@ class Sl1::StartSearchesController < ActionDispatch::IntegrationTest
     
     # new_tickets.first.id, params: { search_ticket_ids: ["1"]}
 
-    # assert_redirected_to sl1_my_search_tickets_path
+    # assert_redirected_to sl1_assigned_to_me_tickets_path
     
     # new_tickets.each do |nt2|
     #   assert_equal SearchTicket::STATUS_SEARCH_IN_PROGRESS, nt2.status, "PostCondition: Status must change to = STATUS_SEARCH_IN_PROGRESS"

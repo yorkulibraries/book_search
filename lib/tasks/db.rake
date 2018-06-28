@@ -48,13 +48,15 @@ namespace :db do
       SearchTicket.populate(5..10) do |report|
         # :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
         report.location_id = location_ids
-        report.item_callnumber = Faker::Code.unique.asin
+        letters = Faker::Lorem.word[0..1]
+        report.item_callnumber = "#{letters} #{Faker::Number.number(3)} #{letters.first}#{Faker::Number.number(3)} #{Faker::Number.between(1957,2017)}".upcase
+
         report.item_title = Faker::Book.unique.title
         report.item_author = Faker::Book.unique.author
-        report.item_issue = ["March", "Jan", "September"]
+        report.item_issue = ["March", "Jan", "September", "Jun"]
         report.item_volume = ["v1", "v2", "vol 3"]
         report.item_year = 1998..2017
-        report.item_id = 2900020030020..2900020040020
+        report.item_id = 39007031170798..39009011170792
         report.item_location = Location.find(report.location_id).ils_code
         report.patron_id = patron_ids
 
@@ -72,15 +74,15 @@ namespace :db do
         else
           report.assigned_to_id = employee_ids
         end
-        
+
       end
 
-      
+
     end # End of Status
 
-    # Test Case for Patron Tickets. Ensure first patron in db has data    
+    # Test Case for Patron Tickets. Ensure first patron in db has data
     patron_single = Patron.first
-    
+
     SearchTicket.populate(8) do |ticket|
       ticket.location_id = location_ids
       ticket.item_title = Faker::Book.unique.title
@@ -103,11 +105,11 @@ namespace :db do
       # else
       #   ticket.assigned_to_id = employee_ids
       # end
-      
+
       # puts ticket.inspect
 
     end
-    
+
 
 
   end # End of Loop of Tables

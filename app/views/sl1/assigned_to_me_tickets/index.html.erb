@@ -1,4 +1,4 @@
-<h1>My Search Tickets</h1>
+<h1>Tickets - Assigned To Me</h1>
 
 <br/>
 
@@ -28,9 +28,9 @@
       </td>
       <td class="action_buttons">
         <% if ticket.status != SearchTicket::STATUS_RESOLVED %>
-          <%= link_to "Record Search Result", edit_sl1_search_ticket_path(ticket), class: "btn btn-sm btn-primary action_button"%> 
+          <%= link_to "Record Search Result", edit_sl1_search_ticket_path(ticket), class: "btn btn-sm btn-primary action_button"%>
         <% else %>
-          <%= link_to "View Search Result", sl1_search_ticket_path(ticket), class: "btn btn-sm btn-info action_button"%>         
+          <%= link_to "View Search Result", sl1_search_ticket_path(ticket), class: "btn btn-sm btn-info action_button"%>
         <% end %>
       </td>
     </tr>

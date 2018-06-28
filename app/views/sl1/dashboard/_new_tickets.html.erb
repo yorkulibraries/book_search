@@ -14,20 +14,28 @@
     </thead>
     <% @new_tickets.each do |ticket| %>
       <tr>
-        <td><%= check_box_tag "search_ticket_ids[]", ticket.id %></td>
+        <td class="text-center"><%= check_box_tag "search_ticket_ids[]", ticket.id %></td>
         <td>
-          <strong><%= ticket.item_title %> Make this Title a Little bit Longer</strong><br/>
+          <%= link_to sl1_search_ticket_path(ticket) do %>
+            <%= ticket.item_title %>
+          <% end %>
+          <br/>
           <small>Call Number: <span class="text-muted"><%= ticket.item_callnumber %></span></small>
+          <small>Item ID: <span class="text-muted"><%= ticket.item_id %></span></small>
         </td>
         <td>
         </td>
       </tr>
     <% end %>
     <tr>
-      <td colspan="2"><%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-primary"%></td>
+      <td></td>
+      <td colspan="2">        
+        <%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-primary"%>
+      </td>
     <tr>
-    <% end %>
+
   </table>
+<% end %>
   <div class="card-footer text-muted">
     Total: <%= @new_tickets.size %>
   </div>

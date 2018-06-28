@@ -1,4 +1,4 @@
-class Sl2::DashboardController < ApplicationController
+class Sl2::DashboardController < AuthenticatedEmployeeController
   def show
     @tickets = SearchTicket.escalated_tickets
   end

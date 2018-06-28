@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  get "login/invalid" => "invalid_login#show", as: :invalid_login
+  get "login" => "sessions#new"
+  get "logout" => "sessions#destroy"
+  get "redirector" => "redirectr#index"
+  get "dashboard" => "dashboard#index"
+
   namespace :print do
-    get 'tickets_to_search' => "tickets_to_search#index" 
+    get 'tickets_to_search' => "tickets_to_search#index"
   end
 
   namespace :sl2 do
@@ -23,7 +29,7 @@ Rails.application.routes.draw do
     resources :resolved_tickets, only: :index
 
     resource :start_search, only: [:update, :put]
-    resources :my_search_tickets, only: :index
+    resources :assigned_to_me_tickets, only: :index
     resources :search_ticket, only: [:edit, :update, :show]
 
   end
@@ -35,6 +41,6 @@ Rails.application.routes.draw do
     resources :search_areas
   end
 
-  root "dashboard#index"
+  root "redirector#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -5,7 +5,7 @@ class Patron < ApplicationRecord
 
   ## VALIDATIONS
   validates_uniqueness_of :login_id
-  validates_presence_of :login_id, :name, :email 
+  validates_presence_of :login_id, :name, :email
 
   ## RELATIONS
   # has_many :search_tickets
@@ -13,5 +13,10 @@ class Patron < ApplicationRecord
   ## SCOPES
 
   ## METHODS
+
+
+  def self.build_new_user(login_id, email, name)
+    return Patron.new(name: name, login_id: login_id, email: email)
+  end
 
 end
