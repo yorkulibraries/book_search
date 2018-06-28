@@ -1,0 +1,10 @@
+.btn {
+  &.btn-primary { background-color: #346cb0 !important; color: #fff; border-color: #346cb0!important; }
+  &.btn-success { background-color: #00a28a!important; color: #fff; border-color: #00a28a!important; }
+  &.btn-info { background-color: #0179a8!important; color: #fff; border-color: #0179a8!important; }
+  &.btn-warning { background-color: #f7c46c!important; color: #3d3c3c; border-color: #f7c46c!important; }
+  &.btn-danger { background-color: #e44a98!important; color: #fff; border-color: #e44a98!important; }
+  &.btn-default { background-color: #bdbdbd!important; color: #fff; border-color: #bdbdbd!important; }
+  &.btn-dark { background-color: #3d3c3c!important; color: #fff; border-color: #3d3c3c!important; }
+  
+}

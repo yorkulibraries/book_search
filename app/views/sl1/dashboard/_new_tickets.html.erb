@@ -1,42 +1,60 @@
-<div class="card">
-  <div class="card-header">
-    <span>New Search Tickets</span>
-    <span class="badge badge-success float-right text-uppercase"><%= SearchTicket::STATUS_NEW %></span>
+<div class="card card border-success mb-3">
+  <div class="card-header text-white border-0 bg-success pt-1 pb-1">
+    New Search Tickets <span class="badge badge-light float-right mt-1"><%= @new_tickets.size %></span>
   </div>
-<%= form_tag sl1_start_search_path, method: :patch do %>
-  <table class="table table-sm table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th></th>
-        <th>Book Title</th>
-        <th></th>
-      </tr>
-    </thead>
+  <%= form_tag sl1_start_search_path, method: :patch do %>
+  <ul class="list-group list-group-flush border border-top-0 border-success">
     <% @new_tickets.each do |ticket| %>
-      <tr>
-        <td class="text-center"><%= check_box_tag "search_ticket_ids[]", ticket.id %></td>
-        <td>
+    <li class="list-group-item border-success">
+      <div class="row">
+        <div class="col ">
           <%= link_to sl1_search_ticket_path(ticket) do %>
             <%= ticket.item_title %>
           <% end %>
-          <br/>
-          <small>Call Number: <span class="text-muted"><%= ticket.item_callnumber %></span></small>
-          <small>Item ID: <span class="text-muted"><%= ticket.item_id %></span></small>
-        </td>
-        <td>
-        </td>
-      </tr>
-    <% end %>
-    <tr>
-      <td></td>
-      <td colspan="2">        
-        <%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-primary"%>
-      </td>
-    <tr>
 
-  </table>
-<% end %>
-  <div class="card-footer text-muted">
-    Total: <%= @new_tickets.size %>
+          <div class="row">
+            <div class="col col-sm-6">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Call Number:</span>
+                <span class=""><%= ticket.item_callnumber %></span>
+              </small>
+            </div>
+            <div class="col">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Item #:</span>
+                <span class=""><%= ticket.item_id %></span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-sm-6">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Location:</span>
+                <span class=""><%= ticket.item_location %></span>
+              </small>
+            </div>
+            <div class="col">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Ticekt ID:</span>
+                <span class=""><%= ticket.id %></span>
+              </small>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <div class="col-sm-2 mt-2 text-right d-none d-sm-block">
+          <%= check_box_tag "search_ticket_ids[]", ticket.id %>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+
+  <div class="card-footer bg-transparent border-success border d-none d-sm-block text-right">
+    <%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-success"%>
   </div>
+  <% end %>
 </div>

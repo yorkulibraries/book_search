@@ -1,69 +1,63 @@
-<div class="card">
-  <div class="card-header">
-    <span>Tickets Assigned To Me</span>
-    <span class="badge badge-secondary float-right text-uppercase"><%= current_user.name %></span>
+<div class="card mb-3">
+  <div class="card-header text-white bg-info pt-1 pb-1">
+    Assigned To Me <span class="badge badge-light float-right mt-1"><%= @assigned_tickets.size %></span>
   </div>
-    <table class="table table-sm table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th></th>
-          <th>Book Title</th>
-          <th></th>
-        </tr>
-      </thead>
-      <% @assigned_tickets.each do |ticket| %>
-        <tr>
-          <td class="text-center"><%= ticket.id %></td>
-          <td>
-            <div class="row">
-              <div class="col">
-                <%= link_to sl1_search_ticket_path(ticket) do %>
-                  <%= ticket.item_title %>
-                <% end %>
-              </div>
+
+  <ul class="list-group list-group-flush border border-info">
+    <% @assigned_tickets.each do |ticket| %>
+    <li class="list-group-item border-info">
+      <div class="row">
+        <div class="col">
+          <%= link_to sl1_search_ticket_path(ticket) do %>
+            <%= ticket.item_title %>
+          <% end %>
+
+          <div class="row">
+            <div class="col col-sm-6">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Call Number:</span>
+                <span class=""><%= ticket.item_callnumber %></span>
+              </small>
+            </div>
+            <div class="col">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Item #:</span>
+                <span class=""><%= ticket.item_id %></span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-sm-6">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Location:</span>
+                <span class=""><%= ticket.item_location %></span>
+              </small>
+            </div>
+            <div class="col">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Ticekt ID:</span>
+                <span class=""><%= ticket.id %></span>
+              </small>
             </div>
 
-            <div class="row">
-              <div class="col">
-                <small>
-                  <span class="font-weight-light">Call Number:</span>
-                  <span class="text-muted"><%= ticket.item_callnumber %></span>
-                </small>
-              </div>
-              <div class="col">
-                <small>
-                  <span class="font-weight-light">Item ID:</span>
-                  <span class="text-muted"><%= ticket.item_id %></span>
-                </small>
-              </div>
-              <div class="col">
-                <small>
-                  <span class="font-weight-light">Item Location:</span>
-                  <span class="text-muted"><%= ticket.item_location %></span>
-                </small>
-              </div>
-            </div>
 
-          </td>
-          <td>
-            <% if ticket.status != SearchTicket::STATUS_RESOLVED %>
-              <%= link_to "Record Search Result", edit_sl1_search_ticket_path(ticket), class: "btn btn-sm btn-primary action_button"%>
-            <% else %>
-              <%= link_to "View Search Result", sl1_search_ticket_path(ticket), class: "btn btn-sm btn-info action_button"%>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      <tr>
-        <td></td>
-        <td colspan="2">
-          <%= link_to "Print Tickets for Search", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids),
-            class: "btn btn-sm btn-dark" %>
-        </td>
-      <tr>
+          </div>
 
-    </table>
-  <div class="card-footer text-muted">
-    Total:<%= @assigned_tickets.size %>
+        </div>
+
+        <div class="col-sm-2 mt-2">
+          <% if ticket.status != SearchTicket::STATUS_RESOLVED %>
+            <%= link_to "Log Search Result", edit_sl1_search_ticket_path(ticket), class: "btn btn-block btn-sm btn-primary action_button"%>
+          <% else %>
+            <%= link_to "View Search Result", sl1_search_ticket_path(ticket), class: "btn btn-block btn-sm btn-info action_button"%>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+  <div class="card-footer bg-transparent border-info border d-none d-sm-block">
+    <%= link_to "Print Tickets for Search", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids),
+      class: "btn btn-sm btn-dark" %>
   </div>
 </div>
