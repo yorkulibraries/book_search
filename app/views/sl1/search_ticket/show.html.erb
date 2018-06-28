@@ -7,6 +7,7 @@
     <%= render partial: "ticket_details" %>
 
     <hr/>
+    <img src="<%= @ticket.print_barcode %>"/>
 
     <%= render partial: "#{@ticket.status}_status" %>
 

@@ -64,6 +64,19 @@ class SearchTicket < ApplicationRecord
     end
   end
 
+
+  def print_barcode(height: 100)
+    require 'barby'
+    require 'barby/barcode/code_128'
+    require 'barby/outputter/png_outputter'
+
+    barcode = Barby::Code128A.new(item_id)
+    outputter = Barby::PngOutputter.new(barcode)
+    outputter.height = height
+    blob = outputter.to_png #Raw PNG data 
+    return ['data:image/png;base64,', blob].pack('A*m').gsub(/\n/, '')
+  end
+
   private
 
   def set_status_and_resolution_before_create
