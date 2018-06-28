@@ -65,7 +65,7 @@ class SearchTicket < ApplicationRecord
   end
 
 
-  def print_barcode(height: 100)
+  def print_barcode(height: 100, width: 1)
     require 'barby'
     require 'barby/barcode/code_128'
     require 'barby/outputter/png_outputter'
@@ -73,7 +73,8 @@ class SearchTicket < ApplicationRecord
     barcode = Barby::Code128A.new(item_id)
     outputter = Barby::PngOutputter.new(barcode)
     outputter.height = height
-    blob = outputter.to_png #Raw PNG data 
+    outputter.xdim = width
+    blob = outputter.to_png #Raw PNG data
     return ['data:image/png;base64,', blob].pack('A*m').gsub(/\n/, '')
   end
 

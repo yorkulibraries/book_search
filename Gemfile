@@ -31,6 +31,7 @@ gem "font-awesome-rails", "4.7.0.4"
 gem "chunky_png", "1.3.10"
 gem "barby", "0.6.5"
 
+
 ## DEPLOYMENT
 gem 'puma', '~> 3.7'
 
