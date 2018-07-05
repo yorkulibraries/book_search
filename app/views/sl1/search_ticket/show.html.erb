@@ -7,31 +7,30 @@
         <h6 class="text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>        
       </div>
       <div class="col">
-        <h2><span class="badge badge-success text-uppercase"><%= @ticket.status.humanize %></h2>
+        <h2>
+          <span class="badge badge-success text-uppercase"><%= @ticket.status.humanize %></span></h2>
         <h6 class="text-muted">Last Updated: <%= @ticket.updated_at.strftime("%a, %b %-d %Y ") %> </h6>
       </div>
     </div>
-  </div>
+  </div> <!-- card header close -->
 
-  <!-- <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= render partial: "patron_details" %></li>
-    <li class="list-group-item"><%= render partial: "ticket_details" %></li>
-    <li class="list-group-item bg-light"><%= render partial: "#{@ticket.status}_status" %></li>
+    
+    <li class="list-group-item">
+      <%= render partial: "ticket_details" %>
+      <img src="<%= @ticket.print_barcode %>"/>
+    </li>
+    
+    <li class="list-group-item">
+      <%= render partial: "#{@ticket.status}_status" %>
+    </li>
+    
     <li class="list-group-item"><%= render partial: "search_history" %></li>
-  </ul> 
-  -->
+    
+  </ul>
 
-  <div class="card-body">
-    <%= render partial: "ticket_details" %>
 
-    <hr/>
-    <img src="<%= @ticket.print_barcode %>"/>
-
-    <%= render partial: "#{@ticket.status}_status" %>
-
-    <%= render partial: "search_history" %>
-
-  </div>
   <div class="card-footer text-muted">
     Created
     <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
