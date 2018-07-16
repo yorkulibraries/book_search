@@ -2,6 +2,7 @@ class Sl1::AssignedToMeTicketsController < AuthenticatedEmployeeController
 
   def index
     @tickets = SearchTicket.where(assigned_to_id: current_user.id)
+    @assigned_tickets = SearchTicket.where(assigned_to_id: current_user.id)
   end
 
   private
