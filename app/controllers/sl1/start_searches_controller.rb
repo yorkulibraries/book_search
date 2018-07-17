@@ -1,6 +1,5 @@
 class Sl1::StartSearchesController < AuthenticatedEmployeeController
 
-  before_action :current_user
 
   def update
 
@@ -9,23 +8,35 @@ class Sl1::StartSearchesController < AuthenticatedEmployeeController
     # Take user to My Search Tickets
 
     if params[:search_ticket_ids]
+      
+      ticket_ids = params[:search_ticket_ids]
+      
+      if(ticket_ids.is_a?(Array))
+        puts "TICKET IDS IS AN ARRAY!!!"
+        # Loop all items to ensure all are new tickets, otherwise redirect to New Tickets
+        ticket_ids.each do |sreq|
+          @ticket = SearchTicket.find(sreq)
+          check_ticket_status(@ticket)
+        end
 
-      # Loop all items to ensure all are new tickets, otherwise redirect to New Tickets
-      params[:search_ticket_ids].each do |sreq|
-        @ticket = SearchTicket.find(sreq)
+        # Update items to be assigned to current user and update status to in progress
+        ticket_ids.each do |sreq|
+          @ticket = SearchTicket.find(sreq)
+          @ticket.update(assigned_to: current_user, status: "#{SearchTicket::STATUS_SEARCH_IN_PROGRESS}")
+        end
+      else
+        puts "TICKET IDS IS SOLO!!!"
+        @ticket = SearchTicket.find(ticket_ids)
         check_ticket_status(@ticket)
-      end
-
-      # Update items to be assigned to current user and update status to in progress
-      params[:search_ticket_ids].each do |sreq|
-        @ticket.update(assigned_to: @current_user, status: "#{SearchTicket::STATUS_SEARCH_IN_PROGRESS}")
-      end
+        @ticket.update(assigned_to: current_user, status: "#{SearchTicket::STATUS_SEARCH_IN_PROGRESS}")
+        
+      end ## is_a?(Array) close
 
       # redirect_to sl1_my_search_tickets_url, notice: "successfully assigned tickets"
       redirect_to sl1_assigned_to_me_tickets_path, notice: "Successfully assigned tickets"
     
     else
-      # redirect_to sl1_new_tickets_url, error: "Could not assign tickets."
+      redirect_to sl1_new_tickets_url, error: "Could not assign tickets due to Error."
     end
     
     return
