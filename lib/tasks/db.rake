@@ -38,7 +38,7 @@ namespace :db do
     Patron.populate(100..200) do |patron|
       patron.name = Faker::GameOfThrones.character
       patron.email = Faker::Internet.safe_email(patron.name)
-      patron.login_id = 9021..9999
+      patron.login_id = Faker::Number.unique.number(9)
     end
     patron_ids = Patron.ids
 

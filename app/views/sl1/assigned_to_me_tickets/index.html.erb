@@ -36,7 +36,7 @@
             </div>
             <div class="col">
               <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Ticekt ID:</span>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Ticket ID:</span>
                 <span class=""><%= ticket.id %></span>
               </small>
             </div>
@@ -59,7 +59,7 @@
   </ul>
   <div class="card-footer bg-transparent border-info border d-none d-sm-block">
     <%= link_to "Back to SL1 New Tickets", sl1_new_tickets_path, class: "btn btn-sm btn-link btn-primary" %>
-    <%= link_to "Print Tickets for Search", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids),
+    <%= link_to "Print Tickets for Search", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids), target: "_blank",
       class: "btn btn-sm btn-dark" %>
   </div>
 </div>
