@@ -1,35 +1,44 @@
-<% page_title "Search Ticket Details "%>
+<% page_title "Ticket Details"%>
 <div class="card">
   <div class="card-header">
     <div class="row">
-      <div class="col-md-8">
-        <h2 class="ticket-item-title"><%= @ticket.item_title %></h2>
+      <div class="col-md-9">
+        <h4 class="ticket-item-title"><%= @ticket.item_title %></h4>
         <h6 class="text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
       </div>
-      <div class="col">
-        <h2>
-          <span class="badge badge-success text-uppercase"><%= @ticket.status.humanize %></span></h2>
-        <h6 class="text-muted">Last Updated: <%= @ticket.updated_at.strftime("%a, %b %-d %Y ") %> </h6>
+      <div class="col-md-3">
+        <h5>
+          <span class="badge badge-success text-uppercase"><%= @ticket.status.humanize %></span>
+        </h5>
+
+        <small>
+        <span class="font-weight-light text-muted">Updated:</span>
+          <%= @ticket.updated_at.strftime("%a, %b %-d %Y ") %>
+        </small>
       </div>
     </div>
   </div> <!-- card header close -->
 
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= render partial: "patron_details" %></li>
-
     <li class="list-group-item">
       <%= render partial: "ticket_details" %>
-      <img src="<%= @ticket.print_barcode %>"/>
+    </li>
+
+    <li class="list-group-item">
+      <%= render partial: "patron_details" %>
     </li>
 
     <li class="list-group-item">
       <%= render partial: "ticket_status" %>
     </li>
 
-    <li class="list-group-item"><%= render partial: "search_history" %></li>
+    <li class="list-group-item">
+      <%= render partial: "search_history" %>
+    </li>
 
   </ul>
 
+  <img src="<%= @ticket.print_barcode %>"/>
 
   <div class="card-footer text-muted">
     Created

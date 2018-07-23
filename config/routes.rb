@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :sl2 do
     resource :dashboard, only: :show, controller: "dashboard"
     resources :search_ticket, only: [:edit, :update, :show]
+    resource :start_search, only: [:update, :put]
   end
 
   namespace :patron do

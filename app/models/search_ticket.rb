@@ -8,6 +8,7 @@ class SearchTicket < ApplicationRecord
   STATUS_NEW = "new"
   STATUS_SEARCH_IN_PROGRESS = "search_in_progress"
   STATUS_ESCALATED_TO_LEVEL_2 = "escalated_to_level_2"
+  STATUS_REVIEW_BY_COORDINATOR = "review_by_coordinator"
   STATUS_RESOLVED = "resolved"
 
 
@@ -65,7 +66,7 @@ class SearchTicket < ApplicationRecord
   end
 
 
-  def print_barcode(height: 100, width: 1)
+  def print_barcode(height: 50, width: 1)
     require 'barby'
     require 'barby/barcode/code_128'
     require 'barby/outputter/png_outputter'
@@ -76,6 +77,69 @@ class SearchTicket < ApplicationRecord
     outputter.xdim = width
     blob = outputter.to_png #Raw PNG data
     return ['data:image/png;base64,', blob].pack('A*m').gsub(/\n/, '')
+  end
+
+
+  def ticket_status_description
+    case status
+    when STATUS_NEW
+      return {
+        title: "Just In",
+        description: "#{patron_name} has submitted this ticket. Click Start Search button to assign this ticket to your self and begin your search."
+      }
+    when STATUS_SEARCH_IN_PROGRESS
+      return {
+        title: "Search In Progress",
+        description: "#{assigned_to_name} is searching for this Item. If it is found, we'll update the patron."
+      }
+    when STATUS_ESCALATED_TO_LEVEL_2
+      return {
+        title: "Initial Search Unsuccessful",
+        description: "#{assigned_to_name} looked for this item and couldn't find it. This ticket has been escalated to our Level Two staff."
+      }
+    when STATUS_REVIEW_BY_COORDINATOR
+      return {
+        title: "After 2 Searches Item is still missing",
+        description: "#{assigned_to_name} couldn't find the item. The coordinator will review search history and decide how to proceed next."
+      }
+    when STATUS_RESOLVED
+      return ticket_resolution_description
+    else
+      return {
+        title: "Unknown Status",
+        description: "Something has gone wrong. This ticket doesn't have a status attached. Please contact your admin to report this problem."
+      }
+    end
+  end
+
+  def ticket_resolution_description
+    case resolution
+    when SearchTicket::RESOLUTION_FOUND
+      return {
+        title: "This Item Has Been Found",
+        description: "We've located this item and it has been placed on hold for the patron."
+      }
+    when SearchTicket::RESOLUTION_NOT_FOUND
+      return {
+        title: "We couldn't find this item",
+        description: "We've performed several, thorough search and unfortunatelly, we could not find this item. Please see your email for addtional options."
+      }
+    when SearchTicket::RESOLUTION_CANCELLED
+      return {
+        title: "This Search Ticket has been cancelled",
+        description: "We've cancelled this ticket. Please refer to notes for the detailed explanation."
+      }
+    when SearchTicket::RESOLUTION_DUPLICATE
+      return {
+        title: "Duplicate Search Ticket",
+        description: "This ticket is a duplicate of another one, please refer to the original for more information."
+      }
+    else
+      return {
+        title: "Search Ticket Resolution: #{resolution.humanize}",
+        description: "The status of this ticket is unknown at the moment. Please refer to search history for me details."
+      }
+    end
   end
 
   private

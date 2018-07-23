@@ -1,31 +1,21 @@
-<!-- <h5 class="card-title"><%= @ticket.item_title %></h5>
-<h6 class="card-subtitle mb-2 text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
-<hr/> -->
 <dl class="row">
- <dt class="col-sm-2">Item ID</dt>
+ <dt class="col-sm-1 text-muted font-weight-light">Item ID</dt>
  <dd class="col-sm-2"><%= @ticket.item_id %></dd>
 
- <dt class="col-sm-2">Callnumber</dt>
+ <dt class="col-sm-2 text-muted font-weight-light">Callnumber</dt>
  <dd class="col-sm-2"><%= @ticket.item_callnumber %></dd>
 
- <dt class="col-sm-2">Item Location</dt>
+ <dt class="col-sm-2 text-muted font-weight-light">Item Location</dt>
  <dd class="col-sm-2"><%= @ticket.location_name %></dd>
-
- <dt class="col-sm-2">Author</dt>
+</dl>
+<dl class="row">
+ <dt class="col-sm-1 text-muted font-weight-light">Author</dt>
  <dd class="col-sm-2"><%= @ticket.item_author %></dd>
 
- <dt class="col-sm-2">Volume</dt>
- <dd class="col-sm-2"><%= @ticket.item_volume %></dd>
+ <dt class="col-sm-2 text-muted font-weight-light">Volume &amp; Issue</dt>
+ <dd class="col-sm-2"><%= @ticket.item_volume %> / <%= @ticket.item_issue %></dd>
 
- <dt class="col-sm-2">Issue</dt>
- <dd class="col-sm-2"><%= @ticket.item_issue %></dd>
-
- <dt class="col-sm-2">Year</dt>
+ <dt class="col-sm-2 text-muted font-weight-light">Year</dt>
  <dd class="col-sm-2"><%= @ticket.item_year %></dd>
 
- <!-- <dt class="col-sm-3">Requested by</dt>
- <dd class="col-sm-3"><%= @ticket.patron_name %></dd>
-
- <dt class="col-sm-3">Status</dt>
- <dd class="col-sm-3"><%= @ticket.status.humanize.upcase %></dd> -->
 </dl>

@@ -1,26 +1,10 @@
-<!-- <h3><small class="text-muted">Requested by:</small> <%= @ticket.patron_name %> <small>[<%= @ticket.patron.email %>]</small></h3> -->
-<!-- <div class="row">
-  <div class="col-md-3"><p><span class="text-muted">Requestor Info &amp; Date: </span></p></div>
-  <div class="col-md-9"><p><%= @ticket.patron_name %> | <%= @ticket.patron.email %> | <%= @ticket.created_at.strftime('%a %F %I:%M:%S %p') %></p>
-  </div>
-</div> -->
-
-
 <dl class="row">
-  <dt class="col-md-2"><span class="text-muted">Requestor:</span></dt>
-  <dd class="col-md-2"><%= @ticket.patron_name %></dd>
-
-  <dt class="col-md-1"><span class="text-muted">Email: </span></dt>
-  <dd class="col-md-3"><%= @ticket.patron.email %></dd>
-  
-  <dt class="col"><span class="text-muted">Requested: </span></dt>
-  <dd class="col"><span class="font-weight-bold"><%= @ticket.created_at.strftime('%a, %b, %-d %Y')  %></span></dd>
-  
+  <dt class="col-sm-1 text-muted font-weight-light">Patron</dt>
+  <dd class="col-sm-6"><%= @ticket.patron_name %></dd>
+  <dt class="col-sm-2 text-muted font-weight-light">Date Created</dt>
+  <dd class="col-sm-2"><%= @ticket.created_at.strftime('%a, %b, %-d %Y')  %></dd>
 </dl>
-<!-- <dl class="row">
-  <dt class="col"><span class="text-muted">Date Requested: </span></dt>
-  <dd class="col"><span class="font-weight-bold"><%= @ticket.created_at.strftime('%a, %b, %-d %Y')  %></span></dd>
-  <!--strftime('%a %F %I:%M:%S %p')  --
-  <dt class="col"><span class="text-muted">Last Updated: </span></dt>
-  <dd class="col"><span class="font-weight-bold"><%= @ticket.updated_at.strftime('%a, %b, %-d%Y')  %></span></dd>
-</dl> -->
+<dl class="row">
+  <dt class="col-sm-1 text-muted font-weight-light">Email</dt>
+  <dd class="col-sm-6"><%= @ticket.patron.email %></dd>
+</dl>

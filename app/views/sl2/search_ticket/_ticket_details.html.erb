@@ -1,0 +1,21 @@
+<dl class="row">
+ <dt class="col-sm-1 text-muted font-weight-light">Item ID</dt>
+ <dd class="col-sm-2"><%= @ticket.item_id %></dd>
+
+ <dt class="col-sm-2 text-muted font-weight-light">Callnumber</dt>
+ <dd class="col-sm-2"><%= @ticket.item_callnumber %></dd>
+
+ <dt class="col-sm-2 text-muted font-weight-light">Item Location</dt>
+ <dd class="col-sm-2"><%= @ticket.location_name %></dd>
+</dl>
+<dl class="row">
+ <dt class="col-sm-1 text-muted font-weight-light">Author</dt>
+ <dd class="col-sm-2"><%= @ticket.item_author %></dd>
+
+ <dt class="col-sm-2 text-muted font-weight-light">Volume &amp; Issue</dt>
+ <dd class="col-sm-2"><%= @ticket.item_volume %> / <%= @ticket.item_issue %></dd>
+
+ <dt class="col-sm-2 text-muted font-weight-light">Year</dt>
+ <dd class="col-sm-2"><%= @ticket.item_year %></dd>
+
+</dl>
