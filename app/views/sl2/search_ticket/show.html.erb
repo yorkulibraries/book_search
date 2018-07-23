@@ -3,7 +3,7 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-8">
-        <h2 class=""><%= @ticket.item_title %></h2>
+        <h2 class="ticket-item-title"><%= @ticket.item_title %></h2>
         <h6 class="text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
       </div>
       <div class="col">
@@ -23,7 +23,7 @@
     </li>
 
     <li class="list-group-item">
-      <%= render partial: "#{@ticket.status}_status" %>
+      <%= render partial: "ticket_status" %>
     </li>
 
     <li class="list-group-item"><%= render partial: "search_history" %></li>
