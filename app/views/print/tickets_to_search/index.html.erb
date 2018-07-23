@@ -33,9 +33,11 @@
         <!-- Always show primary, secondary for lvl 2 -->
        <% SearchArea.primary.where(location_id: ticket.location_id).each do |sa| %>
        <div class="col-md-3 mt-2"> <!-- bootstrap margin-top (mt) -->
-           <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div>
+           <!-- <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div> -->
+           <input type="checkbox" id="scales" name="feature" value="scales" class="checkbox" /> 
+           <label for="scales"> <%= sa.name %></label>
        </div>
-       <% end %>
+      <% end %> <!-- Primary Area Loop -->
     <% if ticket.status == SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %>
       <% SearchArea.secondary.where(location_id: ticket.location_id).each do |sa| %>
        <div class="col-md-3 mt-2"> <!-- bootstrap margin-top (mt) -->
@@ -50,10 +52,17 @@
         <h5>Found?</h5>
       </div>
       <div class="col-md-2">
-        <h6><span class="fa fa-square fa-border fa-inverse checkbox" ></span> Yes</h6>
+        <h6>
+          <input type="checkbox" id="scales" name="feature" value="scales" class="checkbox" /> 
+          <label for="scales"> YES </label>
+        </h6>
       </div>
       <div class="col-md-2">
-        <h6><span class="fa fa-square fa-border fa-inverse checkbox" ></span> No </h6>
+        <!-- <h6><span class="fa fa-square fa-border fa-inverse checkbox" ></span> No </h6> -->
+        <h6>
+          <input type="checkbox" id="scales" name="feature" value="scales" class="checkbox" /> 
+          <label for="scales"> NO </label>
+        </h6> 
       </div>
       <div class="col-md-6">
         <h5>Where:</h5>
@@ -62,8 +71,26 @@
     </div> <!-- row -->
     <hr class="bg-secondary"/>
     <div class="row">
+      <div class="col-md-12"><h5>Search History:</h5></div>
+      <div class="col-md-12">
+       <table class="table table-striped table-sm">
+       <% ticket.work_logs.each_with_index do |log, index| %>
+       <tr>
+         <td><%= index + 1 %></td>
+         <td><%= log.employee.name %></td>
+         <td><%= log.created_at.strftime("%Y-%m-%d") %></td>
+         <td>Searched <%= log.search_areas.map { |sa| sa.name}.join(", ") %></td>
+         <td><%= log.result.humanize.capitalize %></td>
+       </tr>
+       <% end %>
+       </table>
+    </div>
+    </div>
+    <hr class="bg-secondary"/>
+    <div class="row">
       <div class="col-md-2"><h5>Notes:</h5></div>
       <!-- <div class="col"><hr class="bg-secondary"/></div> -->
+      
     </div>
     <hr class="bg-dark"/>
     </div> <!-- card-body -->

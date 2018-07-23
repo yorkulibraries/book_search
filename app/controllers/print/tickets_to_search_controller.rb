@@ -8,6 +8,7 @@ class Print::TicketsToSearchController < AuthenticatedEmployeeController
       @tickets = SearchTicket.find(params[:ticket_ids])
       # @search_areas_sl1 = SearchArea.where(is_primary: true)
       # @search_areas = SearchArea.all
+      
     else
       @tickets = {}
       # @search_areas_sl1 = {}

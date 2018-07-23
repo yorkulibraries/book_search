@@ -34,6 +34,8 @@
 /*** MOVE THIS TO SEPARATE FILE ONCE FINALIZED ***/
 .checkbox, .html-text-box {
   border: 2px solid $info;
+  transform: scale(1.5);
+  margin-right: 5px;
 }
 
 .html-text-box {
