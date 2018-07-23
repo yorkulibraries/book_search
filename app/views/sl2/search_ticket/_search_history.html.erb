@@ -23,7 +23,7 @@
           <td><%= index + 1 %></td>
           <td><%= log.employee.name %></td>
           <td><%= log.created_at.strftime("%Y-%m-%d") %></td>
-          <td>Searched <%= log.search_areas.map { |sa| sa.name}.join(", ") %><td>
+          <td>Searched <%= log.search_areas.map { |sa| sa.name}.join(", ") %></td>
           <td><%= log.result.humanize.capitalize %></td>
         </tr>
       <% end %>
