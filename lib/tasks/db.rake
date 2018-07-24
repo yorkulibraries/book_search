@@ -79,7 +79,7 @@ namespace :db do
           SearchTicket::WorkLog.populate(2) do |log|
             #:search_ticket_id :employee_id :result :found_location :note, :work_type
             log.search_ticket_id = report.id
-            log.employee_id = report.assigned_to_id
+            log.employee_id = employee_ids
             log.result = SearchTicket::WorkLog::RESULTS
             log.found_location =  Location.find(report.location_id).ils_code
             log.note = Faker::WorldOfWarcraft.quote
