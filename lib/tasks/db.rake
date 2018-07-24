@@ -8,17 +8,6 @@ namespace :db do
     # CLEAR THE DATABASE FIRST
     [SearchTicket, Patron, Employee, Location, SearchArea, SearchTicket::WorkLog, SearchTicket::SearchedArea].each(&:delete_all)
 
-    Employee.populate(5..10) do |e|
-      e.name = Faker::FamilyGuy.unique.character
-      e.email = Faker::Internet.safe_email(e.name)
-      e.role = Employee::ROLES
-      e.login_id = 8021..9021
-      e.location_id = 1..100
-      e.active = true
-    end
-
-    employee_ids = Employee.ids
-
     Location.populate(2..5) do |l|
       l.name = Faker::HarryPotter.location
       l.address = Faker::HarryPotter.house
@@ -34,6 +23,18 @@ namespace :db do
     end
 
     location_ids = Location.ids
+    roles = Employee::ROLES
+
+    Employee.populate(roles.size) do |e|
+      e.name = Faker::FamilyGuy.unique.character
+      e.email = Faker::Internet.safe_email(e.name)
+      e.role = roles.pop
+      e.login_id = 8021..9021
+      e.location_id = location_ids
+      e.active = true
+    end
+
+    employee_ids = Employee.ids
 
     Patron.populate(100..200) do |patron|
       patron.name = Faker::GameOfThrones.character
@@ -62,6 +63,13 @@ namespace :db do
 
         report.status = status
         report.note = Faker::WorldOfWarcraft.quote
+        report.assigned_to_id = 0
+
+        if status == SearchTicket::STATUS_SEARCH_IN_PROGRESS
+          # only assign if status is search_in_progress
+          report.assigned_to_id = employee_ids
+        end
+
 
         if status == SearchTicket::STATUS_RESOLVED
           report.resolution = SearchTicket::RESOLUTIONS
@@ -69,16 +77,11 @@ namespace :db do
           report.resolution = SearchTicket::RESOLUTION_UNKNOWN
         end
 
-        if status == SearchTicket::STATUS_NEW
-          report.assigned_to_id = 0
-        else
-          report.assigned_to_id = employee_ids
-        end
 
       end
 
 
-    end # End of Status
+    end
 
     # Test Case for Patron Tickets. Ensure first patron in db has data
     patron_single = Patron.first
@@ -95,19 +98,16 @@ namespace :db do
       ticket.patron_id = patron_single
       ticket.status = SearchTicket::STATUSES
 
+      if status == SearchTicket::STATUS_SEARCH_IN_PROGRESS
+        # only assign if status is search_in_progress
+        report.assigned_to_id = employee_ids
+      end
+
       if ticket.status == SearchTicket::STATUS_RESOLVED
         ticket.resolution = SearchTicket::RESOLUTIONS
       else
         ticket.resolution = SearchTicket::RESOLUTION_UNKNOWN
       end
-      # if ticket.status == SearchTicket::STATUS_NEW
-      #   ticket.assigned_to_id = 0
-      # else
-      #   ticket.assigned_to_id = employee_ids
-      # end
-
-      # puts ticket.inspect
-
     end
 
 
