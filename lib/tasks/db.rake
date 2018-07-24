@@ -8,12 +8,14 @@ namespace :db do
     # CLEAR THE DATABASE FIRST
     [SearchTicket, Patron, Employee, Location, SearchArea, SearchTicket::WorkLog, SearchTicket::SearchedArea].each(&:delete_all)
 
-    Location.populate(2..5) do |l|
+    ils_codes = ["SCOTT", "STEACIE", "FROST", "BRONFMAN"]
+
+    Location.populate(4) do |l|
       l.name = Faker::HarryPotter.location
       l.address = Faker::HarryPotter.house
       l.email = Faker::Internet.safe_email(l.name)
       l.phone = Faker::PhoneNumber.extension
-      l.ils_code = ["SCOTT", "STEACIE", "FROST", "BRONFMAN"]
+      l.ils_code = ils_codes.pop
 
       SearchArea.populate(4..8) do |sa|
         sa.name = Faker::Job.field
@@ -36,7 +38,7 @@ namespace :db do
 
     employee_ids = Employee.ids
 
-    Patron.populate(100..200) do |patron|
+    Patron.populate(10) do |patron|
       patron.name = Faker::GameOfThrones.character
       patron.email = Faker::Internet.safe_email(patron.name)
       patron.login_id = Faker::Number.unique.number(9)
@@ -46,7 +48,7 @@ namespace :db do
 
     SearchTicket::STATUSES.each do |status|
 
-      SearchTicket.populate(5..10) do |report|
+      SearchTicket.populate(10..15) do |report|
         # :item_id :item_callnumber :item_title :patron_id :location_id  :resolution :status  :note
         report.location_id = location_ids
         letters = Faker::Lorem.word[0..1]
@@ -70,6 +72,20 @@ namespace :db do
           report.assigned_to_id = employee_ids
         end
 
+        if status == SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 || status == SearchTicket::STATUS_REVIEW_BY_COORDINATOR
+          size = 1 if status == SearchTicket::STATUS_ESCALATED_TO_LEVEL_2
+          size = 2 if status == SearchTicket::STATUS_REVIEW_BY_COORDINATOR
+
+          SearchTicket::WorkLog.populate(2) do |log|
+            #:search_ticket_id :employee_id :result :found_location :note, :work_type
+            log.search_ticket_id = report.id
+            log.employee_id = report.assigned_to_id
+            log.result = SearchTicket::WorkLog::RESULTS
+            log.found_location =  Location.find(report.location_id).ils_code
+            log.note = Faker::WorldOfWarcraft.quote
+          end
+        end
+
 
         if status == SearchTicket::STATUS_RESOLVED
           report.resolution = SearchTicket::RESOLUTIONS
@@ -80,37 +96,7 @@ namespace :db do
 
       end
 
-
-    end
-
-    # Test Case for Patron Tickets. Ensure first patron in db has data
-    patron_single = Patron.first
-
-    SearchTicket.populate(8) do |ticket|
-      ticket.location_id = location_ids
-      ticket.item_title = Faker::Book.unique.title
-      ticket.item_callnumber = "CD #{Faker::Code.unique.asin}"
-      ticket.item_author = Faker::Book.unique.author
-      ticket.item_id = rand(2900020030020..2900020040020)
-      ticket.item_volume = "Vol 1"
-      ticket.item_issue = "Issue 2"
-      ticket.item_year = rand(1998..2017)
-      ticket.patron_id = patron_single
-      ticket.status = SearchTicket::STATUSES
-
-      if status == SearchTicket::STATUS_SEARCH_IN_PROGRESS
-        # only assign if status is search_in_progress
-        report.assigned_to_id = employee_ids
-      end
-
-      if ticket.status == SearchTicket::STATUS_RESOLVED
-        ticket.resolution = SearchTicket::RESOLUTIONS
-      else
-        ticket.resolution = SearchTicket::RESOLUTION_UNKNOWN
-      end
-    end
-
-
+    end # Statuses loop
 
   end # End of Loop of Tables
 
