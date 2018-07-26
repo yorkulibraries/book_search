@@ -32,7 +32,7 @@ class RedirectorController < ApplicationController
     when Employee::ROLE_LEVEL_TWO
       return sl2_dashboard_url
     when Employee::ROLE_COORDINATOR
-      return dashboard_url
+      return coordinator_dashboard_url
     when Employee::ROLE_MANAGER
       return dashboard_url
     else

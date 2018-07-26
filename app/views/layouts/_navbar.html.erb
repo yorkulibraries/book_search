@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<%= root_path %>">Dashboard <span class="sr-only">(current)</span></a>
         </li>
         <% if session[:user_type] == Employee.to_s %>
 
@@ -15,9 +15,12 @@
             <%= render partial: "layouts/navbars/sl1" %>
           <% elsif current_user.role == Employee::ROLE_LEVEL_TWO %>
             <%= render partial: "layouts/navbars/sl2" %>
-          <% else %>
+          <% elsif current_user.role == Employee::ROLE_COORDINATOR %>
+            <%= render partial: "layouts/navbars/coordinator" %>
+          <% elsif current_user.role == Employee::ROLE_MANAGER %>
             <%= render partial: "layouts/navbars/admin" %>
           <% end %>
+
         <% elsif session[:user_type] == Patron.to_s %>
           <%= render partial: "layouts/navbars/patron" %>
         <% end %>

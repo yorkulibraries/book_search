@@ -19,3 +19,42 @@
   </div>
 
 </div>
+
+<% another_search =capture do %>
+    <p>The search ticket will be sent back to Service Level 2 staff for another search.</p>
+    <p align='center'>
+      <a href='#' class='btn btn-link'>Request Another Search</a><br/>
+      <small>click button again to cancel</small>
+    </p>
+<% end %>
+
+<% to_acquisitions =capture do %>
+    <p>
+      The search ticket will be forwared to Acquisitions Department.
+      They will make a final decision on whether to repurchase the item or mark it as missing.
+    </p>
+    <p align='center'>
+      <a href='#' class='btn btn-link'>Send To Acquisitions</a><br/>
+      <small>click button again to cancel</small>
+    </p>
+<% end %>
+
+<button class="btn btn-info" data-placement="top" data-html="true" data-toggle="popover"
+  data-title="Request Another Search" data-content="<%= another_search.html_safe %>">
+  Request Another Search
+</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn btn-dark" data-placement="top" data-html="true" data-toggle="popover"
+  data-title="Request Another Search" data-content="<%= to_acquisitions.html_safe %>">
+  Send To Acquisitions
+</button>
+
+
+
+
+<div class="popover d-none" role="tooltip" id="send-to-acquisitions">
+  <div class="arrow"></div>
+  <h3 class="popover-header"></h3>
+  <div class="popover-body">
+  </div>
+</div>

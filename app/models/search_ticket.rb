@@ -19,7 +19,7 @@ class SearchTicket < ApplicationRecord
   RESOLUTION_DUPLICATE = "duplicate"
 
   RESOLUTIONS = [RESOLUTION_UNKNOWN, RESOLUTION_FOUND, RESOLUTION_NOT_FOUND, RESOLUTION_CANCELLED, RESOLUTION_DUPLICATE]
-  STATUSES = [STATUS_NEW, STATUS_SEARCH_IN_PROGRESS, STATUS_ESCALATED_TO_LEVEL_2, STATUS_RESOLVED]
+  STATUSES = [STATUS_NEW, STATUS_SEARCH_IN_PROGRESS, STATUS_ESCALATED_TO_LEVEL_2, STATUS_RESOLVED, STATUS_REVIEW_BY_COORDINATOR]
 
   ## VALIDATIONS
   validates_presence_of :item_id, :patron_id
@@ -100,8 +100,8 @@ class SearchTicket < ApplicationRecord
       }
     when STATUS_REVIEW_BY_COORDINATOR
       return {
-        title: "After 2 Searches Item is still missing",
-        description: "#{assigned_to_name} couldn't find the item. The coordinator will review search history and decide how to proceed next."
+        title: "After #{work_logs.size} Searches Item is still missing",
+        description: "We couldn't find the item. The coordinator will review search history and decide how to proceed next."
       }
     when STATUS_RESOLVED
       return ticket_resolution_description

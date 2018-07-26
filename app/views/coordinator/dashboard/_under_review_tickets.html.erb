@@ -4,7 +4,6 @@
       <span id="escalated_tickets_count" class="badge badge-light float-right mt-1">
         <%= @under_review_tickets.size %></span>
   </div>
-  <%= form_tag sl2_start_search_path, method: :patch do %>
   <ul class="list-group list-group-flush border border-top-0 border-warning">
     <% @under_review_tickets.each do |ticket| %>
     <li class="list-group-item border-warning" data-under-review-ticket-id="<%= ticket.id %>">
@@ -47,16 +46,9 @@
 
         </div>
 
-        <div class="col-sm-2 mt-2 text-right d-none d-sm-block">
-          <%= check_box_tag "search_ticket_ids[]", ticket.id %>
-        </div>
+
       </div>
     </li>
     <% end %>
   </ul>
-
-  <div class="card-footer bg-transparent border-warning border d-none d-sm-block text-right">
-    <%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-success"%>
-  </div>
-  <% end %>
 </div>
