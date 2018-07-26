@@ -14,8 +14,7 @@ class Sl1::NewTicketsControllerTest < ActionDispatch::IntegrationTest
     get sl1_new_tickets_path
     assert_response :success
 
-    assert_select ".search_ticket_status", { count: new_tickets.size, text: SearchTicket::STATUS_NEW}
-    assert_select ".search_ticket_status", { count: 0, text: SearchTicket::STATUS_RESOLVED }
+    assert_select "[data-new-ticket-id]", { count: new_tickets.size}    
   end
 
 end

@@ -1,15 +1,15 @@
-class Sl2::SearchTicketController < AuthenticatedEmployeeController
+class Sl2::SearchTicketController < Sl2::AuthorizedBaseController
 
   before_action :load_search_ticket
   # before_action :check_ticket_status, only: [:edit, :update]
-  
+
   def show
   end
-  
+
   def edit
     @work_log = SearchTicket::WorkLog.all
   end
-  
+
   def update
 
     @work_log = @ticket.work_logs.build(work_log_params)
@@ -40,15 +40,15 @@ class Sl2::SearchTicketController < AuthenticatedEmployeeController
       render action: :edit
     end
   end
-  
+
   private
 
   def load_search_ticket
     @ticket = SearchTicket.find(params[:id])
   end
-    
+
   def work_log_params
      params.require(:search_ticket_work_log).permit(:result, :found_location, :note, search_area_ids: [])
   end
-  
+
 end

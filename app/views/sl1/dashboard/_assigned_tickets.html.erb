@@ -5,7 +5,7 @@
 
   <ul class="list-group list-group-flush border border-info">
     <% @assigned_tickets.each do |ticket| %>
-    <li class="list-group-item border-info">
+    <li class="list-group-item border-info" data-assigned-ticket-id="<%= ticket.id %>">
       <div class="row">
         <div class="col">
           <%= link_to sl1_search_ticket_path(ticket) do %>

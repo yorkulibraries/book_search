@@ -22,8 +22,8 @@ class Sl1::DashboardControllerTest < ActionDispatch::IntegrationTest
     get sl1_dashboard_path
     assert_response :success
 
-    assert_select ".search_ticket_status", { count: assigned_tickets.size, text: SearchTicket::STATUS_SEARCH_IN_PROGRESS}
-    assert_select ".search_ticket_status", { count: new_tickets.size, text: SearchTicket::STATUS_NEW }
+    assert_select "[data-new-ticket-id]", { count: new_tickets.size }
+    assert_select "[data-assigned-ticket-id]", { count: assigned_tickets.size }
   end
 
 end

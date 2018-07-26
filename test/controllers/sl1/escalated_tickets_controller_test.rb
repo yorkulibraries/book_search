@@ -14,8 +14,7 @@ class Sl1::EscalatedTicketsControllerTest < ActionDispatch::IntegrationTest
     get sl1_escalated_tickets_path
     assert_response :success
 
-    assert_select ".search_ticket_status", { count: escalated_tickets.size, text: SearchTicket::STATUS_ESCALATED_TO_LEVEL_2}
-    assert_select ".search_ticket_status", { count: 0, text: SearchTicket::STATUS_NEW }
+    assert_select "[data-escalated-ticket-id]", { count: escalated_tickets.size }
   end
 
 

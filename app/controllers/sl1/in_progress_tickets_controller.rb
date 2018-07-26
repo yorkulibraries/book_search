@@ -1,4 +1,4 @@
-class Sl1::InProgressTicketsController < AuthenticatedEmployeeController
+class Sl1::InProgressTicketsController < Sl1::AuthorizedBaseController
 
   def index
     @tickets = SearchTicket.in_progress_tickets

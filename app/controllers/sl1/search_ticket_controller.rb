@@ -1,4 +1,4 @@
-class Sl1::SearchTicketController < AuthenticatedEmployeeController
+class Sl1::SearchTicketController < Sl1::AuthorizedBaseController
 
   before_action :load_search_ticket
   before_action :check_ticket_status, only: [:edit, :update]

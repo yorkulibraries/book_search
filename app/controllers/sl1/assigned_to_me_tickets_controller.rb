@@ -1,4 +1,4 @@
-class Sl1::AssignedToMeTicketsController < AuthenticatedEmployeeController
+class Sl1::AssignedToMeTicketsController < Sl1::AuthorizedBaseController
 
   def index
     @tickets = SearchTicket.where(assigned_to_id: current_user.id)

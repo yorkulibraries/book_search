@@ -1,4 +1,4 @@
-class Sl2::StartSearchesController < AuthenticatedEmployeeController
+class Sl2::StartSearchesController < Sl2::AuthorizedBaseController
 
 
   def update
@@ -8,9 +8,9 @@ class Sl2::StartSearchesController < AuthenticatedEmployeeController
     # Take user to My Search Tickets
 
     if params[:search_ticket_ids]
-      
+
       ticket_ids = params[:search_ticket_ids]
-      
+
       if(ticket_ids.is_a?(Array))
         ## MULTIPLE TICKET IDS IS SELECTED
         ## Loop all items to ensure all are escalated tickets, otherwise redirect to New Tickets
@@ -27,19 +27,19 @@ class Sl2::StartSearchesController < AuthenticatedEmployeeController
       else
         ## "TICKET IDS IS SOLO"
         @ticket = SearchTicket.find(ticket_ids)
-        check_ticket_status(@ticket)
+        check_ticket_status(@ticket, SearchTicket::STATUS_ESCALATED_TO_LEVEL_2)
         @ticket.update(assigned_to: current_user, status: "#{SearchTicket::STATUS_SEARCH_IN_PROGRESS}")
-        
+
       end ## is_a?(Array) close
 
       # redirect_to sl1_assigned_to_me_tickets_path, notice: "Successfully assigned tickets"
       redirect_to sl2_dashboard_path, notice: "Successfully assigned tickets"
-    
+
     else
       # redirect_to sl1_new_tickets_url, error: "Could not assign tickets due to Error."
       redirect_to sl2_dashboard_path, error: "Could not assign tickets due to Error."
     end
-    
+
     return
   end
 

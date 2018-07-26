@@ -6,7 +6,7 @@
   <%= form_tag sl1_start_search_path, method: :patch do %>
   <ul class="list-group list-group-flush border border-top-0 border-success">
     <% @new_tickets.each do |ticket| %>
-    <li class="list-group-item border-success">
+    <li class="list-group-item border-success" data-new-ticket-id="<%= ticket.id %>">
       <div class="row">
         <div class="col ">
           <%= link_to sl1_search_ticket_path(ticket) do %>
@@ -30,7 +30,7 @@
               <small>
                 <span class="text-muted font-weight-light d-block d-sm-inline">Assigned To #:</span>
                 <% if ticket.assigned_to %>
-                  <span class=""><%= ticket.assigned %></span>
+                  <span class=""><%= ticket.assigned_to %></span>
                 <% else %>
                 <% end %>
               </small>

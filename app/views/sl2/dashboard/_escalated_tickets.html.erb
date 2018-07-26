@@ -1,13 +1,15 @@
 <div class="card card border-warning mb-3">
   <div class="card-header border-0 bg-warning pt-1 pb-1">
-    Escalated Search Tickets <span class="badge badge-light float-right mt-1"><%= @escalated_tickets.size %></span>
+    Escalated Search Tickets
+      <span id="escalated_tickets_count" class="badge badge-light float-right mt-1">
+        <%= @escalated_tickets.size %></span>
   </div>
   <%= form_tag sl2_start_search_path, method: :patch do %>
   <ul class="list-group list-group-flush border border-top-0 border-warning">
     <% @escalated_tickets.each do |ticket| %>
-    <li class="list-group-item border-warning">
+    <li class="list-group-item border-warning" data-escalated-ticket-id="<%= ticket.id %>">
       <div class="row">
-        <div class="col ">
+        <div class="col">
           <%= link_to sl2_search_ticket_path(ticket) do %>
             <%= ticket.item_title %>
           <% end %>

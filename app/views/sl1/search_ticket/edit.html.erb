@@ -1,10 +1,10 @@
-<h1>Record Search Result</h1>
+<h1>Log Search Result</h1>
 <div class="card">
   <div class="card-header">
     <div class="row">
       <div class="col-md-8">
         <h2 class=""><%= @ticket.item_title %>: Search Ticket Details</h2>
-        <h6 class="text-muted">Being logged by: <%= @ticket.assigned_to_name %> </h6>        
+        <h6 class="text-muted">Being logged by: <%= @ticket.assigned_to_name %> </h6>
       </div>
       <div class="col">
         <h2>
@@ -16,7 +16,7 @@
            <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron_name %> </cite>
         </span></h6>
       </div>
-    </div>    
+    </div>
   </div>
   <div class="card-body">
     <%= render partial: "ticket_details" %>
@@ -38,7 +38,7 @@
           Have you found the book?
         </div>
         <div class="col-sm-9">
-            <%= f.input :result,  as: :radio_buttons, label: false, 
+            <%= f.input :result,  as: :radio_buttons, label: false,
               collection: [["Yes ", SearchTicket::WorkLog::RESULT_FOUND], ["No",  SearchTicket::WorkLog::RESULT_NOT_FOUND]]
             %>
         </div>

@@ -12,7 +12,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     get sl1_search_ticket_path(sr)
     assert_response :success
-    assert_select ".card-header span", "Search Ticket Details"
+    assert_select ".ticket-item-title", sr.item_title
   end
 
   should "display the work log form if ticket has no search attemps, only for STATUS_SEARCH_IN_PROGRESS tickets" do
@@ -20,7 +20,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     get edit_sl1_search_ticket_path(sr)
     assert_response :success
-    assert_select "h1", "Record Search Result"
+    assert_select "h1", "Log Search Result"
   end
 
 

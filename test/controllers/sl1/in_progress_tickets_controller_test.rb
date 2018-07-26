@@ -14,8 +14,7 @@ class Sl1::InProgressTicketsControllerTest < ActionDispatch::IntegrationTest
     get sl1_in_progress_tickets_path
     assert_response :success
 
-    assert_select ".search_ticket_status", { count: in_progress_tickets.size, text: SearchTicket::STATUS_SEARCH_IN_PROGRESS}
-    assert_select ".search_ticket_status", { count: 0, text: SearchTicket::STATUS_RESOLVED }
+    assert_select "[data-in-progress-ticket-id]", { count: in_progress_tickets.size }    
   end
 
 

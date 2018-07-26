@@ -9,13 +9,13 @@ class Sl2::DashboardControllerTest < ActionDispatch::IntegrationTest
 
   should "show escalated search tickets" do
     escalated_tickets = create_list(:search_ticket, 2, status: SearchTicket::STATUS_ESCALATED_TO_LEVEL_2, assigned_to: @user)
-    other_tickets = create_list(:search_ticket, 3, status: SearchTicket::STATUS_NEW, assigned_to: @user)
+    other_tickets = create_list(:search_ticket, 3, status: SearchTicket::STATUS_NEW, assigned_to: nil)
 
     get sl2_dashboard_path
     assert_response :success
 
-    assert_select ".search_ticket_status", { count: escalated_tickets.size, text: SearchTicket::STATUS_ESCALATED_TO_LEVEL_2}
-    assert_select ".search_ticket_status", { count: 0, text: SearchTicket::STATUS_NEW }
+    assert_select "[data-escalated-ticket-id]", { count: escalated_tickets.size }
+    assert_select "[data-assigned-ticket-id]", { count: escalated_tickets.size }
   end
 
 
