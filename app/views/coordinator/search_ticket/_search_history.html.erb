@@ -8,6 +8,7 @@
         <th>When</th>
         <th>What</th>
         <th>Result</th>
+        <th>Note</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
           <td><%= log.created_at.strftime("%Y-%m-%d") %></td>
           <td>Searched <%= log.search_areas.map { |sa| sa.name}.join(", ") %></td>
           <td><%= log.result.humanize.capitalize %></td>
+          <td><%= log.note %></td>
         </tr>
       <% end %>
     </tbody>

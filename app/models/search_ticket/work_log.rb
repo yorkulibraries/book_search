@@ -6,10 +6,13 @@ class SearchTicket::WorkLog < ApplicationRecord
 
   ## CONSTANTS
   WORK_TYPE_SEARCH = "work_type_search"
+  WORK_TYPE_REVIEW = "work_type_review"
 
   RESULT_UNKNOWN = "unknown"
   RESULT_FOUND = "found"
   RESULT_NOT_FOUND = "not_found"
+  RESULT_ANOTHER_SEARCH_REQUESTED = "another_search_requested"
+  RESULT_SENT_TO_ACQUISITIONS = "sent_to_acquisitions"
 
   RESULTS = [RESULT_UNKNOWN, RESULT_FOUND, RESULT_NOT_FOUND]
 
