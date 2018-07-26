@@ -91,6 +91,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, ticket.work_logs.size
     assert_equal SearchTicket::STATUS_ESCALATED_TO_LEVEL_2, ticket.status, "Status change to ESCALATED"
     assert_equal SearchTicket::RESOLUTION_UNKNOWN, ticket.resolution, "Resolution shouldn't change"
+    assert_nil ticket.assigned_to_id, "Ticket should have been unassigned"
   end
 
   ## ERROR VALIDATION TESTS

@@ -31,6 +31,7 @@ class Sl1::SearchTicketController < Sl1::AuthorizedBaseController
 
       elsif @work_log.result == SearchTicket::WorkLog::RESULT_NOT_FOUND
         @ticket.status = SearchTicket::STATUS_ESCALATED_TO_LEVEL_2
+        @ticket.assigned_to_id = nil
         @ticket.save
       end
 
