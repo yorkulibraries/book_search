@@ -1,0 +1,49 @@
+<% page_title "Ticket Details"%>
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-9">
+        <h4 class="ticket-item-title"><%= @ticket.item_title %></h4>
+        <h6 class="text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
+      </div>
+      <div class="col-md-3">
+        <h5>
+          <span class="badge badge-success text-uppercase"><%= @ticket.status.humanize %></span>
+        </h5>
+
+        <small>
+        <span class="font-weight-light text-muted">Updated:</span>
+          <%= @ticket.updated_at.strftime("%a, %b %-d %Y ") %>
+        </small>
+      </div>
+    </div>
+  </div> <!-- card header close -->
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <%= render partial: "ticket_details" %>
+    </li>
+
+    <li class="list-group-item">
+      <%= render partial: "patron_details" %>
+    </li>
+
+    <li class="list-group-item">
+      <%= render partial: "ticket_status" %>
+    </li>
+
+    <li class="list-group-item">
+      <%= render partial: "search_history" %>
+    </li>
+
+  </ul>
+
+  <img src="<%= @ticket.print_barcode %>"/>
+
+  <div class="card-footer text-muted">
+    Created
+    <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
+       <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron.name %> </cite>
+    </span>
+  </div>
+</div>

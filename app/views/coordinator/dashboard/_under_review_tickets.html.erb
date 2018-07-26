@@ -1,0 +1,62 @@
+<div class="card card border-warning mb-3">
+  <div class="card-header border-0 bg-warning pt-1 pb-1">
+    Under Review Search Tickets
+      <span id="escalated_tickets_count" class="badge badge-light float-right mt-1">
+        <%= @under_review_tickets.size %></span>
+  </div>
+  <%= form_tag sl2_start_search_path, method: :patch do %>
+  <ul class="list-group list-group-flush border border-top-0 border-warning">
+    <% @under_review_tickets.each do |ticket| %>
+    <li class="list-group-item border-warning" data-under-review-ticket-id="<%= ticket.id %>">
+      <div class="row">
+        <div class="col">
+          <%= link_to coordinator_search_ticket_path(ticket) do %>
+            <%= ticket.item_title %>
+          <% end %>
+
+          <div class="row">
+            <div class="col col-sm-6">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Call Number:</span>
+                <span class=""><%= ticket.item_callnumber %></span>
+              </small>
+            </div>
+            <div class="col">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Item #:</span>
+                <span class=""><%= ticket.item_id %></span>
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-sm-6">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Location:</span>
+                <span class=""><%= ticket.item_location %></span>
+              </small>
+            </div>
+            <div class="col">
+              <small>
+                <span class="text-muted font-weight-light d-block d-sm-inline">Ticekt ID:</span>
+                <span class=""><%= ticket.id %></span>
+              </small>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <div class="col-sm-2 mt-2 text-right d-none d-sm-block">
+          <%= check_box_tag "search_ticket_ids[]", ticket.id %>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+
+  <div class="card-footer bg-transparent border-warning border d-none d-sm-block text-right">
+    <%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-success"%>
+  </div>
+  <% end %>
+</div>

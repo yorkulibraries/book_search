@@ -39,6 +39,7 @@ class SearchTicket < ApplicationRecord
   scope :in_progress_tickets, -> { where(status: STATUS_SEARCH_IN_PROGRESS) }
   scope :escalated_tickets, -> { where(status: STATUS_ESCALATED_TO_LEVEL_2) }
   scope :resolved_tickets, -> { where(status: STATUS_RESOLVED) }
+  scope :under_review_tickets, -> { where(status: STATUS_REVIEW_BY_COORDINATOR) }
 
   ## METHODS
   def assigned_to_name

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+
+
   get "login/invalid" => "invalid_login#show", as: :invalid_login
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
@@ -10,15 +13,20 @@ Rails.application.routes.draw do
     get 'tickets_to_search' => "tickets_to_search#index"
   end
 
+  namespace :patron do
+    resources :request_search, only: [:new, :create, :show, :index]
+    resources :my_tickets, only: [:index, :show]
+  end
+
+  namespace :coordinator do
+    resource :dashboard, only: :show, controller: "dashboard"
+    resources :search_ticket, only: [:edit, :update, :show]
+  end
+
   namespace :sl2 do
     resource :dashboard, only: :show, controller: "dashboard"
     resources :search_ticket, only: [:edit, :update, :show]
     resource :start_search, only: [:update, :put]
-  end
-
-  namespace :patron do
-    resources :request_search, only: [:new, :create, :show, :index]
-    resources :my_tickets, only: [:index, :show]
   end
 
   namespace :sl1 do
