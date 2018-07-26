@@ -11,13 +11,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>John</td>
-        <td>Yesterday</td>
-        <td>Searched the Stacks</td>
-        <td>Performed Initial Search</td>
-      </tr>
       <% @ticket.work_logs.each_with_index do |log, index| %>
         <tr>
           <td><%= index + 1 %></td>
