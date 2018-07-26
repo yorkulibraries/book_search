@@ -1,5 +1,6 @@
 class Coordinator::SearchTicketController < Coordinator::AuthorizedBaseController
   before_action :load_search_ticket
+  before_action :check_ticket_status, only: :update
 
   def show
   end
@@ -10,7 +11,6 @@ class Coordinator::SearchTicketController < Coordinator::AuthorizedBaseControlle
     @work_log.employee = current_user
     @work_log.search_ticket = @ticket
 
-    puts
 
     if params[:acquisitions].present?
       @ticket.status = SearchTicket::STATUS_RESOLVED
@@ -23,9 +23,10 @@ class Coordinator::SearchTicketController < Coordinator::AuthorizedBaseControlle
 
       ## maybe send an email here
     elsif params[:search_again].present?
-      puts "HSOULD BE HERE"
+
       @ticket.status = SearchTicket::STATUS_ESCALATED_TO_LEVEL_2
       @ticket.assigned_to = nil
+      @ticket.resolution = nil
 
       ## add WorkLog result here
       @work_log.result = SearchTicket::WorkLog::RESULT_ANOTHER_SEARCH_REQUESTED
@@ -42,6 +43,12 @@ class Coordinator::SearchTicketController < Coordinator::AuthorizedBaseControlle
 
   def load_search_ticket
     @ticket = SearchTicket.find(params[:id])
+  end
+
+  def check_ticket_status
+    if @ticket.status !=  SearchTicket::STATUS_REVIEW_BY_COORDINATOR
+      redirect_to coordinator_search_ticket_path(@ticket), notice: "You can not modify this SearchTicket."
+    end
   end
 
 end
