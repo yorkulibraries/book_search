@@ -6,11 +6,11 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="<%= root_path %>">Dashboard <span class="sr-only">(current)</span></a>
-        </li>
-        <% if session[:user_type] == Employee.to_s %>
 
+        <% if session[:user_type] == Employee.to_s %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= root_path %>">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
           <% if current_user.role == Employee::ROLE_LEVEL_ONE %>
             <%= render partial: "layouts/navbars/sl1" %>
           <% elsif current_user.role == Employee::ROLE_LEVEL_TWO %>
@@ -30,11 +30,19 @@
         <% if Rails.env.development? %>
           <%= render partial: "layouts/navbars/dev" %>
         <% end %>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-default my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
+        <% if session[:user_type] == Employee.to_s %>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-default my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        <% end %>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<%= logout_path%>">Log Out</a>
+        </li>
       </ul>
+
 
     </div>
   </nav>

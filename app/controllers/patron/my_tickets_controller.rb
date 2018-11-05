@@ -1,7 +1,8 @@
 class Patron::MyTicketsController < AuthenticatedPatronController
 
   def index
-    @my_tickets = SearchTicket.where(patron: current_patron)
+    @tickets = SearchTicket.where(patron: current_patron).unresolved_tickets
+    @resolved_tickets =  SearchTicket.where(patron: current_patron).resolved_tickets
   end
 
   def show
