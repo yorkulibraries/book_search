@@ -6,7 +6,7 @@ class Patron::MyTicketsController < AuthenticatedPatronController
   end
 
   def show
-    @my_ticket = SearchTicket.find(params[:id])
+    @ticket = @my_ticket = SearchTicket.find(params[:id])
   end
 
   private
