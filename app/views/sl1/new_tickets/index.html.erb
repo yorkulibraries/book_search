@@ -1,7 +1,7 @@
-<h1>New Search Tickets</h1>
+<% page_title "New Tickets" %>
 <div class="card card border-success mb-3">
   <div class="card-header text-white border-0 bg-success pt-1 pb-1">
-    New Search Tickets <span class="badge badge-light float-right mt-1"><%= @new_tickets.size %></span>
+    New Tickets <span class="badge badge-light float-right mt-1"><%= @new_tickets.size %></span>
   </div>
   <%= form_tag sl1_start_search_path, method: :patch do %>
   <ul class="list-group list-group-flush border border-top-0 border-success">
