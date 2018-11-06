@@ -40,12 +40,12 @@ class SearchTicket::WorkLog < ApplicationRecord
     when SearchTicket::WorkLog::RESULT_NOT_FOUND
       return "We have looked for this Item but could not find it."
     when SearchTicket::WorkLog::RESULT_ANOTHER_SEARCH_REQUESTED
-      return "Looked for the Item, couldn't find it. We're going to search again."
+      return "We have looked for the Item, couldn't find it. We're going to search again."
 
     when SearchTicket::WorkLog::RESULT_SENT_TO_ACQUISITIONS
       return "After several searches, the item was not found. Acquisitions Department has been notified."
     else
-      return "Unknown Result. Possibly, there was an error in the applicaiton."
+      return "Unknown Result. There might be an error in the applicaiton."
     end
   end
 

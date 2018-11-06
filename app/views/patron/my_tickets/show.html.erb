@@ -8,21 +8,30 @@
     <dl class="row">
       <div class="col">
         <dt class="text-muted font-weight-light">Callnumber</dt>
-        <dd><%= @my_ticket.item_callnumber %></dd>
+        <dd><%= @ticket.item_callnumber %></dd>
         <dt class="text-muted font-weight-light">Author:</dt>
-        <dd><%= @my_ticket.item_author %></dd>
+        <dd><%= @ticket.item_author %></dd>
+        <hr/>
+        <dt class="text-muted font-weight-light fs-80">Created On</dt>
+        <dd class="fs-90"><%= @ticket.created_at.strftime("%Y-%m-%d") %></dd>
       </div>
       <div class="col">
         <dt class="text-muted font-weight-light">Volume</dt>
-        <dd><%= @my_ticket.item_volume %></dd>
+        <dd><%= @ticket.item_volume %></dd>
         <dt class="text-muted font-weight-light">Issue</dt>
-        <dd><%= @my_ticket.item_issue %></dd>
+        <dd><%= @ticket.item_issue %></dd>
+        <hr/>
+        <dt class="text-muted font-weight-light fs-80">Last Updated</dt>
+        <dd class="fs-90"><%= @last_updated.strftime("%Y-%m-%d") %></dd>
       </div>
       <div class="col">
         <dt class="text-muted font-weight-light">Year</dt>
-        <dd><%= @my_ticket.item_year %></dd>
+        <dd><%= @ticket.item_year %></dd>
         <dt class="text-muted font-weight-light">Item Location</dt>
-        <dd><%= @my_ticket.location.name %></dd>
+        <dd><%= @ticket.location.name %></dd>
+        <hr/>
+        <dt class="text-muted font-weight-light fs-80">Library Branch</dt>
+        <dd class="fs-90"><%= @ticket.location.name %></dd>
       </div>
     </dl> <!-- dl row end -->
   </div>

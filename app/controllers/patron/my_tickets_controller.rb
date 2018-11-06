@@ -7,6 +7,7 @@ class Patron::MyTicketsController < AuthenticatedPatronController
 
   def show
     @ticket = @my_ticket = SearchTicket.find(params[:id])
+    @last_updated = @ticket.last_updated
   end
 
   private

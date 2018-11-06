@@ -70,6 +70,14 @@ class SearchTicket < ApplicationRecord
     end
   end
 
+  def last_updated
+    if work_logs.size > 0
+      return work_logs.first.created_at 
+    else
+      return created_at
+    end
+  end
+
 
   def print_barcode(height: 50, width: 1)
     require 'barby'
@@ -150,11 +158,11 @@ class SearchTicket < ApplicationRecord
   def patron_ticket_status_description
     case status
     when STATUS_NEW
-      return "You have submited a request for help with finding this Item. Someone will begin the process shortly."
+      return "You have submited a request for help finding this Item. Someone will begin the process shortly."
     when STATUS_SEARCH_IN_PROGRESS
-      return "#{assigned_to_name} is searching for this Item. If it is found, we'll contact you immediatelly."
+      return "#{assigned_to_name} is searching for this Item. If it is found, we'll contact you as soon as possible."
     when STATUS_ESCALATED_TO_LEVEL_2
-      return "#{assigned_to_name} looked for this Item and couldn't find it. We're going to look for the Item again."
+      return "#{assigned_to_name} looked for this Item and couldn't find it. We're going to look for the Item again as soon as possible."
     when STATUS_REVIEW_BY_COORDINATOR
       return  "We've a few times and couldn't find the item. The coordinator will review search history and decide how to proceed next."
     when STATUS_RESOLVED
@@ -169,13 +177,13 @@ class SearchTicket < ApplicationRecord
     when SearchTicket::RESOLUTION_FOUND
       return "We've located this item and it's been placed on hold for you at #{location_name}."
     when SearchTicket::RESOLUTION_NOT_FOUND
-      return "We've performed several, thorough searches and unfortunatelly, we could not find this item. Please see your email for addtional options."
+      return "We've performed several, thorough searches and unfortunatelly, we could not find this item. We will contact you with next steps."
     when SearchTicket::RESOLUTION_CANCELLED
       return "We've cancelled this ticket. Please refer to notes for the detailed explanation."
     when SearchTicket::RESOLUTION_DUPLICATE
       return "This ticket is a duplicate of another one, please refer to the original for more information."
     else
-      return "The status of this ticket is unknown at the moment. Please refer to search history for me details."
+      return "The status of this ticket is unknown at the moment. Please refer to search history for more details."
     end
   end
 
