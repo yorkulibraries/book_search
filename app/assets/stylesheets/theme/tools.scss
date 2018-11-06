@@ -1,8 +1,27 @@
 
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
 
+/** BOX **/
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+/** LINE HEIGHTS **/
 
 .lh-100 { line-height: 1; }
 .lh-125 { line-height: 1.25; }
 .lh-150 { line-height: 1.5; }
+
+/* FIXED WITH FONT */
+.fwf { font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace }
+
+
+/** TYPOGRAPHY */
+
+.fs-200 { font-size: 200%; }
+.fs-150 { font-size: 150%; }
+.fs-130 { font-size: 130%; }
+.fs-120 { font-size: 120%; }
+.fs-100 { font-size: 100%; }
+.fs-90 { font-size: 90%; }
+.fs-80 { font-size: 80%; }
+.fs-75 { font-size: 75%; }
+.fs-50 { font-size: 50%; }

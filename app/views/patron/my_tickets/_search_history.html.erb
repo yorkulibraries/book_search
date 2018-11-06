@@ -1,0 +1,24 @@
+<div class="p-3 bg-white rounded box-shadow">
+  <h6 class="border-bottom border-gray pb-2 mb-0">Search Progress and History</h6>
+  <div class="container">
+      <% @ticket.work_logs.each_with_index do |log, index| %>
+        <div class="row media-body pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
+          <div class="col-sm-1 text-center">
+            <span class="d-inline-flex p-2 fwf border rounded-circle bg-primary text-white">
+              <%= log.employee.initials %>
+            </span>
+          </div>
+          <div class="col-sm-7">
+              <span class="align-middle"><%= log.patron_worklog_result_description %></span>
+          </div>
+          <div class="col-sm-2 text-muted text-center fs-80">
+             <%= log.created_at.strftime("%Y-%m-%d") %>
+          </div>
+          <div class="col-sm-2 text-center" data-search-status="<%= log.result %>">
+            <h6 class="mb-0"><span class="badge badge-<%= log.result == SearchTicket::WorkLog::RESULT_FOUND ? "success" : "danger" %>">
+              <%= log.result.humanize.capitalize %></span></h6>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>

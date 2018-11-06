@@ -29,27 +29,13 @@
 </div>
 
 <br/>
-<div class="p-3 mb-2 bg-status-<%= @ticket.status %>">
-  <span class="text-uppercase d-inline-flex p-2 border border-white"><%= @ticket.status.humanize %></span>
+<div class="p-3 mb-2 bg-status-<%= @ticket.status %> text-center">
+  <span class="text-uppercase mb-1 d-inline-flex p-2 border border-white"><%= @ticket.status.humanize %></span>
+  <br/>
   <%= @ticket.patron_ticket_status_description %>
 </div>
 
 <br/>
 
-<div class="p-3 bg-white rounded box-shadow">
-  <h6 class="border-bottom border-gray pb-2 mb-0">Search Progress and History</h6>
-  <div class="container">
-      <div class="row media-body pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
-        <div class="col-sm-7 ticket_item_title">
-            <a href="<%= patron_my_ticket_path(@ticket) %>"><%= @ticket.item_title %></a>
-        </div>
-        <div class="col-sm-2 ticket_updated_date text-muted text-center">
-          <small class="font-weight-light">Last Updated</small><br/>
-          <%= @ticket.updated_at.strftime("%b %e, %Y") %>
-        </div>
-        <div class="col-sm-3 ticket_status" data-ticket-status="<%= @ticket.status %>">
-          <h4 class="mb-0"><span class="badge badge-<%= @ticket.status %>">  <%= @ticket.status.humanize %></span></h4>
-        </div>
-      </div>
-  </div>
-</div>
+
+<%= render partial: "search_history" %>

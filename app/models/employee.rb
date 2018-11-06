@@ -18,4 +18,11 @@ class Employee < ApplicationRecord
   ## SCOPES
 
   ## METHODS
+  def initials
+    if name != nil
+      return name.split(" ").map {|i|  i[0,1].capitalize }.join.ljust(2, "_")
+    else
+      return "##"
+    end
+  end
 end

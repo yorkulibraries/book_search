@@ -2,7 +2,7 @@
 
 
 <div class="p-3 bg-white rounded box-shadow">
-  <h6 class="border-bottom border-gray pb-2 mb-0">Open Search Tickets</h6>
+  <h5 class="border-bottom border-gray pb-2 mb-0">Open Search Tickets</h5>
   <div class="container">
 
     <% @tickets.each do |ticket| %>
@@ -10,12 +10,12 @@
         <div class="col-sm-7 ticket_item_title">
             <a href="<%= patron_my_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>
-        <div class="col-sm-2 ticket_updated_date text-muted text-center">
+        <div class="col-sm-2 ticket_updated_date text-muted text-center fs-90">
           <small class="font-weight-light">Last Updated</small><br/>
           <%= ticket.updated_at.strftime("%b %e, %Y") %>
         </div>
         <div class="col-sm-3 ticket_status" data-ticket-status="<%= ticket.status %>">
-          <h4 class="mb-0"><span class="badge badge-<%= ticket.status %>">  <%= ticket.status.humanize %></span></h4>
+          <h5 class="mb-0"><span class="badge badge-<%= ticket.status %>">  <%= ticket.status.humanize %></span></h5>
         </div>
       </div>
     <% end %>
@@ -29,16 +29,16 @@
   <div class="container">
 
     <% @resolved_tickets.each do |ticket| %>
-      <div class="row media-body pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
+      <div class="row media-body pb-3 mb-0 pt-3 lh-125 border-bottom border-gray fs-80">
         <div class="col-sm-7 ticket_item_title">
             <a href="<%= patron_my_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>
-        <div class="col-sm-2 ticket_updated_date  text-muted text-center">
+        <div class="col-sm-2 ticket_updated_date text-muted text-center fs-80">
           <small class="font-weight-light">Resolved On</small><br/>
           <%= ticket.updated_at.strftime("%b %e, %Y") %>
         </div>
         <div class="col-sm-3 ticket_status" data-ticket-status="<%= ticket.status %>">
-          <h4 class="mb-0"><span class="badge badge-resolution-<%= ticket.resolution %>">  <%= ticket.resolution.humanize %></span></h4>
+          <h6 class="mb-0"><span class="badge badge-resolution-<%= ticket.resolution %>">  <%= ticket.resolution.humanize %></span></h6>
         </div>
       </div>
     <% end %>

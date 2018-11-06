@@ -33,10 +33,25 @@ class SearchTicket::WorkLog < ApplicationRecord
   ## SCOPES
 
   ## METHODS
+  def patron_worklog_result_description
+    case result
+    when SearchTicket::WorkLog::RESULT_FOUND
+      return "We have found Item. Patron will be notified as soon as possible."
+    when SearchTicket::WorkLog::RESULT_NOT_FOUND
+      return "We have looked for this Item but could not find it."
+    when SearchTicket::WorkLog::RESULT_ANOTHER_SEARCH_REQUESTED
+      return "Looked for the Item, couldn't find it. We're going to search again."
 
+    when SearchTicket::WorkLog::RESULT_SENT_TO_ACQUISITIONS
+      return "After several searches, the item was not found. Acquisitions Department has been notified."
+    else
+      return "Unknown Result. Possibly, there was an error in the applicaiton."
+    end
+  end
+
+  ### PRIVATE METHODS
 
   private
-
   def set_resolution_before_create
     resolution = RESULT_UNKNOWN
   end
@@ -45,6 +60,8 @@ class SearchTicket::WorkLog < ApplicationRecord
   def validate_searched_areas
     errors.add(:searched_areas, "Please selected which areas you've searched") if searched_areas.size < 1
   end
+
+
 
 
 end
