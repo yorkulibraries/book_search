@@ -18,6 +18,9 @@
         </div>
         <div class="col-sm-7">
             <span class="align-middle"><%= log.patron_worklog_result_description %></span>
+            <% unless log.note.blank? %>
+              <br/><small class="font-weight-light text-muted ">NOTE: <%= log.note %></small>
+            <% end %>
         </div>
         <div class="col-sm-2 text-muted text-center fs-80">
            <%= log.created_at.strftime("%Y-%m-%d") rescue nil %>
@@ -25,6 +28,9 @@
         <div class="col-sm-2 text-center" data-search-status="<%= log.result %>">
           <h6 class="mb-0"><span class="badge badge-<%= log.result == SearchTicket::WorkLog::RESULT_FOUND ? "success" : "danger" %>">
             <%= log.result.humanize.capitalize %></span></h6>
+          <% if log.result == SearchTicket::WorkLog::RESULT_FOUND %>
+            <small class="font-weight-light text-muted "><%= log.found_location %></small>
+          <% end %>
         </div>
       </div>
     <% end %>

@@ -33,10 +33,10 @@ class Sl1::StartSearchesController < Sl1::AuthorizedBaseController
       end ## is_a?(Array) close
 
       # redirect_to sl1_my_search_tickets_url, notice: "successfully assigned tickets"
-      redirect_to sl1_assigned_to_me_tickets_path, notice: "Successfully assigned tickets"
+      redirect_to sl1_dashboard_url, notice: "Successfully assigned tickets"
 
     else
-      redirect_to sl1_new_tickets_url, error: "Could not assign tickets due to Error."
+      redirect_to sl1_dashboard_url, error: "Could not assign tickets due to Error."
     end
 
     return
@@ -47,7 +47,7 @@ class Sl1::StartSearchesController < Sl1::AuthorizedBaseController
   def check_ticket_status(ticket_check)
     if ticket_check.status != SearchTicket::STATUS_NEW
       ticket_check.errors.add(ticket_check.item_title, message: "Item Status is not 'NEW'")
-      redirect_to sl1_new_tickets_url, error: "Could not assign tickets."
+      redirect_to sl1_dashboard_url, error: "Could not assign tickets."
     end
   end
 
