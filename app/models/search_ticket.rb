@@ -48,7 +48,7 @@ class SearchTicket < ApplicationRecord
   ## METHODS
   def assigned_to_name
     if assigned_to == nil
-      "Nobody"
+      "Someone"
     else
       assigned_to.name
     end
@@ -72,7 +72,7 @@ class SearchTicket < ApplicationRecord
 
   def last_updated
     if work_logs.size > 0
-      return work_logs.first.created_at 
+      return work_logs.first.created_at
     else
       return created_at
     end
