@@ -1,18 +1,20 @@
 class Sl2::SearchTicketController < Sl2::AuthorizedBaseController
 
   before_action :load_search_ticket
-  before_action :check_ticket_status, only: [:edit, :update]
+  before_action :check_ticket_status, only: :update
 
   def show
+      @work_log = SearchTicket::WorkLog.new
   end
 
   def edit
     @work_log = SearchTicket::WorkLog.new
+    render action: :show
   end
 
   def update
 
-    @work_log = @ticket.work_logs.build(work_log_params)
+    @work_log = SearchTicket::WorkLog.new(work_log_params)
     @work_log.work_type = SearchTicket::WorkLog::WORK_TYPE_SEARCH
     @work_log.employee = current_user
     @work_log.search_ticket = @ticket
@@ -38,7 +40,7 @@ class Sl2::SearchTicketController < Sl2::AuthorizedBaseController
 
       redirect_to sl2_search_ticket_path(@ticket), notice: "Work Log recorded"
     else
-      render action: :edit
+      render action: :show
     end
   end
 
@@ -47,7 +49,7 @@ class Sl2::SearchTicketController < Sl2::AuthorizedBaseController
   def load_search_ticket
     @ticket = SearchTicket.find(params[:id])
   end
-  
+
   def check_ticket_status
     if @ticket.status != SearchTicket::STATUS_SEARCH_IN_PROGRESS || @ticket.work_logs.size > 0
       redirect_to sl2_search_ticket_path(@ticket), notice: "Search in progress already."

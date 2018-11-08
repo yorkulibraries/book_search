@@ -1,16 +1,17 @@
 <div class="p-3 bg-white rounded box-shadow">
   <h6 class="border-bottom border-gray pb-2 mb-0">Log Search Result</h6>
   <div class="container">
-    <%= simple_form_for @work_log, url: sl1_search_ticket_path(@ticket), method: :patch do |f| %>
+    <%= simple_form_for @work_log, url: sl2_search_ticket_path(@ticket), method: :patch do |f| %>
 
       <div class="row pb-2 mb-0 pt-3 lh-125 border-bottom border-gray">
         <div class="col-sm-12 text-left">
-          <span class="font-weight-light">I have searched the following areas: </span>
+          <span class=" font-weight-light">I have searched the following areas: </span>
           <br/><br/>
 
           <div class="invalid-feedback d-block">
             <%= f.full_error :searched_areas %>
           </div>
+          <p><strong>Primary Search Areas</strong></p>
           <ul class="list-inline text-muted">
             <% SearchArea.primary.each do |sa| %>
               <li class="list-inline-item">
@@ -18,6 +19,15 @@
                 <%= label_tag dom_id(sa), sa.name %>
               </li>
             <% end %>
+          </ul>
+          <p><strong>Secondary Search Areas</strong></p>
+          <ul class="list-inline text-muted">
+          <% SearchArea.secondary.each do |sa2| %>
+            <li class="list-inline-item">
+              <%= check_box_tag "search_ticket_work_log[search_area_ids][]", sa2.id, @work_log.search_area_ids.include?(sa2.id), id: dom_id(sa2) %>
+              <%= label_tag dom_id(sa2), sa2.name %>
+            </li>
+          <% end %>
           </ul>
         </div>
       </div>
