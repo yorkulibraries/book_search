@@ -14,7 +14,7 @@ class Sl1::SearchTicketController < Sl1::AuthorizedBaseController
 
   def update
 
-    @work_log = @ticket.work_logs.build(work_log_params)
+    @work_log = SearchTicket::WorkLog.new(work_log_params)
     @work_log.work_type = SearchTicket::WorkLog::WORK_TYPE_SEARCH
     @work_log.employee = current_user
     @work_log.search_ticket = @ticket
@@ -39,7 +39,7 @@ class Sl1::SearchTicketController < Sl1::AuthorizedBaseController
 
 
       redirect_to sl1_search_ticket_path(@ticket), notice: "Work Log recorded"
-    else      
+    else
       render action: 'show'
     end
   end

@@ -1,63 +1,34 @@
-<div class="card mb-3">
-  <div class="card-header text-white bg-info pt-1 pb-1">
-    Assigned To Me <span class="badge badge-light float-right mt-1"><%= @assigned_tickets.size %></span>
-  </div>
+<div class="p-3 bg-white rounded box-shadow">
+  <h5 class="border-bottom border-gray pb-2 mb-0">Assigned To Me
+    &nbsp;&nbsp;<%= link_to "Print Tickets", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids),
+      class: "btn btn-sm btn-light fs-60i border" %>
 
-  <ul class="list-group list-group-flush border border-info">
+    <span class="badge badge-<%= SearchTicket::STATUS_SEARCH_IN_PROGRESS %> float-right">
+      <%= SearchTicket::STATUS_SEARCH_IN_PROGRESS.humanize %>: <%= @assigned_tickets.size %>
+    </span>
+  </h5>
+
+  <div class="container">
     <% @assigned_tickets.each do |ticket| %>
-    <li class="list-group-item border-info" data-assigned-ticket-id="<%= ticket.id %>">
-      <div class="row">
-        <div class="col">
-          <%= link_to sl1_search_ticket_path(ticket) do %>
-            <%= ticket.item_title %>
-          <% end %>
-
-          <div class="row">
-            <div class="col col-sm-6">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Call Number:</span>
-                <span class=""><%= ticket.item_callnumber %></span>
-              </small>
-            </div>
-            <div class="col">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Item #:</span>
-                <span class=""><%= ticket.item_id %></span>
-              </small>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-sm-6">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Location:</span>
-                <span class=""><%= ticket.item_location %></span>
-              </small>
-            </div>
-            <div class="col">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Ticekt ID:</span>
-                <span class=""><%= ticket.id %></span>
-              </small>
-            </div>
-
-
-          </div>
-
+      <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
+        <div class="col-sm-7">
+            <a href="<%= sl1_search_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>
-
-        <div class="col-sm-2 mt-2">
-          <% if ticket.status != SearchTicket::STATUS_RESOLVED %>
-            <%= link_to "Log Search Result", edit_sl1_search_ticket_path(ticket), class: "btn btn-block btn-sm btn-primary action_button"%>
-          <% else %>
-            <%= link_to "View Search Result", sl1_search_ticket_path(ticket), class: "btn btn-block btn-sm btn-info action_button"%>
-          <% end %>
+        <div class="col-sm-2  text-center fs-90">
+          <small class="font-weight-light text-muted">Callnumber</small><br/>
+          <%= ticket.item_callnumber %>
+        </div>
+        <div class="col-sm-2  text-center fs-90">
+          <small class="font-weight-light text-muted ">Created On</small><br/>
+          <%= ticket.created_at.strftime("%b %e, %Y") %>
+        </div>
+        <div class="col-sm-1   text-center fs-90">
+          <small class="font-weight-light text-muted">ID:   </small><br/>
+          <%= ticket.id %>
         </div>
       </div>
-    </li>
     <% end %>
-  </ul>
-  <div class="card-footer bg-transparent border-info border d-none d-sm-block">
-    <%= link_to "Print Tickets for Search", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids),
-      class: "btn btn-sm btn-dark" %>
   </div>
 </div>
+
+<hr/>
