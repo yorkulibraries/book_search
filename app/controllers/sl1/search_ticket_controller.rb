@@ -4,10 +4,12 @@ class Sl1::SearchTicketController < Sl1::AuthorizedBaseController
   before_action :check_ticket_status, only: [:edit, :update]
 
   def show
+    @work_log = SearchTicket::WorkLog.new
   end
 
   def edit
     @work_log = SearchTicket::WorkLog.new
+    render action: :show
   end
 
   def update
@@ -37,8 +39,8 @@ class Sl1::SearchTicketController < Sl1::AuthorizedBaseController
 
 
       redirect_to sl1_search_ticket_path(@ticket), notice: "Work Log recorded"
-    else
-      render action: :edit
+    else      
+      render action: 'show'
     end
   end
 

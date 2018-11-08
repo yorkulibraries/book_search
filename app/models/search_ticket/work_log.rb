@@ -17,7 +17,8 @@ class SearchTicket::WorkLog < ApplicationRecord
   RESULTS = [RESULT_UNKNOWN, RESULT_FOUND, RESULT_NOT_FOUND]
 
   ## VALIDATIONS
-  validates_presence_of :employee_id, :search_ticket_id, :work_type, :result
+  validates_presence_of :employee_id, :search_ticket_id, :work_type
+  validates_presence_of :result, message: "- have you found the Item?"
   validates_presence_of :found_location, if: Proc.new { |log| log.result == RESULT_FOUND }
   #validate :validate_searched_areas
   validates :searched_areas, length: { minimum: 1, message: " must be selected (at least one)" }
