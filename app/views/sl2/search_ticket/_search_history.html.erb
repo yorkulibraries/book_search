@@ -17,12 +17,21 @@
           </span>
         </div>
         <div class="col-sm-7">
-            <span class="align-middle"><%= log.patron_worklog_result_description %></span>
+
+            <span class="align-middle">
+              <% if log.search_areas.size > 0 %>
+                <span class="text-muted">Searched: </span>
+                <%= log.search_areas.map { |sa| sa.name}.join(", ") %>
+              <% else %>
+                <%= log.patron_worklog_result_description %></span>
+              <% end %>
             <% unless log.note.blank? %>
               <br/><small class="font-weight-light text-muted ">NOTE: <%= log.note %></small>
             <% end %>
+            <br/>
         </div>
         <div class="col-sm-2 text-muted text-center fs-80">
+          <span class="align-middle">Created On</span><br/>
            <%= log.created_at.strftime("%Y-%m-%d") rescue nil %>
         </div>
         <div class="col-sm-2 text-center" data-search-status="<%= log.result %>">

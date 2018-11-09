@@ -51,8 +51,8 @@ class Sl2::SearchTicketController < Sl2::AuthorizedBaseController
   end
 
   def check_ticket_status
-    if @ticket.status != SearchTicket::STATUS_SEARCH_IN_PROGRESS || @ticket.work_logs.size > 0
-      redirect_to sl2_search_ticket_path(@ticket), notice: "Search in progress already."
+    if @ticket.status != SearchTicket::STATUS_SEARCH_IN_PROGRESS
+      redirect_to sl2_search_ticket_path(@ticket), notice: "This ticket hasn't been assigned to anyone yet."
     end
   end
 

@@ -53,7 +53,7 @@
   <br/>
   <div class="text-center">
     This search ticket is <%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2.humanize.upcase %>. To assign this to yourself, click this button.
-    <a href="<%= sl1_start_search_path(search_ticket_ids: @ticket.id) %>" data-method="put" class='btn btn-primary btn-sm'>Assign To Myself</a>
+    <a href="<%= sl2_start_search_path(search_ticket_ids: @ticket.id) %>" data-method="put" class='btn btn-primary btn-sm'>Assign To Myself</a>
   </div>
 <% end %>
 
