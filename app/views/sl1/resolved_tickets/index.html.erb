@@ -4,7 +4,7 @@
   <h5 class="border-bottom border-gray pb-2 mb-0">Resolved Tickets
 
 
-    <span class="badge badge-<%= SearchTicket::STATUS_RESOLVED %> float-right">
+    <span class="badge badge-<%= SearchTicket::STATUS_RESOLVED %> float-right" data-resolved-tickets-count="<%= @resolved_tickets.size %>">
       <%= SearchTicket::STATUS_RESOLVED.humanize %>: <%= @resolved_tickets.size %>
     </span>
   </h5>
@@ -22,7 +22,7 @@
         <div class="col-sm-5  text-center fs-90">
           <small class="font-weight-light text-muted ">Resolution</small><br/>
           <%= ticket.patron_ticket_resolution_description %>
-        </div>        
+        </div>
       </div>
     <% end %>
   </div>

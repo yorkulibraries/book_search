@@ -14,7 +14,7 @@ class Sl1::EscalatedTicketsControllerTest < ActionDispatch::IntegrationTest
     get sl1_escalated_tickets_path
     assert_response :success
 
-    assert_select "[data-escalated-ticket-id]", { count: escalated_tickets.size }
+    assert_select "[data-escalated-tickets-count]", { value: escalated_tickets.size }
   end
 
 

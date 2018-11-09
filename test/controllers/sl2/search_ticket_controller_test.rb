@@ -12,36 +12,31 @@ class Sl2::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     get sl2_search_ticket_path(sr)
     assert_response :success
-    assert_select ".card-header .ticket-item-title", sr.item_title
+    assert_select "[data-ticket-id]", sr.id
   end
-  
-  should "display the work log form if ticket has no search attemps, only for STATUS_SEARCH_IN_PROGRESS tickets" do
+
+  should "display the work log form, only for STATUS_SEARCH_IN_PROGRESS tickets" do
     sr = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
 
     get edit_sl2_search_ticket_path(sr)
     assert_response :success
-    assert_select "h1", "Log Search Result"
+    assert_select "form#new_search_ticket_work_log", 1
   end
-  
-  should "redirect to details page for EDIT and UPDATE actions if work log has been recorded or search ticket status is not STATUS_SEARCH_IN_PROGRESS" do
+
+  should "redirect to details page for UPDATE actions if work log has been recorded or search ticket status is not STATUS_SEARCH_IN_PROGRESS" do
     sr = create(:search_ticket, status: SearchTicket::STATUS_ESCALATED_TO_LEVEL_2)
     sa = create(:work_log, search_ticket: sr)
-
-    get edit_sl2_search_ticket_path(sr)
-    assert_redirected_to sl2_search_ticket_path
 
     patch sl2_search_ticket_path(sr)
     assert_redirected_to sl2_search_ticket_path
 
     sr = create(:search_ticket, status: SearchTicket::STATUS_RESOLVED)
-    get edit_sl2_search_ticket_path(sr)
-    assert_redirected_to sl2_search_ticket_path
 
     patch sl2_search_ticket_path(sr)
     assert_redirected_to sl2_search_ticket_path
   end
-  
-  
+
+
   ### FLOW VALIDATION TESTS
   should "If Item Found: add a new work log to the ticket and change ticket status and resolution" do
     ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
@@ -70,7 +65,7 @@ class Sl2::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     assert_equal @user.id, wl.employee_id, "Record who did the work"
     assert_not_nil wl.found_location, "Found location should be filled"
   end
-  
+
   should "If Item Not Found, add a new work log to the ticket, change ticket status and unassign the ticket" do
     ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
     sa1 = create(:search_area)
@@ -92,9 +87,9 @@ class Sl2::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     assert_equal SearchTicket::STATUS_REVIEW_BY_COORDINATOR, ticket.status, "Status change to REVIEW_BY_COORDINATOR"
     assert_equal SearchTicket::RESOLUTION_UNKNOWN, ticket.resolution, "Resolution shouldn't change"
     assert_nil ticket.assigned_to_id, "Ticket should have been unassigned"
-    
+
   end
-  
+
   ## ERROR VALIDATION TESTS
 
   should "not redirect to search ticket details if couldn't save progress" do
@@ -134,7 +129,7 @@ class Sl2::SearchTicketControllerTest < ActionDispatch::IntegrationTest
       assert_response :success, "Shouldn't redirect but show the form again"
     end
   end
-  
-  
+
+
 
 end

@@ -12,7 +12,7 @@ class Sl1::DashboardControllerTest < ActionDispatch::IntegrationTest
 
     get sl1_dashboard_path
     assert_response :success
-    #assert_select "h1", "Dashboard"
+    assert_select "h2", "Dashboard"
   end
 
   should "show new search and assigned tickets" do
@@ -22,8 +22,8 @@ class Sl1::DashboardControllerTest < ActionDispatch::IntegrationTest
     get sl1_dashboard_path
     assert_response :success
 
-    assert_select "[data-new-ticket-id]", { count: new_tickets.size }
-    assert_select "[data-assigned-ticket-id]", { count: assigned_tickets.size }
+    assert_select "[data-new-tickets-count]", { value: new_tickets.size }
+    assert_select "[data-assigned-tickets-count]", { value: assigned_tickets.size }
   end
 
 end

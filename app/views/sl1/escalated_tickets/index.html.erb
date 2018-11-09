@@ -4,7 +4,7 @@
   <h5 class="border-bottom border-gray pb-2 mb-0">Escalated Tickets
 
 
-    <span class="badge badge-<%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %> float-right">
+    <span class="badge badge-<%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %> float-right" data-escalated-tickets-count="<%= @tickets.size %>">
       <%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2.humanize %>: <%= @tickets.size %>
     </span>
   </h5>

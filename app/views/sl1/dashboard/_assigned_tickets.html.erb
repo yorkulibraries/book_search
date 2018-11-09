@@ -3,7 +3,7 @@
     &nbsp;&nbsp;<%= link_to "Print Tickets", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids),
       class: "btn btn-sm btn-light fs-60i border" %>
 
-    <span class="badge badge-<%= SearchTicket::STATUS_SEARCH_IN_PROGRESS %> float-right">
+    <span class="badge badge-<%= SearchTicket::STATUS_SEARCH_IN_PROGRESS %> float-right" data-assigned-tickets-count="<%= @assigned_tickets.size %>">
       <%= SearchTicket::STATUS_SEARCH_IN_PROGRESS.humanize %>: <%= @assigned_tickets.size %>
     </span>
   </h5>

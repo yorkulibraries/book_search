@@ -1,7 +1,9 @@
 
 <div class="p-3 bg-white rounded box-shadow">
   <h5 class="border-bottom border-gray pb-2 mb-0">New Search Tickets
-    <span class="badge badge-new float-right">  <%= SearchTicket::STATUS_NEW.humanize %>: <%= @new_tickets.size %></span>
+    <span class="badge badge-new float-right" data-new-tickets-count="<%= @new_tickets.size %>">  
+      <%= SearchTicket::STATUS_NEW.humanize %>: <%= @new_tickets.size %>
+    </span>
   </h5>
 
   <div class="container">
