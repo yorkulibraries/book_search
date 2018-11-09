@@ -48,7 +48,7 @@ class SearchTicket < ApplicationRecord
   ## METHODS
   def assigned_to_name
     if assigned_to == nil
-      "Someone"
+      "Nobody"
     else
       assigned_to.name
     end
@@ -96,62 +96,32 @@ class SearchTicket < ApplicationRecord
   def ticket_status_description
     case status
     when STATUS_NEW
-      return {
-        title: "Just In",
-        description: "#{patron_name} has submitted this ticket. Click Start Search button to assign this ticket to your self and begin your search."
-      }
+      return  "Just In: #{patron_name} has submitted this ticket."
     when STATUS_SEARCH_IN_PROGRESS
-      return {
-        title: "Search In Progress",
-        description: "#{assigned_to_name} is searching for this Item. If it is found, we'll update the patron."
-      }
+      return "Search In Progress: #{assigned_to_name} is searching for this Item."
     when STATUS_ESCALATED_TO_LEVEL_2
-      return {
-        title: "Initial Search Unsuccessful",
-        description: "#{assigned_to_name} looked for this item and couldn't find it. This ticket has been escalated to our Level Two staff."
-      }
+      return "Escalated: #{assigned_to_name} looked couldn't find the item."
     when STATUS_REVIEW_BY_COORDINATOR
-      return {
-        title: "After #{work_logs.size} Searches Item is still missing",
-        description: "We couldn't find the item. The coordinator will review search history and decide how to proceed next."
-      }
+      return "Under Review: After #{work_logs.size} Searches Item is still missing"
     when STATUS_RESOLVED
       return ticket_resolution_description
     else
-      return {
-        title: "Unknown Status",
-        description: "Something has gone wrong. This ticket doesn't have a status attached. Please contact your admin to report this problem."
-      }
+      return "Something has gone wrong. This ticket doesn't have a status attached."
     end
   end
 
   def ticket_resolution_description
     case resolution
     when SearchTicket::RESOLUTION_FOUND
-      return {
-        title: "This Item Has Been Found",
-        description: "We've located this item and it has been placed on hold for the patron."
-      }
+      return "Found: We've located this item and it has been placed on hold for the patron."
     when SearchTicket::RESOLUTION_NOT_FOUND
-      return {
-        title: "We couldn't find this item",
-        description: "We've performed several, thorough search and unfortunatelly, we could not find this item. Please see your email for addtional options."
-      }
+      return "Not Found: We could not find this item at this time."
     when SearchTicket::RESOLUTION_CANCELLED
-      return {
-        title: "This Search Ticket has been cancelled",
-        description: "We've cancelled this ticket. Please refer to notes for the detailed explanation."
-      }
+      return "Cancelled: We've cancelled this ticket."
     when SearchTicket::RESOLUTION_DUPLICATE
-      return {
-        title: "Duplicate Search Ticket",
-        description: "This ticket is a duplicate of another one, please refer to the original for more information."
-      }
+      return "Duplicate: This ticket is a duplicate of another one."
     else
-      return {
-        title: "Search Ticket Resolution: #{resolution.humanize}",
-        description: "The status of this ticket is unknown at the moment. Please refer to search history for me details."
-      }
+      return "#{resolution.humanize} The status of this ticket is unknown at the moment."
     end
   end
 

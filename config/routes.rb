@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
 
+
   get "login/invalid" => "invalid_login#show", as: :invalid_login
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
@@ -27,20 +28,17 @@ Rails.application.routes.draw do
     resource :dashboard, only: :show, controller: "dashboard"
     resources :search_ticket, only: [:edit, :update, :show]
     resource :start_search, only: [:update, :put]
+
+    get 'tickets_by_status' => "tickets_by_status#index"
   end
 
   namespace :sl1 do
 
     resource :dashboard, only: :show, controller: "dashboard"
-
-    resources :new_tickets, only: :index
-    resources :in_progress_tickets, only: :index
-    resources :escalated_tickets, only: :index
-    resources :resolved_tickets, only: :index
-
     resource :start_search, only: [:update, :put]
-    resources :assigned_to_me_tickets, only: :index
     resources :search_ticket, only: [:edit, :update, :show]
+
+    get 'tickets_by_status' => "tickets_by_status#index"
 
   end
 

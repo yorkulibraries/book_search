@@ -1,11 +1,9 @@
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    SL2</a>
+    Tickets</a>
   <div class="dropdown-menu" aria-labelledby="dropdown01">
-    <a class="dropdown-item" href="<%= sl2_dashboard_path %>">Dashboard</a>
-    <a class="dropdown-item" href="<%= sl1_in_progress_tickets_path %>">Search In Progress Tickets</a>
-    <a class="dropdown-item" href="<%= sl1_escalated_tickets_path %>">Escalated Tickets</a>
-    <a class="dropdown-item" href="<%= sl1_resolved_tickets_path %>">Resloved Tickets</a>
-    <a class="dropdown-item" href="<%= sl1_assigned_to_me_tickets_path %>">Assigned Tickets</a>
+    <% SearchTicket::STATUSES.each do |status| %>
+      <a class="dropdown-item" href="<%= sl2_tickets_by_status_path(status: status) %>"><%= status.humanize %></a>
+    <% end %>   
   </div>
 </li>

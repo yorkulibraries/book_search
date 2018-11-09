@@ -1,11 +1,11 @@
-<% page_title "Escalated Tickets" %>
+<% page_title "#{@status.humanize} Tickets" %>
 
 <div class="p-3 bg-white rounded box-shadow">
-  <h5 class="border-bottom border-gray pb-2 mb-0">Escalated Tickets
+  <h5 class="border-bottom border-gray pb-2 mb-0">
+      <%= @status.humanize %> Tickets
 
-
-    <span class="badge badge-<%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %> float-right" data-escalated-tickets-count="<%= @tickets.size %>">
-      <%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2.humanize %>: <%= @tickets.size %>
+    <span class="badge badge-<%= @status %> float-right" data-tickets-count="<%= @tickets.size %>">
+      <%= @status.humanize %>: <%= @tickets.size %>
     </span>
   </h5>
 
@@ -19,11 +19,13 @@
           <small class="font-weight-light text-muted">Callnumber</small><br/>
           <%= ticket.item_callnumber %>
         </div>
-        <div class="col-sm-5  text-center fs-90">
-          <small class="font-weight-light text-muted ">Progress Report</small><br/>
-          The processing of this ticket has been escalated to level 2.
+        <div class="col-sm-5  text-left fs-90">
+          <small class="font-weight-light text-muted ">Status</small><br/>
+          <%= ticket.ticket_status_description %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+<hr/>

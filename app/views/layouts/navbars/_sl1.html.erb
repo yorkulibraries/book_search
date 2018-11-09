@@ -1,7 +1,9 @@
-<li class="nav-item">
-  <a class="nav-link" href="<%= sl1_resolved_tickets_path %>">Resloved Tickets</a>
-</li>
-
-<li class="nav-item">
-  <a class="nav-link" href="<%= sl1_escalated_tickets_path %>">Escalated Tickets</a>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Tickets</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown01">
+    <% [SearchTicket::STATUS_NEW, SearchTicket::STATUS_ESCALATED_TO_LEVEL_2, SearchTicket::STATUS_RESOLVED].each do |status| %>
+      <a class="dropdown-item" href="<%= sl1_tickets_by_status_path(status: status) %>"><%= status.humanize %></a>
+    <% end %>
+  </div>
 </li>
