@@ -12,7 +12,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     get sl1_search_ticket_path(sr)
     assert_response :success
-    assert_select "[data-ticket-id]", sr.id
+    assert_select "[data-ticket-id]", { value: sr.id }
   end
 
   should "display the work log form only for STATUS_SEARCH_IN_PROGRESS tickets" do
