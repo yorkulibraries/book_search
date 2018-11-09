@@ -10,6 +10,7 @@ gem 'rails', '~> 5.1.4'
 
 ## DATABASES
 gem 'sqlite3'
+gem 'mysql2'
 
 ## CSS AND JavaScript
 gem 'sass-rails', '~> 5.0'
