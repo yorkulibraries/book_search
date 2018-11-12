@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   namespace :find_this_item do
     resource :legal, only: [:show], controller: "legal"
-    get 'test_cases' => "legal#index"
+    get 'test_cases' => "legal#index" if Rails.env.development?
+
+    resource :request_help, only: [:create, :show], controller: "request_help"
   end
 
   namespace :print do
