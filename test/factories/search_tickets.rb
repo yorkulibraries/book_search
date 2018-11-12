@@ -20,7 +20,7 @@ FactoryBot.define do
     association :location, factory: :location
 
     # set the location name to be the same as the generate location
-    sequence(:item_location) { location.name if location }
+    sequence(:item_location) { location.ils_code if location }
 
   end
 end

@@ -1,0 +1,32 @@
+<% page_title "Test Cases For Ticket Creation" %>
+
+<div class="p-3 bg-white rounded box-shadow">
+  <h3 class="border-bottom border-gray pb-2 mb-0">List of Test Tickets</h3>
+  <div class="container">
+    <br/>
+    <% @tickets.each do |t| %>
+    <dl class="row">
+      <div class="col-9">
+        <dt class="text-muted font-weight-light">Title</dt>
+        <dd><%= t.item_title %></dd>
+        <dt class="text-muted font-weight-light">Callnumber</dt>
+        <dd><%= t.item_callnumber %></dd>
+        <hr/>
+      </div>
+      <div class="col-3">
+        <dt class="text-muted font-weight-light">Find It</dt>
+        <dd><%= link_to "Find This Item", find_this_item_legal_path(item: generate_new_ticket_json(t)) %></dd>
+        <dt class="text-muted font-weight-light">Location</dt>
+        <dd><%= t.item_location %></dd>
+        <hr/>
+      </div>
+    </dl> <!-- dl row end -->
+    <% end %>
+    <br/>
+    <p><strong>Sample JSON</strong></p>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <code class="prettyprint lang-js">
+      <%= generate_new_ticket_json(@tickets.first) %>
+    </code>
+  </div>
+</div>
