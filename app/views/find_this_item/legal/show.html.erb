@@ -1,2 +1,49 @@
-<h1>FindThisItem::Legal#show</h1>
-<p>Find me in app/views/find_this_item/legal/show.html.erb</p>
+<% page_title "We're here to help" %>
+
+<div class="p-3 bg-white rounded box-shadow">
+  <h3 class="border-bottom border-gray pb-2 mb-0">Can't find this item on the shelf?</h3>
+  <div class="container">
+    <br/>
+    <h5><%= @item["item_title"] %></h5>
+    <dl class="row">
+      <div class="col">
+        <dt class="text-muted font-weight-light">Callnumber</dt>
+        <dd><%= @item[:item_callnumber] %></dd>
+        <dt class="text-muted font-weight-light">Author</dt>
+        <dd><%= @item[:item_author] %></dd>
+        <hr/>
+      </div>
+      <div class="col">
+        <dt class="text-muted font-weight-light">Volume</dt>
+        <dd><%= @item[:item_volume] %></dd>
+        <dt class="text-muted font-weight-light">Issue</dt>
+        <dd><%= @item[:item_issue] %></dd>
+        <hr/>
+      </div>
+      <div class="col">
+        <dt class="text-muted font-weight-light">Year</dt>
+        <dd><%= @item[:item_year] %></dd>
+        <dt class="text-muted font-weight-light">Item Location</dt>
+        <dd><%= @item[:item_location] %></dd>
+        <hr/>
+      </div>
+    </dl> <!-- dl row end -->
+  </div>
+</div>
+
+<br/>
+
+<%= render partial: "anti_abuse" %>
+<br/>
+<%= render partial: "provided_services" %>
+
+<br/>
+<div class="p-3 mb-2 bg-success text-center text-white">
+  <a href="#" class="text-uppercase fs-120 mb-1 d-inline-flex p-2 text-white border border-white">
+    Help me find this item
+  </a>
+  <br/>
+  <span class='fs-90'>
+    Click on this button to create the search ticket for this item. Passport York Login required.
+  </span>
+</div>

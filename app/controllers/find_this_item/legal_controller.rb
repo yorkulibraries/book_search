@@ -17,6 +17,15 @@ class FindThisItem::LegalController < ApplicationController
 
     # save book item details into session
     session[SESSION_ITEM_DATA] = params[:item]
+
+    if params[:item]
+      @item = ActiveSupport::HashWithIndifferentAccess.new(JSON.parse params[:item])
+    else
+      ticket = SearchTicket.new
+      ticket.item_title = "Test"
+      @item = ticket.attributes
+    end
+
   end
 
 
