@@ -1,0 +1,31 @@
+<div class="p-3 bg-white rounded box-shadow">
+  <h3 class="border-bottom border-gray pb-2 mb-4">What to expect next...</h3>
+  <div class="container">
+    <p>When you request help with finding an item, one of our staff members will be assigned to help in this manner.</p>
+    <p>The following common set of steps that will happen while we help you find this item:</p>
+    <ul>
+      <li>Our system will receive a request from you.</li>
+      <li>A staff member, who regulary checks incoming requests, will review your request and perform an initial search.</li>
+      <li>If the item is found, it will be placed on hold for you at the Item location, circulation desk and you will be notified.</li>
+      <li>If we can't find the item, we will ask another staff member to do another search. </li>
+      <li>If the item is found, you know the rest.</li>
+      <li>If we can't find the item after a second search, a coordinator will be asked to review this request.</li>
+      <li>You will be notified and offered advice on how to proceed next.</li>
+    </ul>
+
+    <p>We will do our best to fulfill your expectations and help you find what you need. Sometimes it might take a while, so please bare with us and together we will complete this mission.</p>
+    <br/>
+  </div>
+</div>
+
+<br/>
+<div class="p-3 mb-2 bg-success text-center text-white">
+  <a href="<%= patron_my_tickets_path %>" data-method="post"
+    class="text-uppercase fs-120 mb-1 d-inline-flex p-2 text-white border border-white">
+    See all Search Tickets
+  </a>
+  <br/>
+  <span class='fs-90'>
+    You can also go back to Item Details page by <a href="<%= @referer_url %>" class="text-white">clicking here</a>
+  </span>
+</div>

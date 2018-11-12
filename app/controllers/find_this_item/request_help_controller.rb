@@ -1,4 +1,5 @@
 class FindThisItem::RequestHelpController < AuthenticatedPatronController
+  layout "external_integration"
 
   def create
     item = JSON.parse(session[FindThisItem::LegalController::SESSION_ITEM_DATA])
@@ -10,12 +11,12 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
     # Later, we might add default import location attribute to the Location model.
     l = Location.find_by_ils_code(ticket.item_location.strip)
     if l == nil
-      l = Location.first        
+      l = Location.first
     end
     ticket.location = l
 
     if ticket.save
-      redirect_to find_this_item_request_help_url
+      redirect_to find_this_item_request_help_url(ticket_id: ticket.id)
     else
       puts ticket.errors.messages
       redirect_to find_this_item_legal_url
@@ -24,5 +25,8 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
   end
 
   def show
+    @ticket = current_user.search_tickets.find(params[:ticket_id])
+    @referer_url = session[FindThisItem::LegalController::SESSION_REFERER_ID]
+    session[:temp_ticket_id] = nil
   end
 end

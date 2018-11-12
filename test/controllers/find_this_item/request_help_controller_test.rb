@@ -17,7 +17,8 @@ class FindThisItem::RequestHelpControllerTest < ActionDispatch::IntegrationTest
     assert_difference "SearchTicket.count", 1 do
       get find_this_item_legal_url, params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
       post find_this_item_request_help_url
-      assert_redirected_to find_this_item_request_help_url
+      t = SearchTicket.last
+      assert_redirected_to find_this_item_request_help_url(ticket_id: t.id)
     end
   end
 
@@ -34,8 +35,35 @@ class FindThisItem::RequestHelpControllerTest < ActionDispatch::IntegrationTest
     get find_this_item_legal_url, params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
     post find_this_item_request_help_url
 
-    ticket = SearchTicket.last    
+    ticket = SearchTicket.last
     assert_equal ticket.location.ils_code, Location.first.ils_code
+  end
+
+
+  should "show details after creating the ticket" do
+    get find_this_item_legal_url, params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
+    post find_this_item_request_help_url
+
+    t = SearchTicket.last
+
+    get find_this_item_request_help_url(ticket_id: t.id)
+    assert_response :success
+
+    assert_select "[data-ticket-id]", { value: t.id }
+  end
+
+  should "only show details for user's tickets not any others" do
+    other_ticket = create(:search_ticket)
+    patrons_ticket = create(:search_ticket, patron: @patron)
+
+    get find_this_item_request_help_url(ticket_id: patrons_ticket.id)
+    assert_response :success
+
+
+    assert_raises ActiveRecord::RecordNotFound do
+      get find_this_item_request_help_url(ticket_id: other_ticket)
+    end
+
   end
 
 end

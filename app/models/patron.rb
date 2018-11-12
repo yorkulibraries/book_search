@@ -8,7 +8,7 @@ class Patron < ApplicationRecord
   validates_presence_of :login_id, :name, :email
 
   ## RELATIONS
-  # has_many :search_tickets
+  has_many :search_tickets
 
   ## SCOPES
 
