@@ -19,5 +19,8 @@ FactoryBot.define do
     association :assigned_to, factory: :employee
     association :location, factory: :location
 
+    # set the location name to be the same as the generate location
+    sequence(:item_location) { location.name if location }
+
   end
 end

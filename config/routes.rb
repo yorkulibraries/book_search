@@ -4,11 +4,17 @@ Rails.application.routes.draw do
 
 
 
+
   get "login/invalid" => "invalid_login#show", as: :invalid_login
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
   get "redirector" => "redirectr#index"
   get "dashboard" => "dashboard#index"
+
+  namespace :find_this_item do
+    resource :legal, only: [:show], controller: "legal"
+    get 'test_cases' => "legal#index"
+  end
 
   namespace :print do
     get 'tickets_to_search' => "tickets_to_search#index"
