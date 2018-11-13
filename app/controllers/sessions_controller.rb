@@ -63,7 +63,7 @@ class SessionsController < ApplicationController
     when "patron"
       Patron.first.login_id
     else
-      Employee.first.login_id
+      Patron.first.login_id
     end
   end
 

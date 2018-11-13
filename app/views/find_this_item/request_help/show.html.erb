@@ -21,7 +21,7 @@
         <dd><%= @ticket.item_issue %></dd>
         <hr/>
         <dt class="text-muted font-weight-light fs-80">Last Updated</dt>
-        <dd class="fs-90"><%= @last_updated.strftime("%Y-%m-%d") rescue nil%></dd>
+        <dd class="fs-90"><%= @ticket.created_at.strftime("%Y-%m-%d")%></dd>
       </div>
       <div class="col">
         <dt class="text-muted font-weight-light">Year</dt>
