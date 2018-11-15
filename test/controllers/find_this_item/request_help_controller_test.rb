@@ -18,6 +18,7 @@ class FindThisItem::RequestHelpControllerTest < ActionDispatch::IntegrationTest
       get find_this_item_legal_url, params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
       post find_this_item_request_help_url
       t = SearchTicket.last
+      assert_equal SearchTicket::STATUS_NEW, t.status
       assert_redirected_to find_this_item_request_help_url(ticket_id: t.id)
     end
   end

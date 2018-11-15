@@ -34,6 +34,13 @@ class SearchTicket::WorkLog < ApplicationRecord
   ## SCOPES
 
   ## METHODS
+
+  def employee_name
+    if employee
+      return employee.name
+    end
+  end
+
   def patron_worklog_result_description
     case result
     when SearchTicket::WorkLog::RESULT_FOUND

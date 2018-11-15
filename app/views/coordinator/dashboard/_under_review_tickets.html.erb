@@ -1,54 +1,33 @@
-<div class="card card border-warning mb-3">
-  <div class="card-header border-0 bg-warning pt-1 pb-1">
-    Under Review Search Tickets
-      <span id="escalated_tickets_count" class="badge badge-light float-right mt-1">
-        <%= @under_review_tickets.size %></span>
-  </div>
-  <ul class="list-group list-group-flush border border-top-0 border-warning">
+
+<div class="p-3 bg-white rounded box-shadow">
+  <h5 class="border-bottom border-gray pb-2 mb-0">Tickets Requiring Review
+    <span class="bg-status-<%= SearchTicket::STATUS_REVIEW_BY_COORDINATOR %> rounded text-white p-1 fs-70 float-right">
+      <%= SearchTicket::STATUS_REVIEW_BY_COORDINATOR.humanize %>
+        <span class="badge badge-light" data-under-review-tickets-count="<%= @under_review_tickets.size %>">
+          <%= @under_review_tickets.size %>
+        </span>
+    </span>
+  </h5>
+
+  <div class="container">
     <% @under_review_tickets.each do |ticket| %>
-    <li class="list-group-item border-warning" data-under-review-ticket-id="<%= ticket.id %>">
-      <div class="row">
-        <div class="col">
-          <%= link_to coordinator_search_ticket_path(ticket) do %>
-            <%= ticket.item_title %>
-          <% end %>
-
-          <div class="row">
-            <div class="col col-sm-6">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Call Number:</span>
-                <span class=""><%= ticket.item_callnumber %></span>
-              </small>
-            </div>
-            <div class="col">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Item #:</span>
-                <span class=""><%= ticket.item_id %></span>
-              </small>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-sm-6">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Location:</span>
-                <span class=""><%= ticket.item_location %></span>
-              </small>
-            </div>
-            <div class="col">
-              <small>
-                <span class="text-muted font-weight-light d-block d-sm-inline">Ticekt ID:</span>
-                <span class=""><%= ticket.id %></span>
-              </small>
-            </div>
-
-
-          </div>
-
+      <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
+        <div class="col-sm-7">
+            <a href="<%= coordinator_search_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>
-
-
+        <div class="col-sm-2  text-center fs-90">
+          <small class="font-weight-light text-muted">Last Searched By</small><br/>
+          <%= ticket.last_searched_by %>
+        </div>
+        <div class="col-sm-2  text-center fs-90">
+          <small class="font-weight-light text-muted ">Last Updated</small><br/>
+          <%= ticket.last_updated.strftime("%b %e, %Y") rescue nil%>
+        </div>
+        <div class="col-sm-1   text-center fs-90">
+          <small class="font-weight-light text-muted">Searches</small><br/>
+          <%= ticket.work_logs.size %>
+        </div>
       </div>
-    </li>
     <% end %>
-  </ul>
+  </div>
 </div>

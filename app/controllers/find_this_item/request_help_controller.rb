@@ -14,7 +14,8 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
       l = Location.first
     end
     ticket.location = l
-
+    ticket.status = SearchTicket::STATUS_NEW
+    
     if ticket.save
       redirect_to find_this_item_request_help_url(ticket_id: ticket.id)
     else

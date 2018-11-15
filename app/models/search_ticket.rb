@@ -45,6 +45,9 @@ class SearchTicket < ApplicationRecord
   scope :unresolved_tickets, -> { where.not(status: STATUS_RESOLVED) }
   scope :under_review_tickets, -> { where(status: STATUS_REVIEW_BY_COORDINATOR) }
 
+  scope :created_past_7_days, -> { where("created_at > ?", Time.now-7.days) }
+  scope :updated_past_7_days, -> { where("updated_at > ?", Time.now-7.days) }
+
   ## METHODS
   def assigned_to_name
     if assigned_to == nil
@@ -78,6 +81,13 @@ class SearchTicket < ApplicationRecord
     end
   end
 
+  def last_searched_by
+    if work_logs.size == 0
+      return "No one"
+    else
+      return work_logs.last.employee_name
+    end
+  end
 
   def print_barcode(height: 50, width: 1)
     require 'barby'
