@@ -12,7 +12,7 @@ class Coordinator::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
     get coordinator_search_ticket_path(ticket)
     assert_response :success
-    assert_select ".card-header .ticket-item-title", ticket.item_title
+      assert_select "[data-ticket-id]", { value: ticket.id }
   end
 
 
