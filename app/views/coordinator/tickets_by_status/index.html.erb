@@ -15,16 +15,16 @@
   <div class="container">
     <% @tickets.each do |ticket| %>
       <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
-        <div class="col-sm-5">
+        <div class="col-sm-7">
           <%= ticket.id %>: <a href="<%= coordinator_search_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>
         <div class="col-sm-2  text-center fs-90">
           <small class="font-weight-light text-muted">Last Searched By</small><br/>
           <%= ticket.last_searched_by %>
         </div>
-        <div class="col-sm-5  text-left fs-90">
-          <small class="font-weight-light text-muted ">Status</small><br/>
-          <%= ticket.ticket_status_description %>
+        <div class="col-sm-3  text-right fs-90">
+          <small class="font-weight-light text-muted ">Resolution</small><br/>
+          <%= ticket.resolution.humanize rescue nil %>
         </div>
       </div>
     <% end %>

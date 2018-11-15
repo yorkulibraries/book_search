@@ -110,7 +110,7 @@ class SearchTicket < ApplicationRecord
     when STATUS_SEARCH_IN_PROGRESS
       return "Search In Progress: #{assigned_to_name} is searching for this Item."
     when STATUS_ESCALATED_TO_LEVEL_2
-      return "Escalated: #{assigned_to_name} looked couldn't find the item."
+      return "Escalated: #{assigned_to_name} looked for this item and couldn't find it."
     when STATUS_REVIEW_BY_COORDINATOR
       return "Under Review: After #{work_logs.size} Searches Item is still missing"
     when STATUS_RESOLVED
@@ -130,8 +130,14 @@ class SearchTicket < ApplicationRecord
       return "Cancelled: We've cancelled this ticket."
     when SearchTicket::RESOLUTION_DUPLICATE
       return "Duplicate: This ticket is a duplicate of another one."
+    when SearchTicket::RESOLUTION_IN_ACQUISITIONS
+      return "In Acquisitions: Some one from the acquisitions department is reviewing this ticket."
+    when SearchTicket::RESOLUTION_REPURCHAISING
+      return "Repurchasing: We have decided to repurchase this item."
+    when SearchTicket::RESOLUTION_DECLARED_MISSING
+      return "Declared Missing: This item has been declared missing and will not be re-circulated"
     else
-      return "#{resolution.humanize} The status of this ticket is unknown at the moment."
+      return "#{resolution.humanize}: The status of this ticket is unknown at the moment."
     end
   end
 
@@ -162,6 +168,12 @@ class SearchTicket < ApplicationRecord
       return "We've cancelled this ticket. Please refer to notes for the detailed explanation."
     when SearchTicket::RESOLUTION_DUPLICATE
       return "This ticket is a duplicate of another one, please refer to the original for more information."
+    when SearchTicket::RESOLUTION_IN_ACQUISITIONS
+      return "Some one from the acquisitions department is reviewing this ticket."
+    when SearchTicket::RESOLUTION_REPURCHAISING
+      return "We have decided to repurchase this item. It will be available in the near future."
+    when SearchTicket::RESOLUTION_DECLARED_MISSING
+      return "We no longer keep a copy of this item in the library."
     else
       return "The status of this ticket is unknown at the moment. Please refer to search history for more details."
     end

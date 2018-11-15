@@ -41,18 +41,27 @@
 <div class="p-3 mb-2 bg-status-<%= @ticket.status %> text-center">
   <span class="text-uppercase mb-1 d-inline-flex p-2 border border-white"><%= @ticket.status.humanize %></span>
 
-  <div class="font-weight-light mt-2">
-    Please review this ticket and decide the next steps:
-    <div class="mt-2">
-      <button type="button" class="btn btn-dark btn-sm text-white">
-        Request Another Search
-      </button>
-      or
-      <button type="button" class="btn btn-primary text-white btn-sm">
-        Send To Acquisitions
-      </button>
+  <% if @ticket.status == SearchTicket::STATUS_REVIEW_BY_COORDINATOR %>
+    <div class="font-weight-light mt-2">
+      Please review this ticket and decide the next steps:
+      <div class="mt-2">
+        <a href="<%= coordinator_search_ticket_path(@ticket, search_again: true)%>"
+          class="btn btn-dark btn-sm text-white" data-confirm="Are you sure?" data-method="patch">
+          Request Another Search
+        </a>
+        or
+        <a href="<%= coordinator_search_ticket_path(@ticket, acquisitions: true) %>"
+          class="btn btn-primary text-white btn-sm" data-confirm="Are you sure?" data-method="patch">
+          Send To Acquisitions
+        </a>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <div class="font-weight-light mt-2">
+      <%= @ticket.ticket_status_description %>
+    </div>
+  <% end %>
+
 </div>
 
 <br/>
