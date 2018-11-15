@@ -4,9 +4,12 @@
   <h5 class="border-bottom border-gray pb-2 mb-0">
       <%= @status.humanize %> Tickets
 
-    <span class="badge badge-<%= @status %> float-right" data-tickets-count="<%= @tickets.size %>">
-      <%= @status.humanize %>: <%= @tickets.size %>
-    </span>
+      <span class="bg-status-<%= @status %> rounded text-white p-1 fs-70 float-right">
+        <%= @status.humanize %>
+          <span class="badge badge-light" data-tickets-count="<%= @tickets.size %>">
+            <%= @tickets.size %>
+          </span>
+      </span>
   </h5>
 
   <div class="container">

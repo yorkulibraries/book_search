@@ -1,47 +1,61 @@
-<% page_title "Ticket Details"%>
-<div class="card">
-  <div class="card-header">
-    <div class="row">
-      <div class="col-md-9">
-        <h4 class="ticket-item-title"><%= @ticket.item_title %></h4>
-        <h6 class="text-muted">Assigned to <%= @ticket.assigned_to_name %> </h6>
+<% page_title "Search Ticket Details" %>
+
+
+<div class="p-3 bg-white rounded box-shadow" data-ticket-id="<%=@ticket.id %>" >
+  <h3 class="border-bottom border-gray pb-2 mb-0"><%= @ticket.id %>: <%= @ticket.item_title %></h3>
+  <div class="container">
+    <br/>
+    <dl class="row">
+      <div class="col">
+        <dt class="text-muted font-weight-light">Callnumber</dt>
+        <dd><%= @ticket.item_callnumber %></dd>
+        <dt class="text-muted font-weight-light">Author:</dt>
+        <dd><%= @ticket.item_author %></dd>
+        <hr/>
+        <dt class="text-muted font-weight-light fs-80">Created On</dt>
+        <dd class="fs-90"><%= @ticket.created_at.strftime("%Y-%m-%d") %></dd>
       </div>
-      <div class="col-md-3">
-        <h5>
-          <span class="badge badge-success text-uppercase"><%= @ticket.status.humanize %></span>
-        </h5>
-
-        <small>
-        <span class="font-weight-light text-muted">Updated:</span>
-          <%= @ticket.updated_at.strftime("%a, %b %-d %Y ") %>
-        </small>
+      <div class="col">
+        <dt class="text-muted font-weight-light">Volume</dt>
+        <dd><%= @ticket.item_volume %></dd>
+        <dt class="text-muted font-weight-light">Issue</dt>
+        <dd><%= @ticket.item_issue %></dd>
+        <hr/>
+        <dt class="text-muted font-weight-light fs-80">Last Updated</dt>
+        <dd class="fs-90"><%= @ticket.last_updated.strftime("%Y-%m-%d") rescue nil%></dd>
       </div>
-    </div>
-  </div> <!-- card header close -->
-
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <%= render partial: "ticket_details" %>
-    </li>
-
-    <li class="list-group-item">
-      <%= render partial: "patron_details" %>
-    </li>
-
-    <li class="list-group-item">
-      <%= render partial: "ticket_status" %>
-    </li>
-
-    <li class="list-group-item">
-      <%= render partial: "search_history" %>
-    </li>
-
-  </ul>
-
-  <div class="card-footer text-muted">
-    Created
-    <span class="timeago" title="<%= @ticket.created_at.getutc.iso8601 %>">
-       <%= time_ago_in_words @ticket.created_at %> ago by <cite title="Source Title"> <%= @ticket.patron.name %> </cite>
-    </span>
+      <div class="col">
+        <dt class="text-muted font-weight-light">Year</dt>
+        <dd><%= @ticket.item_year %></dd>
+        <dt class="text-muted font-weight-light">Item Location</dt>
+        <dd><%= @ticket.location.name %></dd>
+        <hr/>
+        <dt class="text-muted font-weight-light fs-80">Requested By</dt>
+        <dd class="fs-90"><%= @ticket.patron_name %></dd>
+      </div>
+    </dl> <!-- dl row end -->
   </div>
 </div>
+
+<br/>
+<div class="p-3 mb-2 bg-status-<%= @ticket.status %> text-center">
+  <span class="text-uppercase mb-1 d-inline-flex p-2 border border-white"><%= @ticket.status.humanize %></span>
+
+  <div class="font-weight-light mt-2">
+    Please review this ticket and decide the next steps:
+    <div class="mt-2">
+      <button type="button" class="btn btn-dark btn-sm text-white">
+        Request Another Search
+      </button>
+      or
+      <button type="button" class="btn btn-primary text-white btn-sm">
+        Send To Acquisitions
+      </button>
+    </div>
+  </div>
+</div>
+
+<br/>
+
+
+<%= render partial: "search_history" %>

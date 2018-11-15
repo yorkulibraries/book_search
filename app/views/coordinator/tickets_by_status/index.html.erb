@@ -4,8 +4,11 @@
   <h5 class="border-bottom border-gray pb-2 mb-0">
       <%= @status.humanize %> Tickets
 
-    <span class="badge badge-<%= @status %> float-right" data-tickets-count="<%= @tickets.size %>">
-      <%= @status.humanize %>: <%= @tickets.size %>
+    <span class="bg-status-<%= @status %> rounded text-white p-1 fs-70 float-right">
+      <%= @status.humanize %>
+        <span class="badge badge-light" data-tickets-count="<%= @tickets.size %>">
+          <%= @tickets.size %>
+        </span>
     </span>
   </h5>
 
@@ -16,8 +19,8 @@
           <%= ticket.id %>: <a href="<%= coordinator_search_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>
         <div class="col-sm-2  text-center fs-90">
-          <small class="font-weight-light text-muted">Callnumber</small><br/>
-          <%= ticket.item_callnumber %>
+          <small class="font-weight-light text-muted">Last Searched By</small><br/>
+          <%= ticket.last_searched_by %>
         </div>
         <div class="col-sm-5  text-left fs-90">
           <small class="font-weight-light text-muted ">Status</small><br/>
