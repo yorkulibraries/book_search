@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
 
 
+  namespace :coordinator do
+    get 'tickets_by_status/index'
+  end
+
   get "login/invalid" => "invalid_login#show", as: :invalid_login
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
@@ -30,6 +34,7 @@ Rails.application.routes.draw do
   namespace :coordinator do
     resource :dashboard, only: :show, controller: "dashboard"
     resources :search_ticket, only: [:edit, :update, :show]
+    get 'tickets_by_status' => "tickets_by_status#index"
   end
 
   namespace :sl2 do
