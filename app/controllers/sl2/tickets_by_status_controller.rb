@@ -5,15 +5,15 @@ class Sl2::TicketsByStatusController < Sl2::AuthorizedBaseController
 
     case @status
     when SearchTicket::STATUS_NEW
-      @tickets = SearchTicket.new_tickets
+      @tickets = SearchTicket.new_tickets.recently_updated_first
     when SearchTicket::STATUS_SEARCH_IN_PROGRESS
-      @tickets = SearchTicket.in_progress_tickets
+      @tickets = SearchTicket.in_progress_tickets.recently_updated_first
     when SearchTicket::STATUS_ESCALATED_TO_LEVEL_2
-      @tickets = SearchTicket.escalated_tickets
+      @tickets = SearchTicket.escalated_tickets.recently_updated_first
     when SearchTicket::STATUS_REVIEW_BY_COORDINATOR
-      @tickets = SearchTicket.under_review_tickets
+      @tickets = SearchTicket.under_review_tickets.recently_updated_first
     when SearchTicket::STATUS_RESOLVED
-      @tickets = SearchTicket.resolved_tickets
+      @tickets = SearchTicket.resolved_tickets.recently_updated_first
     else
       @status = "unknown"
       @tickets = []

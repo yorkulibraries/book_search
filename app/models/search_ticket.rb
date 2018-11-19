@@ -48,6 +48,8 @@ class SearchTicket < ApplicationRecord
   scope :created_past_7_days, -> { where("created_at > ?", Time.now-7.days) }
   scope :updated_past_7_days, -> { where("updated_at > ?", Time.now-7.days) }
 
+  scope :recently_updated_first, -> { order(updated_at: :desc) }
+
   ## METHODS
   def assigned_to_name
     if assigned_to == nil

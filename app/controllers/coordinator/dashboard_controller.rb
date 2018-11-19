@@ -1,6 +1,6 @@
 class Coordinator::DashboardController < Coordinator::AuthorizedBaseController
   def show
-    @under_review_tickets = SearchTicket.under_review_tickets
+    @under_review_tickets = SearchTicket.under_review_tickets.recently_updated_first
 
     today = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
     yesterday = Time.zone.yesterday.beginning_of_day..Time.zone.yesterday.end_of_day

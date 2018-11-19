@@ -32,7 +32,8 @@ class SearchTicket::WorkLog < ApplicationRecord
 
 
   ## SCOPES
-
+  default_scope { order(created_at: :desc) }
+  
   ## METHODS
 
   def employee_name
