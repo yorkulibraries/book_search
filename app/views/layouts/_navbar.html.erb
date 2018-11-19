@@ -34,8 +34,9 @@
         <% end %>
 
         <% if session[:user_type] == Employee.to_s %>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <form action="<%= search_url %>" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Ticket or Item ID"
+              aria-label="ID or ITEM ID" name="q" value="<%= @search_query rescue nil%>">
             <button class="btn btn-default my-2 my-sm-0" type="submit">Search</button>
           </form>
         <% end %>

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get "redirector" => "redirectr#index"
   get "dashboard" => "dashboard#index"
 
+  get "search" => "search#index"
+  get "search/result/:id" => "search#show", as: :search_result
+
   namespace :find_this_item do
     resource :legal, only: [:show], controller: "legal"
     get 'test_cases' => "legal#index" if Rails.env.development?
