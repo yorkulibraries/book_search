@@ -1,9 +1,12 @@
 
 <div class="p-3 bg-white rounded box-shadow">
   <h5 class="border-bottom border-gray pb-2 mb-0">Recently Escalated Tickets
-    <span class="badge badge-<%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %> float-right" data-escalated-tickets-count="<%= @escalated_tickets.size %>">
-      <%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2.humanize %>:
-      <%= @escalated_tickets.size %>
+
+    <span class="bg-status-<%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %> rounded text-white p-1 fs-70 float-right">
+      <%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2.humanize %>
+        <span class="badge badge-light" data-escalated-tickets-count="<%= @escalated_tickets.size %>">
+          <%= @escalated_tickets.size %>
+        </span>
     </span>
   </h5>
 

@@ -13,7 +13,7 @@ class Sl2::TicketsByStatusController < Sl2::AuthorizedBaseController
     when SearchTicket::STATUS_REVIEW_BY_COORDINATOR
       @tickets = SearchTicket.under_review_tickets.recently_updated_first
     when SearchTicket::STATUS_RESOLVED
-      @tickets = SearchTicket.resolved_tickets.recently_updated_first
+      @tickets = SearchTicket.resolved_tickets.recently_updated_first.limit(100)
     else
       @status = "unknown"
       @tickets = []

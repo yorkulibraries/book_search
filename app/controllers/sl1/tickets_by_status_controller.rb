@@ -9,7 +9,7 @@ class Sl1::TicketsByStatusController < Sl1::AuthorizedBaseController
     when SearchTicket::STATUS_ESCALATED_TO_LEVEL_2
       @tickets = SearchTicket.escalated_tickets.recently_updated_first
     when SearchTicket::STATUS_RESOLVED
-      @tickets = SearchTicket.resolved_tickets.recently_updated_first
+      @tickets = SearchTicket.resolved_tickets.recently_updated_first.limit(100)
     else
       @status = "unknown"
       @tickets = []

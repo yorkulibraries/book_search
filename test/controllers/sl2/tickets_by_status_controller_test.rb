@@ -22,12 +22,12 @@ class Sl2::TicketsByStatusControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-
-
-
-
-
-
+  should "limit the number of recently resovled to 100" do
+    tickets = create_list(:search_ticket, 101, status: status)
+    get sl2_tickets_by_status_path(status: SearchTicket::STATUS_RESOLVED)
+    assert_response :success
+    assert_select "[data-tickets-count]", { value: 100 }
+  end
 
 
 end

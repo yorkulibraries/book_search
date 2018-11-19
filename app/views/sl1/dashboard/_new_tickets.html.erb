@@ -1,8 +1,12 @@
 
 <div class="p-3 bg-white rounded box-shadow">
   <h5 class="border-bottom border-gray pb-2 mb-0">New Search Tickets
-    <span class="badge badge-new float-right" data-new-tickets-count="<%= @new_tickets.size %>">  
-      <%= SearchTicket::STATUS_NEW.humanize %>: <%= @new_tickets.size %>
+
+    <span class="bg-status-<%= SearchTicket::STATUS_NEW %> rounded text-white p-1 fs-70 float-right">
+      <%= SearchTicket::STATUS_NEW.humanize %>
+        <span class="badge badge-light" data-new-tickets-count="<%= @new_tickets.size %>">
+          <%= @new_tickets.size %>
+        </span>
     </span>
   </h5>
 
