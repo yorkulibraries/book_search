@@ -1,0 +1,62 @@
+
+  <div class="container py-3"  data-ticket-id="<%= ticket.id %>">
+    <h4 class="border-bottom border-gray pb-2 mb-2">
+      <%= ticket.item_title %>
+    </h3>
+
+
+    <h5 class="text-downcase text-capitalize font-weight-light">Search in <%= ticket.location.name %></h5>
+
+    <!-- Always show primary, secondary for lvl 2 -->
+    <div class="row">
+      <% SearchArea.primary.where(location_id: ticket.location_id).each do |sa| %>
+         <div class="pr-4 fs-70 col-sm-3">
+           <span class="fa fa-square fa-border fa-inverse border-default" style="border-width: 3px;"></span>
+           <span class="fs-140i">&nbsp;<%= sa.name %></span>
+         </div>
+      <% end %>
+    </div>
+
+
+    <% if ticket.work_logs.count > 1 %>
+    <div class="py-2 text-muted font-weight-light">Additional Areas to search in: </div>
+    <div class="row">
+      <% SearchArea.secondary.where(location_id: ticket.location_id).each do |sa| %>
+        <div class="pr-4 fs-70 col-sm-3">
+          <span class="fa fa-square fa-border fa-inverse border-default" style="border-width: 3px;"></span>
+          <span class="fs-140i">&nbsp;<%= sa.name %></span>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <hr/>
+
+    <dl class="row">
+      <div class="col">
+        <dt class="text-muted font-weight-light fs-80">Callnumber</dt>
+        <dd class="fs-120"><%= ticket.item_callnumber %></dd>
+        <dt class="text-muted font-weight-light">Vol and Issue:</dt>
+        <dd><%= ticket.item_volume %> -- <%= ticket.item_issue %></dd>
+      </div>
+      <div class="col">
+        <dt class="text-muted font-weight-light fs-80">Author</dt>
+        <dd class="fs-120"><%= ticket.item_author %></dd>
+        <dt class="text-muted font-weight-light">Issue</dt>
+        <dd><%= ticket.item_issue %></dd>
+      </div>
+      <div class="col border-left">
+        <dt class="text-muted font-weight-light">Found?</dt>
+        <dd class="fs-90i">
+          <span class="fa fa-square fa-border fa-inverse border-default" style="border-width: 3px;"></span>
+          <span class="fs-110i">&nbsp;YES</span>
+          <span class="fa fa-square fa-border fa-inverse border-default" style="border-width: 3px;"></span>
+          <span class="fs-110i">&nbsp;NO</span>
+        </dd>
+        <dt class="text-muted font-weight-light">Where</dt>
+        <dd></dd>
+
+      </div>
+    </dl> <!-- dl row end -->
+
+  </div>

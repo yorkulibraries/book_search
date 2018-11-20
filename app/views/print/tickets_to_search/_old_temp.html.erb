@@ -1,0 +1,94 @@
+<div class="card mb-0">
+  <div class="card-header bg-info">
+   <div class="row">
+     <div class="col-md-8 col-sm-12">
+       <h3 class="card-title"><%= ticket.item_callnumber %></h3>
+     </div>
+      <div class="col">
+        <img src="<%= ticket.print_barcode(height: 30, width: 2) %>"/><br/>
+        <%= ticket.item_id %>
+      </div>
+     </div>
+   </div>
+ <div class="card-body">
+   <dl class="row">
+     <dt class="col-md-2">Title:</dt><dd class="col-md-6"><%= ticket.item_title %></dd>
+     <dt class="col-md-1">Year:</dt><dd class="col-md-1"><%= ticket.item_year %></dd>
+   </dl>
+   <dl class="row bordered">
+     <dt class="col-md-2">Author:</dt><dd class="col-md-3"><%= ticket.item_author %></dd>
+     <dt class="col-md-1">Vol:</dt><dd class="col-md-2"><%= ticket.item_volume %></dd>
+     <dt class="col-md-1">Issue:</dt><dd class="col-md-3"><%= ticket.item_issue %></dd>
+   </dl>
+   <hr class="bg-secondary"/>
+   <div class="row">
+     <div class="col-sm-auto">
+       <h5><span class="text-muted">Search in </span><%= ticket.item_location %>: </h5>
+     </div>
+   </div> <!-- row -->
+   <div class="row">
+       <!-- Always show primary, secondary for lvl 2 -->
+      <% SearchArea.primary.where(location_id: ticket.location_id).each do |sa| %>
+      <div class="col-md-3 mt-2"> <!-- bootstrap margin-top (mt) -->
+          <!-- <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div> -->
+          <input type="checkbox" id="scales" name="feature" value="scales" class="checkbox" />
+          <label for="scales"> <%= sa.name %></label>
+      </div>
+     <% end %> <!-- Primary Area Loop -->
+   <% if ticket.status == SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %>
+     <% SearchArea.secondary.where(location_id: ticket.location_id).each do |sa| %>
+      <div class="col-md-3 mt-2"> <!-- bootstrap margin-top (mt) -->
+          <div class="d-inline"><span class="fa fa-square fa-border fa-inverse checkbox" ></span> <%= sa.name %></div>
+      </div>
+       <% end %>
+   <% end %>
+   </div> <!-- row -->
+   <hr class="bg-secondary"/>
+   <div class="row">
+     <div class="col-md-2">
+       <h5>Found?</h5>
+     </div>
+     <div class="col-md-2">
+       <h6>
+         <input type="checkbox" id="scales" name="feature" value="scales" class="checkbox" />
+         <label for="scales"> YES </label>
+       </h6>
+     </div>
+     <div class="col-md-2">
+       <!-- <h6><span class="fa fa-square fa-border fa-inverse checkbox" ></span> No </h6> -->
+       <h6>
+         <input type="checkbox" id="scales" name="feature" value="scales" class="checkbox" />
+         <label for="scales"> NO </label>
+       </h6>
+     </div>
+     <div class="col-md-6">
+       <h5>Where:</h5>
+       <hr/>
+     </div>
+   </div> <!-- row -->
+   <hr class="bg-secondary"/>
+   <div class="row">
+     <div class="col-md-12"><h5>Search History:</h5></div>
+     <div class="col-md-12">
+      <table class="table table-striped table-sm">
+      <% ticket.work_logs.each_with_index do |log, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= log.employee.name %></td>
+        <td><%= log.created_at.strftime("%Y-%m-%d") %></td>
+        <td>Searched <%= log.search_areas.map { |sa| sa.name}.join(", ") %></td>
+        <td><%= log.result.humanize.capitalize %></td>
+      </tr>
+      <% end %>
+      </table>
+   </div>
+   </div>
+   <hr class="bg-secondary"/>
+   <div class="row">
+     <div class="col-md-2"><h5>Notes:</h5></div>
+     <!-- <div class="col"><hr class="bg-secondary"/></div> -->
+
+   </div>
+   <hr class="bg-dark"/>
+   </div> <!-- card-body -->
+</div> <!-- card -->
