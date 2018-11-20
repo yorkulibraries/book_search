@@ -1,7 +1,10 @@
 <% page_title "Tickets To Search" %>
 
 <div class="bg-white">
-  <% @tickets.each do |ticket| %>
+  <% @tickets.each_with_index do |ticket, index| %>
     <%= render partial: "ticket_details", locals: { ticket: ticket } %>
+    <% if (index+1) % 4 == 0 %>
+      <hr style="page-break-after: always;"/>
+    <% end %>
   <% end %>
 </div>

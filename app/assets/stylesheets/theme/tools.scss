@@ -1,3 +1,11 @@
+.ellipsis {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
 
