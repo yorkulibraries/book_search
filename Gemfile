@@ -37,7 +37,7 @@ gem "barby", "0.6.5"
 gem 'puma', '~> 3.7'
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', "1.4.0", group: :development
+#gem 'capistrano-rails', "1.4.0", group: :development
 
 
 
