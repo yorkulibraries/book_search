@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
 
 
-  namespace :coordinator do
-    get 'tickets_by_status/index'
-  end
-
   get "login/invalid" => "invalid_login#show", as: :invalid_login
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"

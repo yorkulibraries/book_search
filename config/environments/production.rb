@@ -52,7 +52,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :ticket_id ]
+  config.log_tags = []
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
