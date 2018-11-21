@@ -1,10 +1,11 @@
-require 'faker'
-require 'populator'
+
 
 namespace :db do
   desc "Prepopulate Some Data"
   task populate: :environment do
-
+    require 'faker'
+    require 'populator'
+    
     # CLEAR THE DATABASE FIRST
     [SearchTicket, Patron, Employee, Location, SearchArea, SearchTicket::WorkLog, SearchTicket::SearchedArea].each(&:delete_all)
 
