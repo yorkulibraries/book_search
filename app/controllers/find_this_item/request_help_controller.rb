@@ -2,9 +2,9 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
   layout "external_integration"
 
   def create
-    #item = JSON.parse(session[FindThisItem::LegalController::SESSION_ITEM_DATA])
-    item = JSON.parse(params[:item])
-    
+    item = JSON.parse(session[FindThisItem::LegalController::SESSION_ITEM_DATA])
+    #item = JSON.parse(params[:item])
+
     ticket = SearchTicket.new(item)
     ticket.patron = current_user
 
