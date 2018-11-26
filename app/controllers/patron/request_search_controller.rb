@@ -1,4 +1,5 @@
 class Patron::RequestSearchController < ApplicationController
+  layout "external_integration"
   def index
     # this is going to be a list of books with buttons to test ticket generation
   end

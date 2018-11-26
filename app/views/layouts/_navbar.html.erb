@@ -8,7 +8,7 @@
 
 
     <ul class="navbar-nav mr-auto">
-      <% if session[:user_type] == Employee.to_s %>
+      <% if current_user && session[:user_type] == Employee.to_s %>
         <li class="nav-item">
           <a class="nav-link" href="<%= root_path %>">Dashboard <span class="sr-only">(current)</span></a>
         </li>
@@ -43,7 +43,7 @@
       <li class="nav-item">
         &nbsp;
         <span class="d-inline-flex p-2 fwf border rounded-circle bg-default text-white">
-          <%= current_user.initials rescue nil %> <%= session[:user_type] rescue nil %>
+          <%= current_user.initials rescue nil %>
         </span>
       </li>
       <li class="nav-item">
