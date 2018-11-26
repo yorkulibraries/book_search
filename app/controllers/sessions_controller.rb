@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
     # IMPROTANT: check if Employee is logging in first
     user = Employee.find_by_login_id(login_id)
-    # IMPORTANT: check if Patron si logging in second
+    # IMPORTANT: check if Patron is logging in second
     user = Patron.find_by_login_id(login_id) if user == nil
 
     if user
