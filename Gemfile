@@ -14,13 +14,25 @@ gem 'mysql2'
 
 ## CSS AND JavaScript
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap', '~> 4.0.0'
+#gem 'bootstrap', '~> 4.0.0'
+gem "bootstrap", ">= 4.1.2"
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 
+# SECURITY UPDATES -> will probably be removed after rails upgrade
+gem "sprockets", ">= 3.7.2"
+gem "rubyzip", ">= 1.2.2"
+gem "loofah", ">= 2.2.3"
+gem "rails-html-sanitizer", "1.0.4"
+gem "ffi", ">= 1.9.24"
+gem "rack", ">= 2.0.6"
+
+
+
 ## TOOLS AND HELPERS
+gem "nokogiri", "1.8.2"
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 #gem 'redis', '~> 3.0'
