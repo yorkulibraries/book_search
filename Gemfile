@@ -19,7 +19,7 @@ gem "bootstrap", ">= 4.1.2"
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
-gem 'therubyracer', platforms: :ruby
+gem 'mini_racer'#, platforms: :ruby
 
 # SECURITY UPDATES -> will probably be removed after rails upgrade
 gem "sprockets", ">= 3.7.2"
