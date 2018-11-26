@@ -1,4 +1,4 @@
-class Admin::PatronsController < ApplicationController
+class Admin::PatronsController <  Admin::AuthorizedBaseController
   before_action :set_patron, only: [:show, :edit, :update, :destroy]
 
   # GET /patrons

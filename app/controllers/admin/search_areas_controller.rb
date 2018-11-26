@@ -1,4 +1,4 @@
-class Admin::SearchAreasController < ApplicationController
+class Admin::SearchAreasController <  Admin::AuthorizedBaseController
   before_action :set_search_area, only: [:show, :edit, :update, :destroy]
 
   # GET /search_areas

@@ -1,5 +1,4 @@
 class Sl2::AuthorizedBaseController < AuthenticatedEmployeeController
-
   ## All SL2 Processes will exetend from this controller
   ## This controller's job is to ensure only SL2 Employees can access SL2 Processes
 

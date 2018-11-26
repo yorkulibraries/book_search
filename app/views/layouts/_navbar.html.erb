@@ -43,7 +43,7 @@
       <li class="nav-item">
         &nbsp;
         <span class="d-inline-flex p-2 fwf border rounded-circle bg-default text-white">
-          <%=current_user.initials %> <%= current_user.role rescue nil %>
+          <%= current_user.initials rescue nil %> <%= session[:user_type] rescue nil %>
         </span>
       </li>
       <li class="nav-item">
