@@ -6,47 +6,50 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
 
-        <% if session[:user_type] == Employee.to_s %>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= root_path %>">Dashboard <span class="sr-only">(current)</span></a>
-          </li>
-          <% if current_user.role == Employee::ROLE_LEVEL_ONE %>
-            <%= render partial: "layouts/navbars/sl1" %>
-          <% elsif current_user.role == Employee::ROLE_LEVEL_TWO %>
-            <%= render partial: "layouts/navbars/sl2" %>
-          <% elsif current_user.role == Employee::ROLE_COORDINATOR %>
-            <%= render partial: "layouts/navbars/coordinator" %>
-          <% elsif current_user.role == Employee::ROLE_MANAGER %>
-            <%= render partial: "layouts/navbars/admin" %>
-          <% end %>
-
-        <% elsif session[:user_type] == Patron.to_s %>
-          <%= render partial: "layouts/navbars/patron" %>
-        <% end %>
-
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <% if Rails.env.development? %>
-          <%= render partial: "layouts/navbars/dev" %>
-        <% end %>
-
-        <% if session[:user_type] == Employee.to_s %>
-          <form action="<%= search_url %>" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Ticket or Item ID"
-              aria-label="ID or ITEM ID" name="q" value="<%= @search_query rescue nil%>">
-            <button class="btn btn-default my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        <% end %>
-
+    <ul class="navbar-nav mr-auto">
+      <% if session[:user_type] == Employee.to_s %>
         <li class="nav-item">
-          <a class="nav-link" href="<%= logout_path%>">Log Out</a>
+          <a class="nav-link" href="<%= root_path %>">Dashboard <span class="sr-only">(current)</span></a>
         </li>
-      </ul>
+        <% if current_user.role == Employee::ROLE_LEVEL_ONE %>
+          <%= render partial: "layouts/navbars/sl1" %>
+        <% elsif current_user.role == Employee::ROLE_LEVEL_TWO %>
+          <%= render partial: "layouts/navbars/sl2" %>
+        <% elsif current_user.role == Employee::ROLE_COORDINATOR %>
+          <%= render partial: "layouts/navbars/coordinator" %>
+        <% elsif current_user.role == Employee::ROLE_MANAGER %>
+          <%= render partial: "layouts/navbars/admin" %>
+        <% end %>
 
+      <% elsif session[:user_type] == Patron.to_s %>
+        <%= render partial: "layouts/navbars/patron" %>
+      <% end %>
+    </ul>
 
-    </div>
+    <ul class="navbar-nav ml-auto">
+      <% if Rails.env.development? %>
+        <%= render partial: "layouts/navbars/dev" %>
+      <% end %>
+
+      <% if session[:user_type] == Employee.to_s %>
+        <form action="<%= search_url %>" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Ticket or Item ID"
+            aria-label="ID or ITEM ID" name="q" value="<%= @search_query rescue nil%>">
+          <button class="btn btn-default my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      <% end %>
+
+      <li class="nav-item">
+        &nbsp;
+        <span class="d-inline-flex p-2 fwf border rounded-circle bg-default text-white">
+          <%=current_user.initials %>
+        </span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= logout_path%>">Log Out</a>
+      </li>
+    </ul>
+
   </div>
 </nav>

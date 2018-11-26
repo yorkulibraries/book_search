@@ -19,4 +19,13 @@ class Patron < ApplicationRecord
     return Patron.new(name: name, login_id: login_id, email: email)
   end
 
+
+  ## METHODS
+  def initials
+    if name != nil
+      return name.split(" ").map {|i|  i[0,1].capitalize }.join.ljust(2, "_")
+    else
+      return "##"
+    end
+  end
 end
