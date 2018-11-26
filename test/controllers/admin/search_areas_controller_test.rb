@@ -4,6 +4,8 @@ class Admin::SearchAreasControllerTest < ActionDispatch::IntegrationTest
   setup do
     # @search_area = search_areas(:one)
     @search_area = create(:search_area)
+    @user = create(:employee, role: Employee::ROLE_COORDINATOR)
+    log_user_in(@user)
   end
 
   test "should get index" do

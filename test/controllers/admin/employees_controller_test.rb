@@ -3,6 +3,8 @@ require 'test_helper'
 class Admin::EmployeesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @employee = create(:employee)
+    @user = create(:employee, role: Employee::ROLE_COORDINATOR)
+    log_user_in(@user)
   end
 
   test "should get index" do

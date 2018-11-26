@@ -3,6 +3,8 @@ require 'test_helper'
 class Admin::LocationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     # @location = locations(:one)
+    @user = create(:employee, role: Employee::ROLE_COORDINATOR)
+    log_user_in(@user)
     @location = create(:location)
   end
 

@@ -13,7 +13,10 @@ class AuthenticatedPatronController < ApplicationController
   end
 
   def current_user
-    @current_user = Patron.find(session[:user_id])
+    # Looking up users by login_id, because that is unique.
+    # One Patron ID could be the same as Employee ID
+    # So that creates bit of confusion, Employee ID 1 and Patron ID 1
+    @current_user = Patron.find_by_login_id(session[:login_id])
   end
   helper_method :current_user
 
