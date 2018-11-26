@@ -2,8 +2,9 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
   layout "external_integration"
 
   def create
-    item = JSON.parse(session[FindThisItem::LegalController::SESSION_ITEM_DATA])
-
+    #item = JSON.parse(session[FindThisItem::LegalController::SESSION_ITEM_DATA])
+    item = JSON.parse(params[:item])
+    
     ticket = SearchTicket.new(item)
     ticket.patron = current_user
 
@@ -15,7 +16,7 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
     end
     ticket.location = l
     ticket.status = SearchTicket::STATUS_NEW
-    
+
     if ticket.save
       redirect_to find_this_item_request_help_url(ticket_id: ticket.id)
     else
