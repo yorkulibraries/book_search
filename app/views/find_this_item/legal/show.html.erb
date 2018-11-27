@@ -6,11 +6,11 @@
     <br/>
     <h5><%= @item["item_title"] %></h5>
     <dl class="row">
-      <div class="col">
+      <div class="col" id="item_details">
         <dt class="text-muted font-weight-light">Callnumber</dt>
-        <dd><%= @item[:item_callnumber] %></dd>
+        <dd id="item_callnumber"><%= @item[:item_callnumber] %></dd>
         <dt class="text-muted font-weight-light">Author</dt>
-        <dd><%= @item[:item_author] %></dd>
+        <dd id="item_author"><%= @item[:item_author] %></dd>
         <hr/>
       </div>
       <div class="col">
@@ -39,7 +39,7 @@
 
 <br/>
 <div class="p-3 mb-2 bg-success text-center text-white">
-  <a href="<%= find_this_item_request_help_url(item: @item_json) %>" data-method="post" data-confirm="Are you sure?"
+  <a id="help_find_item_button" href="<%= find_this_item_request_help_url() %>" data-confirm="Are you sure?"
     class="text-uppercase fs-120 mb-1 d-inline-flex p-2 text-white border border-white">
     Help me find this item
   </a>

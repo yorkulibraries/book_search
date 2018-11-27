@@ -50,7 +50,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_difference "Patron.count", 1 do
       get login_url, headers: headers
       assert_response :redirect
-      assert_redirected_to patron_my_tickets_path
+      assert_redirected_to root_url
     end
 
     p = Patron.find_by_login_id(patron.login_id)

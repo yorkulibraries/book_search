@@ -21,22 +21,23 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       session[:login_id] = user.login_id
-      session[:user_type] = user.class.name
-
+      session[:user_type] = user.class.name      
       ## Redirect to root, which will decide where to redirect to later
-      redirect_to root_url, notice: "Welcome back #{user.name}"
+      redirect_to root_url, notice: "Welcome back #{user.name}!"
     else
-
       # If user doesn't exist, lest make a record for him.
       email = request.headers[CAS_EMAIL]
       login_id = request.headers[CAS_LOGIN_ID]
       name = "#{request.headers[CAS_FIRST_NAME]} #{request.headers[CAS_LAST_NAME]}"
 
       patron = Patron.build_new_user(login_id, email, name)
-      patron.save(validate: false)
 
-      # Redirecting to Patron dashboard here, since it's a brand new user
-      redirect_to patron_my_tickets_path, notice: "Welcome to BookSearch app! #{user}"
+      if patron.save
+        redirect_to root_url, notice: "Welcome to BookSearch App!"
+      else
+        redirect_to invalid_login_url, notice: "There was an issue logging in"
+      end
+
     end
 
   end

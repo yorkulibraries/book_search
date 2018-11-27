@@ -77,6 +77,8 @@ group :development, :test do
 
   gem 'faker', '1.8.7'
   gem 'populator', git: "https://github.com/norikt/populator.git"
+
+  #gem 'minitest-rails-capybara'
 end
 
 group :development do

@@ -2,6 +2,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'factory_bot'
 
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   #fixtures :all
@@ -16,6 +17,8 @@ end
 
 class ActionDispatch::IntegrationTest
   include ActionMailer::TestHelper
+
+
 
   def log_user_in(user)
     get login_url, headers: {
