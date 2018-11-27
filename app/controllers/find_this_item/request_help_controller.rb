@@ -21,7 +21,7 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
       redirect_to find_this_item_request_help_url(ticket_id: ticket.id)
     else
       puts ticket.errors.messages
-      redirect_to find_this_item_legal_url
+      redirect_to find_this_item_legal_url(error: "THERE WAS AN ERROR #{ticket.error.messages}")
     end
 
   end
@@ -56,7 +56,7 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
     item = JSON.parse(session[FindThisItem::LegalController::SESSION_ITEM_DATA])
 
     ticket = SearchTicket.new(item)
-    
+
     ticket.patron = current_user
 
     # Ensure Location is properly matched. If not matched use the first location in the list

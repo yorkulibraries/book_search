@@ -6,8 +6,8 @@ class AuthenticatedPatronController < ApplicationController
   end
 
   def login_required
-    unless logged_in?
-      session[:redirect_to_url] = request.fullpath unless request.fullpath == login_path      
+    unless logged_in?      
+      session[:redirect_to_url] = request.fullpath unless request.fullpath == login_path
       redirect_to login_url, alert: "You must login before accessing this page"
     end
   end
