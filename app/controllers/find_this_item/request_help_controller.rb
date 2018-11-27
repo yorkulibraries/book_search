@@ -38,8 +38,8 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
 
         session[FindThisItem::LegalController::SESSION_ITEM_DATA] = nil
       else
-
-        redirect_to find_this_item_legal_url(item: session[FindThisItem::LegalController::SESSION_ITEM_DATA])
+        puts ticket.errors.messages
+        redirect_to find_this_item_legal_url(error: "THERE WAS AN ERROR #{ticket.error.messages}", item: session[FindThisItem::LegalController::SESSION_ITEM_DATA])
       end
     else
 
