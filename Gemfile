@@ -39,10 +39,13 @@ gem 'jbuilder', '~> 2.5'
 #gem 'bcrypt', '~> 3.1.7'
 
 gem 'simple_form', "4.0.0"
-gem "font-awesome-rails", "4.7.0.4"
+gem "font-awesome-rails", "4.7.0.4" ## Font-Icons
 
 gem "chunky_png", "1.3.10"
 gem "barby", "0.6.5"
+
+## For paging of view data. Rubygem outdated at 0.17. Needed to use github @ 1.1.1
+gem 'kaminari', :git => 'https://github.com/kaminari/kaminari' 
 
 
 ## DEPLOYMENT

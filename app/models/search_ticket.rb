@@ -50,6 +50,8 @@ class SearchTicket < ApplicationRecord
 
   scope :recently_updated_first, -> { order(updated_at: :desc) }
 
+  paginates_per 6
+  
   ## METHODS
   def assigned_to_name
     if assigned_to == nil
