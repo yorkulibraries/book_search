@@ -6,9 +6,15 @@
 
     <span class="bg-status-<%= @status %> rounded text-white p-1 fs-70 float-right">
       <%= @status.humanize %>
-        <span class="badge badge-light" data-tickets-count="<%= @tickets.size %>">
-          <%= @tickets.size %>
-        </span>
+        <% if @tickets != [] %>
+          <span class="badge badge-light" data-tickets-count="<%= @tickets.total_count %>">
+            <%= @tickets.total_count %>
+          </span>
+        <% else %>
+          <span class="badge badge-light" data-tickets-count="<%= @tickets.size %>">
+            <%= @tickets.size %>
+          </span>        
+        <% end %>
     </span>
   </h5>
 
@@ -29,7 +35,7 @@
       </div>
     <% end %>
     <div class="row pb-3 mb-0 pt-3 lh-125 justify-content-md-center">
-      <div class="col-auto"><%= paginate @tickets %></div>
+      <div class="col-auto"><%= paginate @tickets if @tickets != [] %></div>
     </div>
   </div>
 </div>

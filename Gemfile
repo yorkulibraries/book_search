@@ -82,6 +82,10 @@ group :development, :test do
   gem 'populator', git: "https://github.com/norikt/populator.git"
 
   #gem 'minitest-rails-capybara'
+  
+  ## FIX Readline error with version 6 as version 7 is installed by homebrew
+  gem 'rb-readline'
+  
 end
 
 group :development do

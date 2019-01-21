@@ -9,7 +9,8 @@ class Coordinator::TicketsByStatusControllerTest < ActionDispatch::IntegrationTe
   should "show search tickets with status UNKNOWN" do
     get coordinator_tickets_by_status_path
     assert_response :success
-    assert_select "[data-tickets-count]", { value: 0 }, "If no status is passed, not tickets should be displayed"
+    assert_select "[data-tickets-count='0']", true, "If no status is passed, not tickets should be displayed"
+    #, { value: 0 }, "If no status is passed, not tickets should be displayed"
   end
 
 
@@ -18,7 +19,25 @@ class Coordinator::TicketsByStatusControllerTest < ActionDispatch::IntegrationTe
       tickets = create_list(:search_ticket, 2, status: status)
       get coordinator_tickets_by_status_path(status: status)
       assert_response :success
-      assert_select "[data-tickets-count]", { value: tickets.size }
+      assert_select "[data-tickets-count='#{tickets.size}']"
+      # assert_select "span:match('data-tickets-count', ?)", "2"
+    end
+    
+    should "show search tickets with paging - #{status}" do
+      tickets = create_list(:search_ticket, 12, status: status)
+      get coordinator_tickets_by_status_path(status: status)
+      assert_response :success
+      ## PAGING SET AT 6/page. Thefore only 2 pages for 12 tickets
+      assert_select "ul.pagination li", 4 # 1,2,Next,Last
+    end
+    
+    should "show search tickets but without paging if count is < 6" do
+      tickets = create_list(:search_ticket, 5, status: status)
+      get coordinator_tickets_by_status_path(status: status)
+      assert_response :success
+
+      ## paging check == none
+      assert_select "ul.pagination", false
     end
   end
 
