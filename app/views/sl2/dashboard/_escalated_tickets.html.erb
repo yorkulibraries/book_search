@@ -13,7 +13,7 @@
   <div class="container">
     <%= form_tag sl2_start_search_path, method: :patch do %>
     <% @escalated_tickets.each do |ticket| %>
-      <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
+      <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray escalated_ticket_row">
         <div class="col-sm-7">
             <a href="<%= sl2_search_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>

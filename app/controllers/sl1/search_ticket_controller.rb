@@ -48,7 +48,7 @@ class Sl1::SearchTicketController < Sl1::AuthorizedBaseController
   private
 
   def load_search_ticket
-    @ticket = SearchTicket.find(params[:id])
+    @ticket = current_user.location.tickets.find(params[:id])
   end
 
   def check_ticket_status

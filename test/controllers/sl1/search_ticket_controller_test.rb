@@ -7,8 +7,20 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
     log_user_in(@user)
   end
 
+  should "only load tickets form user's location" do
+    sr = create(:search_ticket, location: @user.location)
+    get sl1_search_ticket_path(sr)
+    assert_response :success
+
+    not_in_location = create(:search_ticket)
+    assert_raise ActiveRecord::RecordNotFound do
+      get sl1_search_ticket_path(not_in_location)
+    end
+
+  end
+
   should "display the details for a search ticket" do
-    sr = create(:search_ticket)
+    sr = create(:search_ticket,location: @user.location)
 
     get sl1_search_ticket_path(sr)
     assert_response :success
@@ -16,7 +28,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
   end
 
   should "display the work log form only for STATUS_SEARCH_IN_PROGRESS tickets" do
-    sr = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
+    sr = create(:search_ticket, location: @user.location, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
 
     get edit_sl1_search_ticket_path(sr)
     assert_response :success
@@ -25,16 +37,16 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
 
   should "redirect to details page for EDIT and UPDATE actions if work log has been recorded or search ticket status is not STATUS_SEARCH_IN_PROGRESS" do
-    sr = create(:search_ticket, status: SearchTicket::STATUS_NEW)
+    sr = create(:search_ticket, status: SearchTicket::STATUS_NEW, location: @user.location)
     sa = create(:work_log, search_ticket: sr)
-
+    
     get edit_sl1_search_ticket_path(sr)
     assert_redirected_to sl1_search_ticket_path
 
     patch sl1_search_ticket_path(sr)
     assert_redirected_to sl1_search_ticket_path
 
-    sr = create(:search_ticket, status: SearchTicket::STATUS_RESOLVED)
+    sr = create(:search_ticket, status: SearchTicket::STATUS_RESOLVED, location: @user.location)
     get edit_sl1_search_ticket_path(sr)
     assert_redirected_to sl1_search_ticket_path
 
@@ -44,7 +56,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
 
   ### FLOW VALIDATION TESTS
   should "If Item Found: add a new work log to the ticket and change ticket status and resolution" do
-    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
+    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS, location: @user.location)
     sa1 = create(:search_area)
     sa2 = create(:search_area)
 
@@ -72,7 +84,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
   end
 
   should "If Item Not Found, add a new work log to the ticket and change ticket status" do
-    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
+    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS, location: @user.location)
     sa1 = create(:search_area)
     sa2 = create(:search_area)
 
@@ -97,7 +109,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
   ## ERROR VALIDATION TESTS
 
   should "not redirect to search ticket details if couldn't save progress" do
-    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
+    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS, location: @user.location)
     sa1 = create(:search_area)
     sa2 = create(:search_area)
 
@@ -116,7 +128,7 @@ class Sl1::SearchTicketControllerTest < ActionDispatch::IntegrationTest
   end
 
   should "not redirect to search ticket details, if no searched areas were picked" do
-    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
+    ticket = create(:search_ticket, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS, location: @user.location)
     sa1 = create(:search_area)
     sa2 = create(:search_area)
 

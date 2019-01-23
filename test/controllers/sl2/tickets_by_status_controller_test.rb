@@ -9,24 +9,25 @@ class Sl2::TicketsByStatusControllerTest < ActionDispatch::IntegrationTest
   should "show search tickets with status UNKNOWN" do
     get sl2_tickets_by_status_path
     assert_response :success
-    assert_select "[data-tickets-count]", { value: 0 }, "If no status is passed, not tickets should be displayed"
+    assert_select "._tickets_row", 0, "If no status is passed, not tickets should be displayed"
   end
 
 
   SearchTicket::STATUSES.each do |status|
     should "show search tickets with different statuses - #{status}" do
-      tickets = create_list(:search_ticket, 2, status: status)
+      tickets = create_list(:search_ticket, 2, status: status, location: @user.location)
       get sl2_tickets_by_status_path(status: status)
       assert_response :success
-      assert_select "[data-tickets-count]", { value: tickets.size }
+      assert_select ".#{status}_tickets_row", tickets.size
     end
   end
 
   should "limit the number of recently resovled to 100" do
-    tickets = create_list(:search_ticket, 101, status: status)
-    get sl2_tickets_by_status_path(status: SearchTicket::STATUS_RESOLVED)
+    status = SearchTicket::STATUS_RESOLVED
+    tickets = create_list(:search_ticket, 101, status: status, location: @user.location)
+    get sl2_tickets_by_status_path(status: status)
     assert_response :success
-    assert_select "[data-tickets-count]", { value: 100 }
+    assert_select ".#{status}_tickets_row", 100
   end
 
 

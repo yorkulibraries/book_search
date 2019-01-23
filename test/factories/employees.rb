@@ -5,6 +5,6 @@ FactoryBot.define do
     sequence(:login_id) { |n| "2002#{n+10000}" }
     role Employee::ROLE_MANAGER
     active true
-    location_id 1
+    location { create(:location)}
   end
 end

@@ -17,13 +17,13 @@ class Admin::EmployeesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create employee" do
-    assert_difference('Employee.count') do
-      post admin_employees_url, params: { employee: attributes_for(:employee) }
-    end
-
-    assert_redirected_to admin_employee_url(Employee.last)
-  end
+  # test "should create employee" do
+  #   assert_difference('Employee.count') do
+  #     post admin_employees_url, params: { employee: attributes_for(:employee) }
+  #   end
+  #
+  #   assert_redirected_to admin_employee_url(Employee.last)
+  # end
 
   test "should show employee" do
     get admin_employee_url(@employee)

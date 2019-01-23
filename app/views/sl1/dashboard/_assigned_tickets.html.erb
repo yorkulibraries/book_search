@@ -13,7 +13,7 @@
 
   <div class="container">
     <% @assigned_tickets.each do |ticket| %>
-      <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
+      <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray assigned_ticket_row">
         <div class="col-sm-7">
             <a href="<%= sl1_search_ticket_path(ticket) %>"><%= ticket.item_title %></a>
         </div>

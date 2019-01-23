@@ -1,5 +1,9 @@
 class SearchTicket < ApplicationRecord
-  # attributes:  :item_id :item_callnumber :item_title :item_author :item_volume :item_issue :item_year :item_location  :patron_id :location_id  :resolution :status  :note
+  # attributes: :item_id :item_callnumber
+  #             :item_title :item_author :item_volume
+  #             :item_issue :item_year :item_location
+  #             :patron_id :location_id  :resolution
+  #             :status  :note
 
   ## CALLBACKS
   before_create :set_status_and_resolution_before_create
@@ -51,7 +55,7 @@ class SearchTicket < ApplicationRecord
   scope :recently_updated_first, -> { order(updated_at: :desc) }
 
   paginates_per 6
-  
+
   ## METHODS
   def assigned_to_name
     if assigned_to == nil

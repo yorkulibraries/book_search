@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :role %>
-    <%= form.text_field :role, id: :employee_role %>
+    <%= form.select :role, Employee::ROLES, include_blank: true %>
   </div>
 
   <div class="field">
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :location_id %>
-    <%= form.number_field :location_id, id: :employee_location_id %>
+    <%= form.collection_select :location_id, Location.order(:name),:id,:name, include_blank: true %>
   </div>
 
   <div class="field">

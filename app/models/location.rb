@@ -7,9 +7,10 @@ class Location < ApplicationRecord
   validates_presence_of :name, :email, :ils_code
 
   ## RELATIONS
-  # has_many :search_tickets
-  # has_many :search_areas
-  # has_many :employees
+  has_many :tickets, class_name: "SearchTicket"
+  has_many :employees
+  has_many :search_areas
+
 
   ## SCOPES
 
