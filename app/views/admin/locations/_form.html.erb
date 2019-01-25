@@ -36,6 +36,11 @@
     <%= form.text_field :phone, id: :location_phone %>
   </div>
 
+  <div class="field">
+    <%= form.label :default_location %>
+    <%= form.check_box :default_location, id: :default_location %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

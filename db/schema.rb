@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419131930) do
+ActiveRecord::Schema.define(version: 20190124192109) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180419131930) do
     t.string "ils_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "default_location", default: false
   end
 
   create_table "patrons", force: :cascade do |t|

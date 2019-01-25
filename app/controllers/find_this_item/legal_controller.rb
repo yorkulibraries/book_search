@@ -21,6 +21,18 @@ class FindThisItem::LegalController < ApplicationController
       ticket.item_location = Location.all.pluck(:ils_code).sample
       @tickets<< ticket
     end
+
+    ticket = SearchTicket.new
+    ticket.item_title = Faker::Book.unique.title
+    ticket.item_callnumber = "CD #{Faker::Code.unique.asin}"
+    ticket.item_author = Faker::Book.unique.author
+    ticket.item_id = rand(2900020030020..2900020040020)
+    ticket.item_volume = "Vol 1"
+    ticket.item_issue = "Issue 2"
+    ticket.item_year = rand(1998..2017)
+    ticket.item_location = "WONDERLAND"
+    
+    @tickets<< ticket
   end
 
 

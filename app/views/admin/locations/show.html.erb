@@ -27,5 +27,10 @@
   <%= @location.phone %>
 </p>
 
+<p>
+  <strong>Default Location:</strong>
+  <%= @location.default_location %>
+</p>
+
 <%= link_to 'Edit', edit_admin_location_path(@location) %> |
 <%= link_to 'Back', admin_locations_path %>
