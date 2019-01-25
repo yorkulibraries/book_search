@@ -1,0 +1,31 @@
+<h3 class="mb-3">Alert Boxes</h3>
+
+<%= bootstrap_alert do %>
+  Something or rather
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_alert "Something or rather"
+<% end %>
+<hr/>
+
+<%= bootstrap_alert type: "danger", dismissable: true do %>
+  With dismissable button and a block
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_alert type: "danger", dismissable: true do
+    With dismissable button
+  end
+<% end %>
+
+<hr/>
+<%= bootstrap_alert type: "success", dismissable: true do %>
+  <p class="mb-0">All options, with different colour/ type</p>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_alert type: "success", dismissable: true do
+    < p class="mb-0" >All options, with different colour/type.  And html inside.< / p >
+  end
+<% end %>

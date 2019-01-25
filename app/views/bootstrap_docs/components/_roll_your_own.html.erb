@@ -1,0 +1,22 @@
+<h3 class="mb-3">Roll Your Own</h3>
+
+<p>1. Create a file YourComponentNameHelper in bootstrap directory</p>
+<%= bootstrap_code do %>
+  File: app/helpers/bootstrap/your_component_name_helper.rb
+<% end %>
+<p>2. Build the helper using rails content_div and capture methods.</p>
+<p>TIP: prefix  your helper's name with bootstrap_ to make it clear that it's a bootstrap helper.</p>
+<%= bootstrap_code do %>
+
+  # EXAMPLE of bootstrap_code helper
+
+  module bootstrapHelpers
+    module CodeHelper
+      def bootstrap_code(classes: "border border-primary pb-3", &block)
+        content = capture(&block)
+        code_tag = content_tag :code, content
+        content_tag :pre, code_tag, class: classes
+      end
+    end
+  end
+<% end %>

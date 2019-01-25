@@ -1,0 +1,64 @@
+<h3 class="mb-3">Cards</h3>
+
+<p>Options for all card helpers inlcude <code>classes: "list additional classes"</code> and
+    <code>style: "specify css style"</code></p>
+<p>Both <strong>style</strong> and <strong>classes</strong> apply to the top level div. </p>
+<p>i.e:</p>
+  <%= bootstrap_code do %>
+    bootstrap_card classes: "bg-success" do
+    ...
+    end
+
+    # RESULTS IN this output
+    < div class='card bg-success' >...< / div >
+  <% end %>
+<hr/>
+<h3>Examples</h3>
+
+<%= bootstrap_card classes: "mb-3" do %>
+  <%= bootstrap_card_body "Basic card with body" %>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_card do
+    bootstrap_card_body "Basic card with body"
+  end
+<% end %>
+<hr/>
+
+
+
+<%= bootstrap_card  classes: "border-warning mb-3" do %>
+  <%= bootstrap_card_body title: "Some title", subtitle: "Subtitle", classes: "text-warning" do %>
+   Card has a warning border.  With title, subtitle.  Text has warning colour
+  <% end %>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_card  classes: "border-warning" do
+    bootstrap_card_body title: "Some title", subtitle: "Subtitle", classes: "text-warning" do
+      Body of the card. Card has a primary border. Body has success border
+    end
+  end
+<% end %>
+
+<hr/>
+
+<%= bootstrap_card  classes: "bg-secondary text-white mb-3" do %>
+  <%= bootstrap_card_header "Header is here" %>
+  <%= bootstrap_card_body title: "Some title" do %>
+    With title, subtitle, border, header and footer. Text colour is inherited.
+  <% end %>
+  <%= bootstrap_card_footer "Footer is below" %>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_card  classes: "bg-secondary text-white" do
+    bootstrap_card_header "Header is here"
+    bootstrap_card_body title: "Some title" do
+    With title, subtitle, border, header and footer. Text colour is inherited.
+    end
+    bootstrap_card_footer "Footer is below"
+  end
+
+<% end %>

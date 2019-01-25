@@ -1,0 +1,57 @@
+<h3 class="mb-3">Tabs</h3>
+
+
+<%= bootstrap_tabs do %>
+  <%= bootstrap_tabs_item href: "#open", active: true do %>
+    Open - Active
+  <% end %>
+
+  <%= bootstrap_tabs_item "Closed", href: "#closed", classes: "append-after-nav-item" %>
+
+  <%=  bootstrap_tabs_item href: "#disabled", disabled: true do %>
+      Disabled
+  <% end %>
+<% end %>
+
+<%= bootstrap_tabs_content classes: "border border-top-0 px-2 py-3 mb-3" do %>
+  <%= bootstrap_tabs_pane "open", active: true do %>
+    Open Pane
+  <% end %>
+  <%= bootstrap_tabs_pane "closed", classes: "bg-secondary" do %>
+    Closed Pane
+  <% end %>
+  <%= bootstrap_tabs_pane "disabled" do %>
+    Disabled Pane
+  <% end %>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_tabs do
+    bootstrap_tabs_item href: "#open", active: true do
+      Open - Active
+    end
+
+    bootstrap_tabs_item "Closed", href: "#closed", classes: append-after-nav-item"
+
+    bootstrap_tabs_item href: "#disabled", disabled: true do
+      Disabled
+    end
+  end
+
+  bootstrap_tabs_content classes: "border border-top-0 px-2 py-3" do
+    bootstrap_tabs_pane "open", active: true do
+      Open Pane
+    end
+
+    bootstrap_tabs_pane "closed", classes: "bg-secondary" do
+      Closed Pane
+    end
+
+    bootstrap_tabs_pane "disabled" do
+      Disabled Pane
+    end
+
+  end
+<% end %>
+
+<hr/>

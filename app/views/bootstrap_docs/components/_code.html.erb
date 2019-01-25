@@ -1,0 +1,44 @@
+<h3 class="mb-3">Code Tag</h3>
+
+<%= bootstrap_code classes: " border border-success bg-light pb-3" do %>
+  if something
+    do something else
+  else
+    run the script
+  end
+
+  or if you just want text to be
+    printed
+      without
+        html
+        formating
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_code classes: " border border-success bg-light pb-3" do
+    if something
+      do something else
+    else
+      run the script
+    end
+
+    or if you just want text to be
+      printed
+        without
+          html
+          formating
+  end
+<% end %>
+<hr/>
+
+<%= bootstrap_code classes: "border-warning bg-success px-3 pb-3" do %>
+  If you want different padding and background
+    or just change classes
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_code classes: "border-warning bg-success px-3 pb-3" do
+    If you want different padding and background
+      or just change classes
+  end
+<% end %>

@@ -1,0 +1,103 @@
+<h3 class="mb-3">Modal Window</h3>
+<p>The more convenient way of creating and displaying modals</p>
+<p>Every helper provides <code>classes</code> and <code>style</code> arguments. Use them to modify modal.</p>
+<% show_modal_style = "position: relative; display: block; top: auto; bottom: auto; left: auto; right: auto" %>
+
+
+<%= bootstrap_modal id: "modal", show: true, style: show_modal_style do %>
+  <%= bootstrap_modal_header "Header", dismissable: true %>
+  <%= bootstrap_modal_body "WOOT" %>
+  <%= bootstrap_modal_footer "Simple Footer" %>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_modal id: "modal", show: true do
+    bootstrap_modal_header "Header", dismissable: true
+    bootstrap_modal_body "WOOT"
+    bootstrap_modal_footer "Simple Footer"
+  end
+<% end %>
+
+<hr/>
+<%= bootstrap_modal id: "modal", show: true, style: show_modal_style do %>
+  <%= bootstrap_modal_header "Header", classes: "text-white bg-success", dismissable: true %>
+  <%= bootstrap_modal_body classes: "bg-primary text-white" do %>
+    Let's write something here. <br/><a href="#">Link to something</a>
+  <% end %>
+  <%= bootstrap_modal_footer "Simple Footer" %>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_modal id: "modal", show: true do
+    bootstrap_modal_header "Header", classes: "text-white bg-success", dismissable: true
+    bootstrap_modal_body classes: "bg-primary text-white" do
+      Let's write something here. < br/ >< a href="#" >Link to something< /a >
+    bootstrap_modal_footer "Simple Footer"
+  end
+<% end %>
+
+<hr/>
+<%= bootstrap_modal id: "modal", show: true, style: show_modal_style do %>
+  <%= bootstrap_modal_header "Header", classes: "text-white bg-success", dismissable: true %>
+  <%= bootstrap_modal_body classes: "bg-primary text-white" do %>
+    Let's write something here. <br/><a href="#">Link to something</a>
+  <% end %>
+  <%= bootstrap_modal_footer do %>
+    <%= button_tag "Button", class: "btn btn-success" %>
+  <% end %>
+<% end %>
+
+<%= bootstrap_code do %>
+  bootstrap_modal id: "modal", show: true do
+    bootstrap_modal_header "Header", classes: "text-white bg-success", dismissable: true
+    bootstrap_modal_body classes: "bg-primary text-white" do
+      Let's write something here. < br/ >< a href="#" >Link to something< /a >
+    bootstrap_modal_footer do
+      button_tag "Button", class: "btn btn-success"
+    end
+  end
+<% end %>
+
+<hr/>
+<%= bootstrap_modal id: "modal_to_launch", size: "modal-lg", show: false do %>
+  <%= bootstrap_modal_header "Launched Header", dismissable: true %>
+  <%= bootstrap_modal_body do %>
+    Let's write something here. <br/><a href="#">Link to something</a><br/>
+    This is an example of using <code>size:</code> attribute. <br/>
+    <br/>
+    It's just a class name for the modal.<br/>
+    Adding more text here to show how it looks<br/>
+    When more text and breaks are applied <br/>
+    <br/>
+    <br/>
+    Like so.
+  <% end %>
+  <%= bootstrap_modal_footer do %>
+    <%= button_tag "Close Me", class: "btn btn-success", data: { dismiss: "modal" } %>
+  <% end %>
+<% end %>
+<br/>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_to_launch">
+  Launch demo modal
+</button>
+<br/>
+<br/>
+<%= bootstrap_code do %>
+  bootstrap_modal id: "modal_to_launch",size: "modal-lg", show: false do
+    bootstrap_modal_header "Launched Header", dismissable: true
+    bootstrap_modal_body do
+      Let's write something here. < br/ >< a href="#" >Link to something< /a >
+      This is an example of using < code >size:< / code > attribute. < br/ >
+      < br/ >
+      It's just a class name for the modal.
+      Adding more text here to show how it looks  < br/ >
+      When more text and breaks are applied   < br/ >
+        < br/ >
+        < br/ >
+      Like so.
+    bootstrap_modal_footer do
+      button_tag "Close me", class: "btn btn-success", data: { dismiss: "modal" }
+    end
+  end
+<% end %>

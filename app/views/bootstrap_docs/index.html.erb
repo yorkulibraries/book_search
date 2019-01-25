@@ -1,0 +1,39 @@
+<% page_title "Bootstrap Helper Docs" %>
+
+<p> Using these bootstrap helpers will make it easier later to updage Boottrap or change framework.</p>
+<p> Current Helpers are setup for Bootstrap 4.2.1. All standard Bootstrap classes can be applied to each component.</p>
+<%= bootstrap_tabs do %>
+  <%= bootstrap_tabs_item "Roll Your Own", href: "#home", active: true %>
+  <%= bootstrap_tabs_item "Alert Boxes", href: "#alerts" %>
+  <%= bootstrap_tabs_item "Tabs", href: "#tabs" %>
+  <%= bootstrap_tabs_item "Cards", href: "#cards" %>
+  <%= bootstrap_tabs_item "Code", href: "#code" %>
+  <%= bootstrap_tabs_item "Modal", href: "#modal" %>
+
+<% end %>
+
+<%= bootstrap_tabs_content classes: "border border-top-0 px-2 py-3" do %>
+
+  <%= bootstrap_tabs_pane "home", active: true do %>
+    <%= render partial: "bootstrap_docs/components/roll_your_own" %>
+  <% end %>
+
+  <%= bootstrap_tabs_pane "alerts" do %>
+    <%= render partial: "bootstrap_docs/components/alerts" %>
+  <% end %>
+  <%= bootstrap_tabs_pane "tabs" do %>
+    <%= render partial: "bootstrap_docs/components/tabs" %>
+  <% end %>
+
+  <%= bootstrap_tabs_pane "cards" do %>
+    <%= render partial: "bootstrap_docs/components/cards" %>
+  <% end %>
+
+  <%= bootstrap_tabs_pane "code" do %>
+    <%= render partial: "bootstrap_docs/components/code" %>
+  <% end %>
+
+  <%= bootstrap_tabs_pane "modal" do %>
+    <%= render partial: "bootstrap_docs/components/modal" %>
+  <% end %>
+<% end %>

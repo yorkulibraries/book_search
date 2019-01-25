@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
 
 
-
-
+  if Rails.env.development?
+    get "bootstrap_docs" => "bootstrap_docs#index"
+  end
 
   get "login/invalid" => "invalid_login#show", as: :invalid_login
   get "login" => "sessions#new"
