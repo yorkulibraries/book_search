@@ -1,6 +1,6 @@
 module Bootstrap
   module TabsHelper
-    def bootstrap_tabs(type: "tabs", id: id, classes: "", tab_tag: :ul, &block)
+    def bootstrap_tabs(type: "tabs", id: "", classes: "", tab_tag: :ul, &block)
       content = capture(&block)
       content_tag tab_tag, content, id: id, class: "nav nav-#{type} #{classes}"
     end
