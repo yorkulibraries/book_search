@@ -1,0 +1,18 @@
+<% page_title "Employee Details" %>
+<%= bootstrap_card do %>
+  <%= bootstrap_card_body title: @employee.name do %>
+    <div class="card-subtitle mb-0 text-muted">
+      <small>Last Logged In 3 days ago</small>
+    </div>
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= render partial: "ticket_stats" %>
+      </div>
+      <div class="col-md-6">
+        <%= render partial: "personal_details" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

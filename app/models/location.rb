@@ -13,6 +13,7 @@ class Location < ApplicationRecord
 
 
   ## SCOPES
+  scope :alpha, -> { order(name: :asc)}
 
   ## METHODS
 

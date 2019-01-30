@@ -1,0 +1,41 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+      <div class="font-weight-bold">Name</div>
+      <%= @employee.name %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+      <div class="font-weight-bold">Role</div>
+      <%= @employee.role.humanize.upcase %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+      <div class="font-weight-bold">Email</div>
+      <%= @employee.email %>
+    </div>
+  </li>
+  <li class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+      <div class="font-weight-bold">Location</div>
+      <%= @employee.location.name rescue nil %>
+    </div>
+  </li>
+
+  <li class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+      <div class="font-weight-bold">Access</div>
+
+      <% if @employee.active? %>
+        <p class="mb-0 text-success">Has Access</p>
+      <% else %>
+        <p class="mb-0 text-danger">Doesn't have access</p>
+      <% end %>
+    </div>
+  </li>
+  <li class="list-group-item">
+      <%= link_to 'Make Changes', edit_admin_employee_path(@employee) %>
+  </li>
+</ul>

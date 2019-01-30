@@ -1,4 +1,4 @@
-class Manager::DashboardController < AuthenticatedEmployeeController
+class Manager::DashboardController < Manager::AuthorizedBaseController
   def show
 
     today = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
