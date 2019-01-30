@@ -34,7 +34,7 @@ class RedirectorController < ApplicationController
     when Employee::ROLE_COORDINATOR
       return coordinator_dashboard_url
     when Employee::ROLE_MANAGER
-      return dashboard_url
+      return manager_dashboard_url
     else
       return dashboard_url
     end
