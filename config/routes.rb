@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  namespace :manager do
+    get 'employees/show'
+  end
+
   if Rails.env.development?
     get "bootstrap_docs" => "bootstrap_docs#index"
   end
@@ -32,6 +36,7 @@ Rails.application.routes.draw do
 
   namespace :manager do
     resource :dashboard, only: :show, controller: "dashboard"
+    resources :employees, only: [:show]
   end
 
   namespace :coordinator do

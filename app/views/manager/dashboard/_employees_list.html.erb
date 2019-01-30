@@ -1,0 +1,29 @@
+<%= bootstrap_card classes: "border border-info" do %>
+  <%= bootstrap_card_header "Employees", classes: "bg-info text-white" %>
+  <%= bootstrap_card_body classes: "p-0" do %>
+    <table class="table mb-0 table-sm">
+      <% Location.alpha.each do |loc| %>
+        <tr>
+          <th colspan="2" class="fs-90i pl-2"><%= loc.name %></th>
+        </tr>
+        <% if loc.employees.size == 0 %>
+          <tr>
+            <td colspan="2" class="pl-2 fs-80i font-weight-light text-info text-center">
+              No employees in this location
+            </td>
+          </tr>
+        <% end %>
+        <% loc.employees.by_role.each do |emp| %>
+          <tr>
+            <td class="pl-3 fs-80i">
+              <%= link_to emp.name, manager_employee_path(emp) %>
+            </td>
+            <td class="pr-3 font-weight-light text-right text-muted text-uppercase fs-65i">
+              <%= emp.role.humanize %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>

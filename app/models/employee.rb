@@ -18,7 +18,8 @@ class Employee < ApplicationRecord
   has_many :assigned_tickets, foreign_key: "assigned_to_id", class_name: "SearchTicket"
 
   ## SCOPES
-
+  scope :by_role, -> { order(:role) }
+  
   ## METHODS
   def initials
     if name != nil
