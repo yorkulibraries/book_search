@@ -1,0 +1,60 @@
+<div class="p-3 bg-white rounded box-shadow">
+  <h5 class="border-bottom border-gray pb-2 mb-0">Quick Stats</h5>
+
+  <div class="container">
+    <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray">
+      <div class="col-sm-4">
+        <span class="font-weight-light text-muted">Today</span><br/>
+
+        <div class="d-flex flex-row">
+          <div class="py-2 w-75">Created</div>
+          <div class="py-2 w-20 font-weight-bold" data-created-today="<%= @created_today %>">
+            <%= @created_today %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row">
+          <div class="py-2 w-75">Resolved</div>
+          <div class="py-2 w-20 font-weight-bold"  data-resolved-today="<%= @resolved_today %>">
+            <%= @resolved_today %>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-4">
+        <span class="font-weight-light text-muted">Yesterday</span><br/>
+
+        <div class="d-flex flex-row">
+          <div class="py-2 w-75">Created</div>
+          <div class="py-2 w-20 font-weight-bold" data-created-yesterday="<%= @created_yesterday %>">
+            <%= @created_yesterday %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row">
+          <div class="py-2 w-75">Resolved</div>
+          <div class="py-2 w-20 font-weight-bold" data-resolved-yesterday="<%= @resolved_yesterday %>">
+            <%= @resolved_yesterday %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <span class="font-weight-light text-muted">Past 7 Days</span><br/>
+        <div class="d-flex flex-row">
+          <div class="py-2 w-75">Created</div>
+          <div class="py-2 w-20 font-weight-bold" data-created-past-7-days="<%= @created_past_7_days %>">
+            <%= @created_past_7_days %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row">
+          <div class="py-2 w-75">Resolved</div>
+          <div class="py-2 w-20 font-weight-bold" data-resolved-past-7-days="<%= @resolved_past_7_days %>">
+            <%= @resolved_past_7_days %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>

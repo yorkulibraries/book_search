@@ -1,7 +1,7 @@
 module Bootstrap
   module CardsHelper
 
-    def bootstrap_card(classes: "", style: "", &block)
+    def bootstrap_card(classes: "shadow-sm", style: "", &block)
       content = capture(&block)
       content_tag :div, content, class: "card #{classes}", style: style
     end
@@ -16,8 +16,10 @@ module Bootstrap
     end
 
     def bootstrap_card_body(text = nil, title: nil, subtitle: nil, classes: "", &block)
-      title_tag = content_tag :h5, title, class: "card-title"
-      subtitle_tag = content_tag :div, subtitle, class: "card-subtitle mb-2 text-muted"
+
+      title_tag = (title == nil) ? "".html_safe : content_tag(:h5, title, class: "card-title")
+      subtitle_tag = (subtitle == nil) ? "".html_safe : content_tag(:div, subtitle, class: "card-subtitle mb-2 text-muted")
+
       content = content_tag :p, text, class: "card-text"
 
       if block_given?

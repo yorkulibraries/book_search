@@ -9,7 +9,7 @@
   <%= bootstrap_tabs_item "Cards", href: "#cards" %>
   <%= bootstrap_tabs_item "Code", href: "#code" %>
   <%= bootstrap_tabs_item "Modal", href: "#modal" %>
-
+  <%= bootstrap_tabs_item "Media", href: "#media" %>
 <% end %>
 
 <%= bootstrap_tabs_content classes: "border border-top-0 px-2 py-3" do %>
@@ -35,5 +35,9 @@
 
   <%= bootstrap_tabs_pane "modal" do %>
     <%= render partial: "bootstrap_docs/components/modal" %>
+  <% end %>
+
+  <%= bootstrap_tabs_pane "media" do %>
+    <%= render partial: "bootstrap_docs/components/media" %>
   <% end %>
 <% end %>

@@ -1,0 +1,35 @@
+<%= bootstrap_card do %>
+  <%= bootstrap_card_body title: "Admin Links", subtitle: "Manage all aspects of this applicaiton via this screen." do %>
+
+  <% admin_links = [
+    { name: "Locations", link: admin_locations_path, color: "#007aff",
+      desc: "Add and remove search areas for each location"},
+    { name: "Search Areas", link: admin_search_areas_path, color: "#007aff",
+      desc: "Add and remove search areas for each location"},
+    { name: "Employees", link: admin_employees_path, color: "#e83e8c",
+      desc: "Add and remove search areas for each location"},
+    { name: "Patrons", link: admin_patrons_path, color: "#6f42c1",
+      desc: "Add and remove search areas for each location"},
+    { name: "Search Area", link: admin_search_areas_path, color: "#007aff",
+      desc: "Add and remove search areas for each location"},
+  ] %>
+  <hr/>
+  <ul class="list-unstyled">
+    <% admin_links.each do |l| %>
+      <%= bootstrap_media tag: :li, classes: "mb-3" do %>
+        <%= bootstrap_media_image do %>
+           <%= svg_placeholder(width: 10, height: 42, color: l[:color], classes: "mr-2") rescue nil %>
+        <% end %>
+        <%= bootstrap_media_body do %>
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark"><%= l[:name] %></strong>
+            <a href="<%= l[:link] %>">Manage</a>
+          </div>
+          <span class="d-block text-gray fs-90"><%= l[:desc] %></span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <% end %>
+<% end %>
