@@ -6,7 +6,7 @@ class Admin::AuthorizedBaseController < AuthenticatedEmployeeController
 
   private
   def coordinator_employee_required
-    if current_user.role != Employee::ROLE_COORDINATOR
+    if current_user.role != Employee::ROLE_MANAGER
       redirect_to root_url, notice: "You are not authorized to use this part of the website"
     end
   end
