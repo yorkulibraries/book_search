@@ -1,0 +1,30 @@
+<%% page_title "#{@<%= singular_table_name %>.class} Details" %>
+<%%= bootstrap_card do %>
+  <%%= bootstrap_card_body title: (defined?(@<%= singular_table_name %>.name)) ? @<%= singular_table_name %>.name : "Untitled Card" do %>
+    <div class="card-subtitle mb-0 text-muted">
+      <small><%= singular_table_name.titleize %> Subtitle</small>
+    </div>
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-12">
+  
+      <ul class="list-group list-group-flush">
+      <% attributes.reject(&:password_digest?).each.with_index do |attribute, index| -%>
+  <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold"><%= attribute.human_name %></div>
+              <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+          </div>
+        </li>          
+      <% end %>
+        <li class="list-group-item">
+          <%%= link_to 'Make Changes', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-sm btn-primary' %>             
+        </li>
+      
+      </ul>
+        
+      </div>
+    </div>
+  <%% end %> <!-- card-body-->
+<%% end %> <!-- card -->

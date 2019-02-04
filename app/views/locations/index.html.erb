@@ -1,3 +1,5 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
 <h1>Locations</h1>
 
 <div class="table-responsive">
@@ -21,9 +23,9 @@
             <td><%= location.email %></td>
             <td><%= location.phone %></td>
             <td><%= location.ils_code %></td>
-            <td><%= link_to 'Show', [:admin, location], class: 'btn btn-sm btn-primary' %></td>
-            <td><%= link_to 'Edit', edit_admin_location_path(location), class: 'btn btn-sm btn-secondary' %></td>
-            <td><%= link_to 'Destroy', [:admin, location], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+            <td><%= link_to 'Show', location, class: 'btn btn-sm btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_location_path(location), class: 'btn btn-sm btn-secondary' %></td>
+          <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
@@ -31,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Location', new_admin_location_path, class: 'btn btn-md btn-success' %>
+<%= link_to 'New Location', new_location_path, class: 'btn btn-md btn-success' %>
