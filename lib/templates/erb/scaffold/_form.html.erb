@@ -1,4 +1,15 @@
+
 <%# frozen_string_literal: true %>
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h4 class="card-title"><%= singular_table_name.titleize %></h4>
+        <h5 class="card-subtitle mb-2 text-muted"><span class="badge badge-info"><%= __FILE__ %></span></h5> 
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
 <%%= simple_form_for(@<%= singular_table_name %>) do |f| %>
   <%%= f.error_notification %>
   <%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -8,8 +19,12 @@
     <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
   <%- end -%>
   </div>
-
+  <hr/>
   <div class="form-actions">
-    <%%= f.button :submit %>
+    <%%= f.button :submit, class: "btn btn-md btn-success" %>
+    <%%= link_to "Cancel", <%= index_helper %>_path, class:"btn btn-danger" %>
   </div>
 <%% end %>
+  <br/>
+  </div> <!-- card body close -->
+</div> <!-- card close -->

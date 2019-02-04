@@ -18,6 +18,11 @@
 !/log/.keep
 !/tmp/.keep
 
+# Local Experiments
+*.bak
+*.bk
+*.bk.*
+
 /node_modules
 /yarn-error.log
 
