@@ -9,14 +9,14 @@ module Bootstrap
     def bootstrap_media_body(title: nil, body: nil, title_classes: "", classes: "", style: "", id: "", &block)
       if block_given?
         content = capture(&block)
-        content_tag(:div, content, class: "media-body #{classes}", id: id)     
+        content_tag(:div, content, class: "media-body #{classes}", id: id)
       else
         title_tag = content_tag(:h5, title, class: "mt-0 #{title_classes}")
         content_tag(:div, title_tag + body.html_safe, class: "media-body #{classes}", id: id)
       end
     end
 
-    def bootstrap_media_image(src: nil, align: "top", classes: "", &block)
+    def bootstrap_media_image(src: nil, align: "top", classes: "", width: "" , height: "", style: "", &block)
       if block_given?
         yield block
       else
@@ -28,7 +28,7 @@ module Bootstrap
         else
           align_class = "align-self-start"
         end
-        content_tag(:img, img_src, class: "#{align_class} mr-3 #{classes}")
+        content_tag(:img, "", src: src, class: "#{align_class} mr-3 #{classes}", width: width, height: height, style: style)
       end
     end
 

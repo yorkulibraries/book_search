@@ -1,3 +1,34 @@
 <h3 class="mb-3">Media Tag</h3>
 
 <p>TIP: Image Align option only works if you pass an img_src url. If you use SVG, it will always align with the top, unless you specify media alignment class.</p>
+<%= bootstrap_media do %>
+  <%= svg_placeholder(width: 64, height: 64, classes: "mr-3 rounded") %>
+  <%= bootstrap_media_body title: "Some Title", body: "Some body example" %>
+<% end %>
+
+
+<%= bootstrap_code do %>
+  < %= bootstrap_media do % >
+    < %= svg_placeholder(width: 64, height: 64, classes: "mr-3 rounded") % >
+    < %= bootstrap_media_body title: "Some Title", body: "Some body example" % >
+  < % end % >
+<% end %>
+<hr/>
+
+<%= bootstrap_media do %>
+  <%= bootstrap_media_image src:"https://hcil.umd.edu/wp-content/uploads/2015/12/Apple-logo.png",
+    width: 48, height: 48, classes: "border border-info rounded"%>
+  <%= bootstrap_media_body title: "Some Title" do %>
+    Body in a block. Title is not displayed. have to do it manually
+  <% end %>
+<% end %>
+
+<%= bootstrap_code do %>
+  < %= bootstrap_media do % >
+    < %= bootstrap_media_image src:"https://hcil.umd.edu/wp-content/uploads/2015/12/Apple-logo.png",
+      width: 48, height: 48, classes: "border border-info rounded"% >
+    < %= bootstrap_media_body title: "Some Title" do % >
+      Body in a block. Title is not displayed. have to do it manually
+    < % end % >
+  < % end % >
+<% end %>
