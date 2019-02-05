@@ -40,36 +40,36 @@ class FindThisItem::RequestHelpControllerTest < ActionDispatch::IntegrationTest
   #   assert_equal ticket.location.ils_code, Location.first.ils_code
   # end
   should "NEW/UNKNOWN LOCATION: Set ticket.location to default location" do
-    
+
     ## RESET TEST DATA
     Location.all.each do |loc|
       loc.default_location = false
       loc.save
     end
-    
+
     ## SET TO HAVE ATLEAST ONE DEFAULT LOCATION
     dl = Location.first
     dl.default_location = true
     dl.save
-    
+
     # puts "Default Location: #{dl.name} | #{dl.ils_code} | #{dl.default_location}"
-    
+
     @item_data["item_location"] = "SOMETHING that DOES NOT MATCH"
-    get find_this_item_legal_url, 
+    get find_this_item_legal_url,
       params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
-    
+
     get find_this_item_request_help_url, params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
-    
+
     ticket = SearchTicket.last
-    
+
     # post find_this_item_request_help_url
     # ticket = SearchTicket.last
-    puts "SEARCH TICKET #{ticket.inspect}"
+    #puts "SEARCH TICKET #{ticket.inspect}"
 
     new_location = Location.where(ils_code: ticket.location.ils_code, default_location: true).first
     assert_equal ticket.location.ils_code, new_location.ils_code
-    assert_equal new_location.default_location, true    
-      
+    assert_equal new_location.default_location, true
+
   end
   should "NEW/UNKNOWN LOCATION: Create new location if no default location" do
     @locations = Location.all
@@ -81,16 +81,16 @@ class FindThisItem::RequestHelpControllerTest < ActionDispatch::IntegrationTest
 
     @item_data["item_location"] = "SOMETHING that DOES NOT MATCH"
 
-    get find_this_item_legal_url, 
+    get find_this_item_legal_url,
       params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
-    
-    get find_this_item_request_help_url, 
+
+    get find_this_item_request_help_url,
       params: { item: @item_data.to_json }, headers: { "HTTP_REFERER" =>  "test" }
 
     ## Check if Location was added
     # puts "Location Count After: #{Location.all.count}"
     # puts  Location.all.inspect
-    
+
     assert_equal @item_data["item_location"], Location.where(ils_code: @item_data["item_location"]).first.ils_code
 
     ticket = SearchTicket.last
@@ -98,7 +98,7 @@ class FindThisItem::RequestHelpControllerTest < ActionDispatch::IntegrationTest
 
     new_location = @locations.where(ils_code: ticket.location.ils_code).first
     assert_equal ticket.location.ils_code, new_location.ils_code
-    
+
   end
 
 

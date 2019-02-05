@@ -36,7 +36,7 @@
         <%= render partial: "layouts/navbars/search_bar" %>
       <% end %>
 
-      <% if current_user.role == Employee::ROLE_MANAGER %>
+      <% if session[:user_type] == Employee.to_s && current_user.role == Employee::ROLE_MANAGER %>
         <%= render partial: "layouts/navbars/admin" %>
       <% end %>
 

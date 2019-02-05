@@ -30,7 +30,7 @@ class RedirectorControllerTest < ActionDispatch::IntegrationTest
   should "redirect to MANAGER dashboard if user is Employee and MANAGER" do
     log_user_in(@manager)
     get root_url
-    assert_redirected_to dashboard_path
+    assert_redirected_to manager_dashboard_path
   end
 
   should "redirect to SL1 dashboard if user is Employee and COORDINATOR" do
