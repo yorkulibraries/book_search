@@ -1,31 +1,32 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <h1>Search Areas</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Primary</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @search_areas.each do |search_area| %>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead class="">
       <tr>
-        <td><%= search_area.name %></td>
-        <td><%= search_area.location_id %></td>
-        <td><%= search_area.primary %></td>
-        <td><%= link_to 'Show', [:admin, search_area] %></td>
-        <td><%= link_to 'Edit', edit_admin_search_area_path(search_area) %></td>
-        <td><%= link_to 'Destroy', [:admin, search_area], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th scope="col">Name</th>
+          <th scope="col">Location</th>
+          <th scope="col">Primary</th>
+          <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @search_areas.each do |search_area| %>
+        <tr>
+            <td><%= search_area.name %></td>
+            <td><%= search_area.location_id %></td>
+            <td><%= search_area.primary %></td>
+            <td><%= link_to 'Show', admin_search_area_path(search_area), class: 'btn btn-sm btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_admin_search_area_path(search_area), class: 'btn btn-sm btn-secondary' %></td>
+          <td><%= link_to 'Destroy', admin_search_area_path(search_area), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <br>
 
-<%= link_to 'New Search Area', new_admin_search_area_path %>
+<%= link_to 'New Search Area', new_admin_search_area_path, class: 'btn btn-md btn-success' %>
