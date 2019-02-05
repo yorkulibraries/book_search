@@ -1,0 +1,19 @@
+<li class="nav-item dropdown">
+  <a class="nav-link" href="#" id="user_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= icon("fas", "search") %>
+  </a>
+  <div class="dropdown-menu p-2" aria-labelledby="logout">
+    <form action="<%= search_url %>" class="form-inline">
+
+      <div class="input-group" style="width: 200px;">
+        <input class="form-control" type="text" placeholder="Ticket or Item ID" aria-label="ID or ITEM ID" name="q" value="<%= @search_query rescue nil%>">
+
+        <div class="input-group-append">
+         <button class="btn btn-outline-secondary" type="submit" id="button-addon1">
+           <%= icon("fas", "search") %>
+         </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</li>

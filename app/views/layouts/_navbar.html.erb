@@ -19,35 +19,36 @@
         <% elsif current_user.role == Employee::ROLE_COORDINATOR %>
           <%= render partial: "layouts/navbars/coordinator" %>
         <% elsif current_user.role == Employee::ROLE_MANAGER %>
-          <%= render partial: "layouts/navbars/admin" %>
+          <%= render partial: "layouts/navbars/manager" %>
         <% end %>
 
       <% elsif session[:user_type] == Patron.to_s %>
         <%= render partial: "layouts/navbars/patron" %>
       <% end %>
-    </ul>
 
-    <ul class="navbar-nav ml-auto">
       <% if Rails.env.development? %>
         <%= render partial: "layouts/navbars/dev" %>
       <% end %>
+    </ul>
 
+    <ul class="navbar-nav ml-auto">
       <% if session[:user_type] == Employee.to_s %>
-        <form action="<%= search_url %>" class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Ticket or Item ID"
-            aria-label="ID or ITEM ID" name="q" value="<%= @search_query rescue nil%>">
-          <button class="btn btn-default my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <%= render partial: "layouts/navbars/search_bar" %>
       <% end %>
 
-      <li class="nav-item">
-        &nbsp;
-        <span class="d-inline-flex p-2 fwf border rounded-circle bg-default text-white">
-          <%= current_user.initials rescue nil %>
-        </span>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= logout_path%>">Log Out</a>
+      <% if current_user.role == Employee::ROLE_MANAGER %>
+        <%= render partial: "layouts/navbars/admin" %>
+      <% end %>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="user_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="border rounded text-white p-1">
+              <%= current_user.initials rescue nil %>
+          </span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="logout">
+          <a class="dropdown-item" href="<%= logout_path%>">Log Out</a>
+        </div>
       </li>
     </ul>
 
