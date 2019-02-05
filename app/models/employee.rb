@@ -16,10 +16,11 @@ class Employee < ApplicationRecord
   belongs_to :location
   has_many :tickets_in_location, -> (e) { where(location_id: e.location_id) }, foreign_key: "assigned_to_id", class_name: "SearchTicket"
   has_many :assigned_tickets, foreign_key: "assigned_to_id", class_name: "SearchTicket"
-
+  has_many :work_logs, class_name: "SearchTicket::WorkLog"
+  
   ## SCOPES
   scope :by_role, -> { order(:role) }
-  
+
   ## METHODS
   def initials
     if name != nil

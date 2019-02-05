@@ -39,13 +39,14 @@ gem 'jbuilder', '~> 2.5'
 #gem 'bcrypt', '~> 3.1.7'
 
 gem 'simple_form', "4.0.0"
-gem "font-awesome-rails", "4.7.0.4" ## Font-Icons
+#gem "font-awesome-rails", "4.7.0.4" ## Font-Icons
+gem 'font-awesome-sass', '~> 5.6.1'
 
 gem "chunky_png", "1.3.10"
 gem "barby", "0.6.5"
 
 ## For paging of view data. Rubygem outdated at 0.17. Needed to use github @ 1.1.1
-gem 'kaminari', :git => 'https://github.com/kaminari/kaminari' 
+gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 
 
 ## DEPLOYMENT
@@ -82,10 +83,10 @@ group :development, :test do
   gem 'populator', git: "https://github.com/norikt/populator.git"
 
   #gem 'minitest-rails-capybara'
-  
+
   ## FIX Readline error with version 6 as version 7 is installed by homebrew
   gem 'rb-readline'
-  
+
 end
 
 group :development do

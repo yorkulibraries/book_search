@@ -1,5 +1,5 @@
 class SearchTicket::WorkLog < ApplicationRecord
-    # attributes:  :search_ticket_id :employee_id :result :found_location :note, :work_type
+  # attributes:  :search_ticket_id :employee_id :result :found_location :note, :work_type
 
   ## CALLBACKS
   before_create :set_resolution_before_create
@@ -33,7 +33,9 @@ class SearchTicket::WorkLog < ApplicationRecord
 
   ## SCOPES
   default_scope { order(created_at: :desc) }
-  
+  scope :resolved_found, -> { where(result: RESULT_FOUND) }
+  scope :under_review, -> { where(result: RESULT_NOT_FOUND).where(work_type: WORK_TYPE_REVIEW)}
+  scope :in_acquisitions, -> { where(result: RESULT_SENT_TO_ACQUISITIONS) }
   ## METHODS
 
   def employee_name
