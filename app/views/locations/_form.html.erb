@@ -5,12 +5,14 @@
     <div class="row">
       <div class="col-md-12 col-sm-12">
         <h4 class="card-title">Location</h4>
-        <h5 class="card-subtitle mb-2 text-muted"><span class="badge badge-info"></span></h5> 
+        <h5 class="card-subtitle mb-2 text-muted"><span class="badge badge-info">/Users/sadaqain/dev/book_search/lib/templates/erb/scaffold/_form.html.erb</span></h5> 
       </div>
     </div>
   </div>
   <div class="card-body">
-<%= simple_form_for([:admin, @location]) do |f| %>
+<%= simple_form_for(@location) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <%= f.input :name %>
@@ -22,7 +24,7 @@
   <hr/>
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-md btn-success" %>
-    <%= link_to "Cancel", admin_locations_path, class:"btn btn-danger" %>
+    <%= link_to "Cancel", locations_path, class:"btn btn-danger" %>
   </div>
 <% end %>
   <br/>
