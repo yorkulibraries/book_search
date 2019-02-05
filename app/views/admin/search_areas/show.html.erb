@@ -1,19 +1,41 @@
-<p id="notice"><%= notice %></p>
+<% page_title "#{@search_area.class} Details" %>
+<%= bootstrap_card do %>
+  <%= bootstrap_card_body title: (defined?(@search_area.name)) ? @search_area.name : "Untitled Card" do %>
+    <div class="card-subtitle mb-0 text-muted">
+      <small>Search Area Subtitle</small>
+    </div>
+    <hr/>
 
-<p>
-  <strong>Name:</strong>
-  <%= @search_area.name %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @search_area.location_id %>
-</p>
-
-<p>
-  <strong>Primary:</strong>
-  <%= @search_area.primary %>
-</p>
-
-<%= link_to 'Edit', edit_admin_search_area_path(@search_area) %> |
-<%= link_to 'Back', admin_search_areas_path %>
+    <div class="row">
+      <div class="col-md-12">
+  
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Name</div>
+              <%= @search_area.name %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Location</div>
+              <%= @search_area.location_id %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Primary</div>
+              <%= @search_area.primary %>
+          </div>
+        </li>          
+      
+        <li class="list-group-item">
+          <%= link_to 'Make Changes', edit_admin_search_area_path(@search_area), class: 'btn btn-sm btn-primary' %>             
+        </li>
+      
+      </ul>
+        
+      </div>
+    </div>
+  <% end %> <!-- card-body-->
+<% end %> <!-- card -->

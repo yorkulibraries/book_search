@@ -1,31 +1,30 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Patrons</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Login</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @patrons.each do |patron| %>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead class="">
       <tr>
-        <td><%= patron.name %></td>
-        <td><%= patron.email %></td>
-        <td><%= patron.login_id %></td>
-        <td><%= link_to 'Show', [:admin, patron] %></td>
-        <td><%= link_to 'Edit', edit_admin_patron_path(patron) %></td>
-        <td><%= link_to 'Destroy', [:admin, patron], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Login</th>
+          <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @patrons.each do |patron| %>
+        <tr>
+            <td><%= patron.name %></td>
+            <td><%= patron.email %></td>
+            <td><%= patron.login_id %></td>
+            <td><%= link_to 'Show', admin_patron_path(patron), class: 'btn btn-sm btn-primary' %></td>
+          <td><%= link_to 'Edit', edit_admin_patron_path(patron), class: 'btn btn-sm btn-secondary' %></td>
+          <td><%= link_to 'Destroy', admin_patron_path(patron), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <br>
 
-<%= link_to 'New Patron', new_admin_patron_path %>
+<%= link_to 'New Patron', new_admin_patron_path, class: 'btn btn-md btn-success' %>

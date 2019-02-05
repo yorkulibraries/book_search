@@ -1,32 +1,30 @@
-<%= form_with(model: [:admin, search_area], local: true) do |form| %>
-  <% if search_area.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(search_area.errors.count, "error") %> prohibited this search_area from being saved:</h2>
 
-      <ul>
-      <% search_area.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h4 class="card-title">Search Area</h4>
+        <h5 class="card-subtitle mb-2 text-muted"><span class="badge badge-info">Subtitle</span></h5> 
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :search_area_name %>
   </div>
+  <div class="card-body">
+<%= simple_form_for([:admin, @search_area]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="field">
-    <%= form.label :location_id %>
-    <%= form.number_field :location_id, id: :search_area_location_id %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :location_id %>
+    <%= f.input :primary %>
   </div>
-
-  <div class="field">
-    <%= form.label :primary %>
-    <%= form.check_box :primary, id: :search_area_primary %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <hr/>
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-md btn-success" %>
+    <%= link_to "Cancel", admin_search_areas_path, class:"btn btn-danger" %>
   </div>
 <% end %>
+  <br/>
+  </div> <!-- card body close -->
+</div> <!-- card close -->
