@@ -18,4 +18,12 @@ class PatronTest < ActiveSupport::TestCase
     assert ! build(:patron, login_id: patron.login_id).valid?, "Should be invalid since patron with login is created already"
   end
 
+  should "return true if employee is also manager, false otherwise" do
+    p = create(:patron)
+    assert ! p.is_also_employee?
+
+    e = create(:employee)
+    assert e.patron.is_also_employee?
+  end
+
 end

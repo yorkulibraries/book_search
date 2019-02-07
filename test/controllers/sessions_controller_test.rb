@@ -61,9 +61,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   context "Patron" do
-    should "Not be able to see coordinator pages, even if they have the same id" do
-      @patron.id = 1; @patron.save
-      @employee.id = 1; @employee.save
+    should "Not be able to see coordinator pages" do
 
       get login_url, headers: { "#{@cas_login_id}" => @patron.login_id }
       assert_response :redirect

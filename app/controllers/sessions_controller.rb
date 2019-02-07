@@ -65,9 +65,9 @@ class SessionsController < ApplicationController
     when Employee::ROLE_LEVEL_TWO
       Employee.where(role: Employee::ROLE_LEVEL_TWO).first.login_id
     when "patron"
-      Patron.first.login_id
+      Patron.last.login_id
     else
-      Patron.first.login_id
+      Patron.last.login_id
     end
   end
 

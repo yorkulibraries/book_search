@@ -1,5 +1,12 @@
 <li class="nav-item">
   <a class="nav-link" href="<%=patron_my_tickets_path %>"aria-haspopup="true" aria-expanded="false">
-    My Tickets
+    <%= icon("fas", "list-ol") %> My Tickets
   </a>
 </li>
+<% if current_patron.is_also_employee? %>
+  <li class="nav-item">
+    <a class="nav-link" href="<%= root_path %>">
+      <%= icon("fas", "tachometer-alt") %> Back to Dashboard
+    </a>
+  </li>
+<% end %>
