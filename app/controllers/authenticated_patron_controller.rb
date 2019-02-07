@@ -6,7 +6,7 @@ class AuthenticatedPatronController < ApplicationController
   end
 
   def login_required
-    unless logged_in?      
+    unless logged_in?
       session[:redirect_to_url] = request.fullpath unless request.fullpath == login_path
       redirect_to login_url, alert: "You must login before accessing this page"
     end
@@ -14,9 +14,7 @@ class AuthenticatedPatronController < ApplicationController
 
   def current_user
     # Looking up users by login_id, because that is unique.
-    # One Patron ID could be the same as Employee ID
-    # So that creates bit of confusion, Employee ID 1 and Patron ID 1
-    @current_user = Patron.find_by_login_id(session[:login_id])
+    @current_user = Patron.find_by_login_id(session[:login_id])    
   end
   helper_method :current_user
 

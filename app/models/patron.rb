@@ -28,4 +28,8 @@ class Patron < ApplicationRecord
       return "##"
     end
   end
+
+  def is_also_employee?
+    Employee.find_by_login_id(login_id) ? true : false
+  end
 end

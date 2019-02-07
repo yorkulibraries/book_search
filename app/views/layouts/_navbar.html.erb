@@ -8,21 +8,9 @@
 
 
     <ul class="navbar-nav mr-auto">
-      <% if current_user && session[:user_type] == Employee.to_s %>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= root_path %>">Dashboard <span class="sr-only">(current)</span></a>
-        </li>
-        <% if current_user.role == Employee::ROLE_LEVEL_ONE %>
-          <%= render partial: "layouts/navbars/sl1" %>
-        <% elsif current_user.role == Employee::ROLE_LEVEL_TWO %>
-          <%= render partial: "layouts/navbars/sl2" %>
-        <% elsif current_user.role == Employee::ROLE_COORDINATOR %>
-          <%= render partial: "layouts/navbars/coordinator" %>
-        <% elsif current_user.role == Employee::ROLE_MANAGER %>
-          <%= render partial: "layouts/navbars/manager" %>
-        <% end %>
-
-      <% elsif session[:user_type] == Patron.to_s %>
+      <% if current_user.class.name == Employee.to_s %>
+        <%= render partial: "layouts/navbars/employee" %>
+      <% elsif current_user.class.name == Patron.to_s %>
         <%= render partial: "layouts/navbars/patron" %>
       <% end %>
 
@@ -32,18 +20,18 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <% if session[:user_type] == Employee.to_s %>
+      <% if current_user.class.name == Employee.to_s %>
         <%= render partial: "layouts/navbars/search_bar" %>
 
         <li class="nav-item">
-          <a class="nav-link" href="#" title="Your Patron Account">
+          <a class="nav-link" href="<%= patron_my_tickets_url %>" title="Your Patron Account">
             <%= icon("fas", "user-graduate") %>
           </a>
         </li>
-      <% end %>
 
-      <% if session[:user_type] == Employee.to_s && current_user.role == Employee::ROLE_MANAGER %>
-        <%= render partial: "layouts/navbars/admin" %>
+        <% if current_user.role == Employee::ROLE_MANAGER %>
+          <%= render partial: "layouts/navbars/admin" %>
+        <% end %>
       <% end %>
 
 
