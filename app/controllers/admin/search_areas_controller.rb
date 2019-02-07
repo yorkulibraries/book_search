@@ -4,6 +4,7 @@ class Admin::SearchAreasController <  Admin::AuthorizedBaseController
   # GET /search_areas
   # GET /search_areas.json
   def index
+    @locations = Location.all
     @search_areas = SearchArea.all
   end
 

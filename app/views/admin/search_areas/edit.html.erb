@@ -1,3 +1,12 @@
-<h1>Editing Search Area</h1>
+<% page_title "Edit Search Area" %>
+<%= bootstrap_card do %>
+  <%= bootstrap_card_body title: @search_area.name do %>
+    <%= render 'form', search_area: @search_area %>
+  <% end %>
+<% end %>
 
-<%= render 'form', search_area: @search_area %>
+
+<div class="alert alert-danger py-5 d-flex justify-content-between align-items-center" role="alert">
+  Remove this Search Area? It might cause some issues with the rest of the application.
+  <%= link_to 'Delete Permanently', admin_search_area_path(@search_area), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+<div>

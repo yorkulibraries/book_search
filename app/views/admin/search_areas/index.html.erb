@@ -1,6 +1,55 @@
-<!-- <p id="notice"><%= notice %></p> -->
+<% page_title "Search Areas - ADMIN" %>
+
+
+
+<%= bootstrap_card do %>
+  <%= bootstrap_card_header classes: "d-flex justify-content-between align-items-center" do %>
+    Search Areas
+    <%= link_to 'Add a Search Area', new_admin_search_area_path, class: 'btn btn-sm btn-success' %>
+  <% end %>
+  <%= bootstrap_card_body do %>
+
+    <div class="d-flex flex-row flex-wrap align-items-start justify-content-around mb-3">
+    <% @locations.each do |l| %>
+      <div class="col-sm-5 mt-3 mr-1 pt-3 border rounded">
+      <h4><%= l.name %></h4>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item font-weight-bold border-top-0 pl-0">Primary</li>
+        <% l.search_areas.primary.each do |sa| %>
+        <li class="list-group-item py-1 pl-4 d-flex justify-content-between align-items-center">
+          <%= sa.name %>
+          <small>
+          <%= link_to edit_admin_search_area_path(sa), class: 'text-secondary font-weight-light' do %>
+            <%= icon("fas", "edit") %> Edit
+          <% end %>
+          </small>
+        </li>
+        <% end %>
+        <li class="list-group-item font-weight-bold pl-0">Secondary</li>
+        <% l.search_areas.secondary.each do |sa| %>
+        <li class="list-group-item py-2 pl-4  d-flex justify-content-between align-items-center">
+          <%= sa.name %>
+          <small>
+          <%= link_to edit_admin_search_area_path(sa), class: 'text-secondary font-weight-light' do %>
+            <%= icon("fas", "edit") %> Edit
+          <% end %>
+          </small>
+        </li>
+        <% end %>
+      </ul>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+
+
 
 <h1>Search Areas</h1>
+
+
+
 
 <div class="table-responsive">
   <table class="table table-striped table-sm">
@@ -28,5 +77,3 @@
   </table>
 
 <br>
-
-<%= link_to 'New Search Area', new_admin_search_area_path, class: 'btn btn-md btn-success' %>
