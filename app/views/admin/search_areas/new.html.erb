@@ -1,5 +1,6 @@
-
-<h1>New Search Area</h1>
-
-<%= render 'form', search_area: @search_area %>
-<br/>
+<% page_title "Add Search Area" %>
+<%= bootstrap_card do %>
+  <%= bootstrap_card_body title: @search_area.name do %>
+    <%= render 'form', search_area: @search_area %>
+  <% end %>
+<% end %>
