@@ -34,11 +34,18 @@
     <ul class="navbar-nav ml-auto">
       <% if session[:user_type] == Employee.to_s %>
         <%= render partial: "layouts/navbars/search_bar" %>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#" title="Your Patron Account">
+            <%= icon("fas", "user-graduate") %>
+          </a>
+        </li>
       <% end %>
 
       <% if session[:user_type] == Employee.to_s && current_user.role == Employee::ROLE_MANAGER %>
         <%= render partial: "layouts/navbars/admin" %>
       <% end %>
+
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="user_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

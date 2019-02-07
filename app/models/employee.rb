@@ -17,9 +17,13 @@ class Employee < ApplicationRecord
   has_many :tickets_in_location, -> (e) { where(location_id: e.location_id) }, foreign_key: "assigned_to_id", class_name: "SearchTicket"
   has_many :assigned_tickets, foreign_key: "assigned_to_id", class_name: "SearchTicket"
   has_many :work_logs, class_name: "SearchTicket::WorkLog"
-  
+
   ## SCOPES
   scope :by_role, -> { order(:role) }
+
+  #callbacks
+  after_create :create_patron_account
+
 
   ## METHODS
   def initials
@@ -28,5 +32,15 @@ class Employee < ApplicationRecord
     else
       return "##"
     end
+  end
+
+  def create_patron_account
+    patron = Patron.build_new_user(login_id, email, name)
+    patron.save(validate: false)
+  end
+
+
+  def patron
+    Patron.find_by_login_id(login_id)
   end
 end

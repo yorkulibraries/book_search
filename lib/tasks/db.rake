@@ -5,14 +5,15 @@ namespace :db do
   task populate: :environment do
     require 'faker'
     require 'populator'
-    
+
     # CLEAR THE DATABASE FIRST
     [SearchTicket, Patron, Employee, Location, SearchArea, SearchTicket::WorkLog, SearchTicket::SearchedArea].each(&:delete_all)
 
     ils_codes = ["SCOTT", "STEACIE", "FROST", "BRONFMAN"]
+    location_names = ["Scott Library", "Steacie Library", "Frost Library", "Bronfman Library"]
 
     Location.populate(4) do |l|
-      l.name = Faker::HarryPotter.location
+      l.name = location_names.pop
       l.address = Faker::HarryPotter.house
       l.email = Faker::Internet.safe_email(l.name)
       l.phone = Faker::PhoneNumber.extension
@@ -28,13 +29,17 @@ namespace :db do
     location_ids = Location.ids
     roles = Employee::ROLES
 
-    Employee.populate(roles.size) do |e|
+    # Has to manually add employees in order to generate patron accounts for them
+    roles.each_with_index do |role, index|
+      e = Employee.new
       e.name = Faker::FamilyGuy.unique.character
       e.email = Faker::Internet.safe_email(e.name)
-      e.role = roles.pop
-      e.login_id = 8021..9021
-      e.location_id = location_ids
+      e.role = role
+      e.login_id = "111000222000#{index}"
+      e.location_id = location_ids.pop
       e.active = true
+      e.save
+      puts "Adding Employee With Role: #{role}"
     end
 
     employee_ids = Employee.ids
@@ -44,8 +49,9 @@ namespace :db do
       patron.email = Faker::Internet.safe_email(patron.name)
       patron.login_id = Faker::Number.unique.number(9)
     end
-    patron_ids = Patron.ids
 
+    patron_ids = Patron.ids
+    location_ids = Location.ids
 
     SearchTicket::STATUSES.each do |status|
 
@@ -99,6 +105,13 @@ namespace :db do
 
     end # Statuses loop
 
-  end # End of Loop of Tables
+    ## LOOP through the Search Tickets and fix locations for assigned tickets
+    ## Locations should be the same as assigned_to user's locaiton
+    SearchTicket.where.not(assigned_to_id: 0).each do |t|
+      t.location = t.assigned_to.location
+      t.save
+    end
+
+  end # END OF TASK
 
 end # End of Namespace db
