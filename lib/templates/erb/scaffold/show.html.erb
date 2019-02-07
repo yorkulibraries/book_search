@@ -19,7 +19,8 @@
         </li>          
       <% end %>
         <li class="list-group-item">
-          <%%= link_to 'Make Changes', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-sm btn-primary' %>             
+          <%%= link_to 'Make Changes', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-sm btn-primary' %>
+          <%%= link_to "View All", admin_<%= singular_table_name %>_path, class:"btn btn-sm btn-danger" %>
         </li>
       
       </ul>
