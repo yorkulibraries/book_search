@@ -32,8 +32,7 @@ class Sl2::StartSearchesController < Sl2::AuthorizedBaseController
 
       end ## is_a?(Array) close
 
-      # redirect_to sl1_assigned_to_me_tickets_path, notice: "Successfully assigned tickets"
-      redirect_to sl2_dashboard_path, notice: "Successfully assigned tickets"
+      redirect_to sl2_search_ticket_path(@ticket), notice: "Successfully assigned tickets"
 
     else
       # redirect_to sl1_new_tickets_url, error: "Could not assign tickets due to Error."
