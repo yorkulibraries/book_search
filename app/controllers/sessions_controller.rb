@@ -15,13 +15,16 @@ class SessionsController < ApplicationController
 
     # IMPROTANT: check if Employee is logging in first
     user = Employee.find_by_login_id(login_id)
+
     # IMPORTANT: check if Patron is logging in second
-    user = Patron.find_by_login_id(login_id) if user == nil
+    if user == nil
+      user = Patron.find_by_login_id(login_id)
+    end
 
     if user
       session[:user_id] = user.id
       session[:login_id] = user.login_id
-      session[:user_type] = user.class.name      
+      session[:user_type] = user.class.name
       ## Redirect to root, which will decide where to redirect to later
       redirect_to root_url, notice: "Welcome back #{user.name}!"
     else

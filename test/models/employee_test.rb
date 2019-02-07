@@ -37,5 +37,20 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
 
+  should "should create a patron account for employee" do
+    e = build(:employee)
+    assert e.patron == nil
+
+    assert_difference "Patron.count" do
+      e.save
+    end
+
+    assert e.patron != nil
+    assert_equal e.patron.login_id, e.login_id
+    assert_equal e.patron.name, e.name
+    assert_equal e.patron.email, e.email
+
+  end
+
 
 end

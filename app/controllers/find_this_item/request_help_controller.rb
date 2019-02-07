@@ -5,24 +5,25 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
     item = JSON.parse(session[FindThisItem::LegalController::SESSION_ITEM_DATA])
     #item = JSON.parse(params[:item])
 
-    ticket = SearchTicket.new(item)
+    ticket = SearchTicket.new(item)    
     ticket.patron = current_user
+
 
     # Ensure Location is properly matched. If not matched use the first location in the list
     # Later, we might add default import location attribute to the Location model.
     l  = Location.find_by_ils_code(ticket.item_location.strip)
-    
+
     if l == nil
       dl = Location.where(default_location: true).first
-      if dl != nil 
+      if dl != nil
         # Set it to default location
-        l = dl  
+        l = dl
       else
         # Create New Location and Set it to default
-        l = Location.create(name:ticket.item_location.strip, email: "something@somthing.com", ils_code: ticket.item_location.strip, default_location: true) 
+        l = Location.create(name:ticket.item_location.strip, email: "something@somthing.com", ils_code: ticket.item_location.strip, default_location: true)
       end
-    end    
-      
+    end
+
     ticket.location = l
     ticket.status = SearchTicket::STATUS_NEW
 
@@ -71,17 +72,17 @@ class FindThisItem::RequestHelpController < AuthenticatedPatronController
     # Ensure Location is properly matched. If not matched use the first location in the list
     # Later, we might add default import location attribute to the Location model.
     l  = Location.find_by_ils_code(ticket.item_location.strip)
-    
+
     if l == nil
       dl = Location.where(default_location: true).first
-      if dl != nil 
+      if dl != nil
         # Set it to default location
-        l = dl  
+        l = dl
       else
         # Create New Location and Set it to default
-        l = Location.create(name:ticket.item_location.strip, email: "something@somthing.com", ils_code: ticket.item_location.strip, default_location: true) 
+        l = Location.create(name:ticket.item_location.strip, email: "something@somthing.com", ils_code: ticket.item_location.strip, default_location: true)
       end
-    end    
+    end
 
     ticket.location = l
     ticket.status = SearchTicket::STATUS_NEW
