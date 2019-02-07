@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 ## BASE RAILS
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.6.1'
 
 ## DATABASES
 gem 'sqlite3'
@@ -32,7 +32,7 @@ gem "rack", ">= 2.0.6"
 
 
 ## TOOLS AND HELPERS
-gem "nokogiri", "1.8.2"
+gem "nokogiri", "1.8.5"
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 #gem 'redis', '~> 3.0'
@@ -86,7 +86,7 @@ group :development, :test do
 
   ## FIX Readline error with version 6 as version 7 is installed by homebrew
   gem 'rb-readline'
-  
+
   # gem 'sassc'
 
 end

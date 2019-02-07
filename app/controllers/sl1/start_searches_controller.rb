@@ -31,8 +31,7 @@ class Sl1::StartSearchesController < Sl1::AuthorizedBaseController
 
       end ## is_a?(Array) close
 
-      # redirect_to sl1_my_search_tickets_url, notice: "successfully assigned tickets"
-      redirect_to sl1_dashboard_url, notice: "Successfully assigned tickets"
+      redirect_to sl1_search_ticket_url(@ticket), notice: "Successfully assigned tickets"
     else
       redirect_to sl1_dashboard_url, error: "Could not assign tickets due to Error."
     end
