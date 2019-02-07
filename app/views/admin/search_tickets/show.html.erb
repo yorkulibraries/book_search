@@ -1,0 +1,108 @@
+<% page_title "#{@search_ticket.class} Details" %>
+<%= bootstrap_card do %>
+  <%= bootstrap_card_body title: (defined?(@search_ticket.name)) ? @search_ticket.name : "Untitled Card" do %>
+    <div class="card-subtitle mb-0 text-muted">
+      <small>Search Ticket Subtitle</small>
+    </div>
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-12">
+  
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Patron</div>
+              <%= @search_ticket.patron.name %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Location</div>
+              <%= @search_ticket.location.name %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item</div>
+              <%= @search_ticket.item_id %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item callnumber</div>
+              <%= @search_ticket.item_callnumber %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item title</div>
+              <%= @search_ticket.item_title %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item author</div>
+              <%= @search_ticket.item_author %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item volume</div>
+              <%= @search_ticket.item_volume %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item issue</div>
+              <%= @search_ticket.item_issue %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item year</div>
+              <%= @search_ticket.item_year %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Item location</div>
+              <%= @search_ticket.item_location %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Note</div>
+              <%= @search_ticket.note %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Resolution</div>
+              <%= @search_ticket.resolution %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Status</div>
+              <%= @search_ticket.status %>
+          </div>
+        </li>          
+        <li class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="font-weight-bold">Assigned to</div>
+              <%= @search_ticket.assigned_to.name %>
+          </div>
+        </li>          
+      
+        <li class="list-group-item">
+          <%= link_to 'Make Changes', edit_admin_search_ticket_path(@search_ticket), class: 'btn btn-sm btn-primary' %>
+          <%= link_to "View All", admin_search_tickets_path, class:"btn btn-sm btn-danger" %>
+        </li>
+      
+      </ul>
+        
+      </div>
+    </div>
+  <% end %> <!-- card-body-->
+<% end %> <!-- card -->

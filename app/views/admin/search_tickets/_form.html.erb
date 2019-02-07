@@ -1,0 +1,41 @@
+
+
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h4 class="card-title">Search Ticket</h4>
+        <h5 class="card-subtitle mb-2 text-muted"><span class="badge badge-info">subtitle</span></h5> 
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+<%= simple_form_for([:admin, @search_ticket]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :patron_id, collection: Patron.all %>
+    <%= f.input :location_id, collection: Location.all %>
+    <%= f.input :item_id %>
+    <%= f.input :item_callnumber %>
+    <%= f.input :item_title %>
+    <%= f.input :item_author %>
+    <%= f.input :item_volume %>
+    <%= f.input :item_issue %>
+    <%= f.input :item_year %>
+    <%= f.input :item_location %>
+    <%= f.input :note %>
+    <%= f.input :resolution, collection: SearchTicket::RESOLUTIONS %>
+    <%= f.input :status, collection: SearchTicket::STATUSES %>
+    <%= f.input :assigned_to_id, collection: Employee.all %>
+  </div>
+  <hr/>
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-md btn-success" %>
+    <%= link_to "Cancel", admin_search_tickets_path, class:"btn btn-danger" %>
+  </div>
+<% end %>
+  <br/>
+  </div> <!-- card body close -->
+</div> <!-- card close -->

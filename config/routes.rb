@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     resources :employees
     resources :locations 
     resources :search_areas
+    resources :search_tickets
   end
 
   root "redirector#index"

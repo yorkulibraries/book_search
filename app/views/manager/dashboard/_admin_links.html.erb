@@ -9,7 +9,10 @@
     { name: "Employees", link: admin_employees_path, color: "#e83e8c",
       desc: "Add and remove search areas for each location"},
     { name: "Patrons", link: admin_patrons_path, color: "#6f42c1",
-      desc: "Add and remove search areas for each location"}
+      desc: "Add and remove search areas for each location"}, 
+    { name: "Search Tickets", link: admin_search_tickets_path, color: "red",
+      desc: "Add and remove search tickets", classes: " "}
+
     # { name: "Search Area", link: admin_search_areas_path, color: "#007aff",
     #   desc: "Add and remove search areas for each location"},
   ] %>
@@ -17,7 +20,7 @@
   <ul class="list-unstyled">
     <% admin_links.each do |l| %>
       <%= bootstrap_media tag: :li, classes: "mb-3" do %>
-        <%= svg_placeholder(width: 10, height: 42, color: l[:color], classes: "mr-2") rescue nil %>
+        <%= svg_placeholder(width: 10, height: 42, color: l[:color], classes: "#{l[:classes]} mr-2") rescue nil %>
         <%= bootstrap_media_body do %>
           <div class="d-flex justify-content-between align-items-center w-100">
             <strong class="text-gray-dark"><%= l[:name] %></strong>
