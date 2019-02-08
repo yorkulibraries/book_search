@@ -1,6 +1,6 @@
-<!-- <p id="notice"><%= notice %></p> -->
 
-<h1>Search Tickets</h1>
+<% page_title "Search Tickets" %>
+<h1><%= yield(:page_title) %></h1>
 
 <div class="table-responsive">
   <table class="table table-striped table-sm">
@@ -10,17 +10,17 @@
           <th scope="col">Location</th>
           <th scope="col">Item</th>
           <th scope="col">Item callnumber</th>
-          <th scope="col">Item title</th>
-          <th scope="col">Item author</th>
-          <th scope="col">Item volume</th>
-          <th scope="col">Item issue</th>
-          <th scope="col">Item year</th>
+          <!-- <th scope="col">Item title</th> -->
+          <!-- <th scope="col">Item author</th> -->
+          <!-- <th scope="col">Item volume</th> -->
+          <!-- <th scope="col">Item issue</th> -->
+          <!-- <th scope="col">Item year</th> -->
           <th scope="col">Item location</th>
-          <th scope="col">Note</th>
+          <!-- <th scope="col">Note</th> -->
           <th scope="col">Resolution</th>
           <th scope="col">Status</th>
           <th scope="col">Assigned to</th>
-          <th colspan="3"></th>
+          <th scope="col-3" colspan="3"></th>
       </tr>
     </thead>
 
@@ -31,19 +31,20 @@
             <td><%= search_ticket.location.name %></td>
             <td><%= search_ticket.item_id %></td>
             <td><%= search_ticket.item_callnumber %></td>
-            <td><%= search_ticket.item_title %></td>
-            <td><%= search_ticket.item_author %></td>
-            <td><%= search_ticket.item_volume %></td>
-            <td><%= search_ticket.item_issue %></td>
-            <td><%= search_ticket.item_year %></td>
+            <!-- <td><%= search_ticket.item_title %></td> -->
+            <!-- <td><%= search_ticket.item_author %></td> -->
+            <!-- <td><%= search_ticket.item_volume %></td> -->
+            <!-- <td><%= search_ticket.item_issue %></td> -->
+            <!-- <td><%= search_ticket.item_year %></td> -->
             <td><%= search_ticket.item_location %></td>
-            <td><%= search_ticket.note %></td>
+            <!-- <td><%= search_ticket.note %></td> -->
             <td><%= search_ticket.resolution %></td>
             <td><%= search_ticket.status %></td>
             <td><%= search_ticket.assigned_to.name rescue nil %></td>
-            <td><%= link_to 'Show', admin_search_ticket_path(search_ticket), class: 'btn btn-sm btn-primary' %></td>
-          <td><%= link_to 'Edit', edit_admin_search_ticket_path(search_ticket), class: 'btn btn-sm btn-secondary' %></td>
-          <td><%= link_to 'Destroy', admin_search_ticket_path(search_ticket), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
+            <td colspan="">
+              <%= link_to 'Show', admin_search_ticket_path(search_ticket), class: 'btn btn-sm btn-primary' %></td><td>
+              <%= link_to 'Edit', edit_admin_search_ticket_path(search_ticket), class: 'btn btn-sm btn-secondary' %></td><td>
+              <%= link_to 'Destroy', admin_search_ticket_path(search_ticket), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
@@ -51,4 +52,4 @@
 
 <br>
 
-<%= link_to 'New Admin Search Ticket', new_admin_search_ticket_path, class: 'btn btn-md btn-success' %>
+<%= link_to 'New Search Ticket', new_admin_search_ticket_path, class: 'btn btn-md btn-success' %>
