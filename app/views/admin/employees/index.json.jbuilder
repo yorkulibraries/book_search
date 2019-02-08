@@ -1,1 +1,1 @@
-json.array! @employees, partial: 'employees/employee', as: :employee
+json.array! @employees, partial: 'admin/admin_employee', as: :admin_employee

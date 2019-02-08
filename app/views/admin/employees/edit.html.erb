@@ -1,6 +1,5 @@
+
 <% page_title "Editing Employee" %>
+<h1><%= yield(:page_title) %></h1>
 
 <%= render 'form', employee: @employee %>
-
-<%= link_to 'Show', admin_employee_path(@employee) %> |
-<%= link_to 'Back',  admin_employees_path %>
