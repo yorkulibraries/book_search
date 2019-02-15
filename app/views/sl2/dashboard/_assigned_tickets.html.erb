@@ -1,7 +1,7 @@
 <div class="p-3 bg-white rounded box-shadow">
   <h5 class="border-bottom border-gray pb-2 mb-0">Assigned To Me
     &nbsp;&nbsp;<%= link_to "Print Tickets", print_tickets_to_search_path(ticket_ids: @assigned_tickets.ids),
-      class: "btn btn-sm btn-light fs-60i border" %>
+      class: "btn btn-sm btn-light fs-60i border", target: "_blank" %>
 
     <span class="bg-status-<%= SearchTicket::STATUS_SEARCH_IN_PROGRESS %> rounded text-white p-1 fs-70 float-right">
       <%= SearchTicket::STATUS_SEARCH_IN_PROGRESS.humanize %>
