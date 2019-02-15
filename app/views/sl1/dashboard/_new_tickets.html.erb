@@ -11,6 +11,10 @@
   </h5>
 
   <div class="container">
+    <% if @assigned_tickets.size == 0 %>
+      <p class="text-center mt-3">There are no new tickets in the system currently.</p>
+    <% end %>
+    
     <%= form_tag sl1_start_search_path, method: :patch do %>
     <% @new_tickets.each do |ticket| %>
       <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray new_ticket_row">

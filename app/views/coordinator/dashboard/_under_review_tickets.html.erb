@@ -10,6 +10,10 @@
   </h5>
 
   <div class="container">
+    <% if @under_review_tickets.size == 0 %>
+      <p class="text-center mt-3">Currently, there are no tickets requiring review.</p>
+    <% end %>
+
     <% @under_review_tickets.each do |ticket| %>
       <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray under_review_ticket_row">
         <div class="col-sm-7">
