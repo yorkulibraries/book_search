@@ -16,10 +16,10 @@
         <dd class="fs-90"><%= @ticket.created_at.strftime("%Y-%m-%d") %></dd>
       </div>
       <div class="col">
-        <dt class="text-muted font-weight-light">Volume</dt>
-        <dd><%= @ticket.item_volume %></dd>
-        <dt class="text-muted font-weight-light">Issue</dt>
-        <dd><%= @ticket.item_issue %></dd>
+        <dt class="text-muted font-weight-light">Item ID</dt>
+        <dd><%= @ticket.item_id %></dd>
+        <dt class="text-muted font-weight-light">Vol./Issue</dt>
+        <dd><%= @ticket.item_volume %>/<%= @ticket.item_issue %></dd>
         <hr/>
         <dt class="text-muted font-weight-light fs-80">Last Updated</dt>
         <dd class="fs-90"><%= @ticket.last_updated.strftime("%Y-%m-%d") rescue nil%></dd>
