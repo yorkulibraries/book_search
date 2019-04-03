@@ -19,7 +19,7 @@
   </h5>
 
   <div class="container">
-    <% if @tickets.size > 0 %>
+    <% if @tickets.size == 0 %>
       <p class="text-center mt-3">There are no <%= @status.humanize %> tickets in the system currently.</p>
     <% end %>
 
