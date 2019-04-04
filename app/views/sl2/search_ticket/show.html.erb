@@ -31,7 +31,14 @@
         <dd><%= @ticket.location.name %></dd>
         <hr/>
         <dt class="text-muted font-weight-light fs-80">Requested By</dt>
-        <dd class="fs-90"><%= @ticket.patron_name %></dd>
+        <dd class="fs-90 d-flex justify-content-between">
+          <span id="patron_name"><%= @ticket.patron_name %></span>
+          <% if @ticket.status != SearchTicket::STATUS_RESOLVED %>
+            <%= link_to edit_sl2_change_requestor_path(@ticket), remote: true do %>
+              <%= icon("fas", "exchange-alt") %>
+            <% end %>
+          <% end %>
+        </dd>
       </div>
     </dl> <!-- dl row end -->
   </div>

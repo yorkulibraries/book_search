@@ -1,11 +1,12 @@
 class SearchTicket::WorkLog < ApplicationRecord
-  # attributes:  :search_ticket_id :employee_id :result :found_location :note, :work_type
+  # attributes:  :search_ticket_id :employee_id :result :found_location, :note, :work_type
 
   ## CALLBACKS
   before_create :set_resolution_before_create
 
   ## CONSTANTS
   WORK_TYPE_SEARCH = "work_type_search"
+  WORK_TYPE_NOTE = "work_type_note"
   WORK_TYPE_REVIEW = "work_type_review"
 
   RESULT_UNKNOWN = "unknown"
@@ -13,6 +14,7 @@ class SearchTicket::WorkLog < ApplicationRecord
   RESULT_NOT_FOUND = "not_found"
   RESULT_ANOTHER_SEARCH_REQUESTED = "another_search_requested"
   RESULT_SENT_TO_ACQUISITIONS = "sent_to_acquisitions"
+  RESULT_PATRON_CHANGED = "patron_changed"
 
   RESULTS = [RESULT_UNKNOWN, RESULT_FOUND, RESULT_NOT_FOUND]
 
@@ -21,7 +23,9 @@ class SearchTicket::WorkLog < ApplicationRecord
   validates_presence_of :result, message: "- have you found the Item?"
   validates_presence_of :found_location, if: Proc.new { |log| log.result == RESULT_FOUND }
   #validate :validate_searched_areas
-  validates :searched_areas, length: { minimum: 1, message: " must be selected (at least one)" }
+  validates :searched_areas, length: { minimum: 1, message: " must be selected (at least one)" },
+          if: Proc.new { |log| log.work_type == WORK_TYPE_SEARCH }
+
 
   ## RELATIONS
   belongs_to :employee
@@ -52,7 +56,8 @@ class SearchTicket::WorkLog < ApplicationRecord
       return "We have looked for this Item but could not find it."
     when SearchTicket::WorkLog::RESULT_ANOTHER_SEARCH_REQUESTED
       return "We have looked for the Item, couldn't find it. We're going to search again."
-
+    when SearchTicket::WorkLog::RESULT_PATRON_CHANGED
+      return "We've changed the patron requestor for this ticket"
     when SearchTicket::WorkLog::RESULT_SENT_TO_ACQUISITIONS
       return "After several searches, the item was not found. Acquisitions Department has been notified."
     else

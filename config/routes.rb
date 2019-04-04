@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     resource :dashboard, only: :show, controller: "dashboard"
     resources :search_ticket, only: [:edit, :update, :show]
     resource :start_search, only: [:update, :put]
-
+    resources :change_requestor, only: [:edit, :update]
     get 'tickets_by_status' => "tickets_by_status#index"
   end
 
@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :patrons
     resources :employees
-    resources :locations 
+    resources :locations
     resources :search_areas
     resources :search_tickets
   end
