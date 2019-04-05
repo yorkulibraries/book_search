@@ -1,0 +1,19 @@
+<%= bootstrap_modal id: "change_requestor_modal" do %>
+  <%= bootstrap_modal_header dismissable: true do %>
+    Change Requestor
+  <% end %>
+
+  <%= bootstrap_modal_body do %>
+    <h3>Enter Login ID </h3>
+
+    <%= simple_form_for @patron, url: sl2_change_requestor_path(@ticket), method: :put, remote: true do |f| %>
+      <%= f.input :login_id, label: false, input_html: { placeholder: "Employee ID or Student ID"} %>
+      <div id="error_message" class="text-danger mb-3">
+      </div>
+      
+      <%= f.submit "Change Requestor", class: "btn btn-primary" %>
+      <%= button_tag "Cancel", class: "btn btn-link", data: { dismiss: "modal"} %>
+    <% end %>
+
+  <% end %>
+<% end %>
