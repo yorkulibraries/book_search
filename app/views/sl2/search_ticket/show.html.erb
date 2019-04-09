@@ -49,10 +49,10 @@
 <% if @ticket.status == SearchTicket::STATUS_SEARCH_IN_PROGRESS %>
   <br/>
   <%= render partial: "log_search_result_form" %>
-<% elsif @ticket.status == SearchTicket::STATUS_ESCALATED_TO_LEVEL_2 %>
+<% elsif [SearchTicket::STATUS_ESCALATED_TO_LEVEL_2, SearchTicket::STATUS_NEW].include?(@ticket.status) %>
   <br/>
   <div class="text-center">
-    This search ticket is <%= SearchTicket::STATUS_ESCALATED_TO_LEVEL_2.humanize.upcase %>. To assign this to yourself, click this button.
+    This search ticket is <%= @ticket.status.humanize.upcase %>. To assign this to yourself, click this button.
     <a href="<%= sl2_start_search_path(search_ticket_ids: @ticket.id) %>" data-method="put" class='btn btn-primary btn-sm'>Assign To Myself</a>
   </div>
 <% end %>

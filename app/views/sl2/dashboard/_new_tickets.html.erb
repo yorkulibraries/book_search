@@ -1,0 +1,45 @@
+
+<div class="p-3 bg-white rounded box-shadow">
+  <h5 class="border-bottom border-gray pb-2 mb-0">New Search Tickets
+
+    <span class="bg-status-<%= SearchTicket::STATUS_NEW %> rounded text-white p-1 fs-70 float-right">
+      <%= SearchTicket::STATUS_NEW.humanize %>
+        <span class="badge badge-light" data-new-tickets-count="<%= @new_tickets.size %>">
+          <%= @new_tickets.size %>
+        </span>
+    </span>
+  </h5>
+
+  <div class="container">
+    <% if @assigned_tickets.size == 0 %>
+      <p class="text-center mt-3">There are no new tickets in the system currently.</p>
+    <% end %>
+
+    <%= form_tag sl2_start_search_path, method: :patch do %>
+    <% @new_tickets.each do |ticket| %>
+      <div class="row pb-3 mb-0 pt-3 lh-125 border-bottom border-gray new_ticket_row">
+        <div class="col-sm-7">
+            <a href="<%= sl2_search_ticket_path(ticket) %>"><%= ticket.item_title %></a>
+        </div>
+        <div class="col-sm-2  text-center fs-90">
+          <small class="font-weight-light text-muted">Callnumber</small><br/>
+          <%= ticket.item_callnumber %>
+        </div>
+        <div class="col-sm-2  text-center fs-90">
+          <small class="font-weight-light text-muted ">Created On</small><br/>
+          <%= ticket.created_at.strftime("%b %e, %Y") %>
+        </div>
+        <div class="col-sm-1   text-center fs-90">
+          <small class="font-weight-light text-muted">ID:   <%= ticket.id %></small><br/>
+          <%= check_box_tag "search_ticket_ids[]", ticket.id %>
+        </div>
+      </div>
+    <% end %>
+    <div class="row pb-2 mb-0 pt-3 lh-125">
+      <div class="col-sm-12 text-right">
+        <%= submit_tag "Assign & Start Search Now!", class: "btn btn-sm btn-success"%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
