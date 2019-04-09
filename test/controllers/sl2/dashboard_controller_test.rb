@@ -19,10 +19,7 @@ class Sl2::DashboardControllerTest < ActionDispatch::IntegrationTest
   should "show escalated search tickets" do
     escalated_tickets = create_list(:search_ticket, 2, status: SearchTicket::STATUS_ESCALATED_TO_LEVEL_2, assigned_to: nil, location: @location)
     assigned_tickets = create_list(:search_ticket, 3, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS, assigned_to: @user, location: @location)
-<<<<<<< HEAD
     new_tickets = create_list(:search_ticket, 3, status: SearchTicket::STATUS_NEW, location: @location)
-=======
->>>>>>> c2e6a9558d9f95598a0f605427c3d9e480621b3a
     other_tickets = create_list(:search_ticket, 4, status: SearchTicket::STATUS_ESCALATED_TO_LEVEL_2)
 
     get sl2_dashboard_path
