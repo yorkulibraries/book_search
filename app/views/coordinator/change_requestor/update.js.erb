@@ -1,0 +1,11 @@
+<% if @error_message == nil %>
+
+  bootstrap_modal_close("change_requestor_modal");
+
+  $("#patron_name").text("<%= j @patron.name.html_safe %>");
+  $("#patron_name").addClass("text-warning");
+<% else %>
+
+  $("#error_message").text("<%= j @error_message %>");
+  $("#error_message").effect("highlight", {}, 3000);
+<% end %>

@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   namespace :coordinator do
     resource :dashboard, only: :show, controller: "dashboard"
     resources :search_ticket, only: [:edit, :update, :show]
+    resources :change_requestor, only: [:edit, :update]
     get 'tickets_by_status' => "tickets_by_status#index"
   end
 
