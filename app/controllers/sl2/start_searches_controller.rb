@@ -7,7 +7,7 @@ class Sl2::StartSearchesController < Sl2::AuthorizedBaseController
       ids.each do |id|
         ticket = SearchTicket.find(id)
 
-        if allowed_ticket_status?(ticket)      
+        if allowed_ticket_status?(ticket)
           ticket.update(assigned_to: current_user, status: SearchTicket::STATUS_SEARCH_IN_PROGRESS)
         end
 
