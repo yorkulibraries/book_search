@@ -29,7 +29,8 @@ gem "rails-html-sanitizer", "1.0.4"
 gem "ffi", ">= 1.9.24"
 gem "rack", ">= 2.0.6"
 
-
+## SETTINGS
+gem "rails-settings-cached", "0.7.2"
 
 ## TOOLS AND HELPERS
 gem "nokogiri", "1.8.5"

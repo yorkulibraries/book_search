@@ -1,0 +1,49 @@
+<% page_title "Dashboard" %>
+
+
+<%= bootstrap_card do %>
+  <%= bootstrap_card_body do %>
+    <%= bootstrap_tabs do %>
+      <%= bootstrap_tabs_item href: "#email", active: true do %>
+        Email
+      <% end %>
+
+      <%= bootstrap_tabs_item "Legal", href: "#legal", classes: "append-after-nav-item" %>
+    <% end %>
+
+    <%= bootstrap_tabs_content classes: "border border-top-0 px-2 py-3 mb-3" do %>
+      <%= bootstrap_tabs_pane "email", active: true, classes: "p-3" do %>
+        <%= render partial: "email" %>
+      <% end %>
+      <%= bootstrap_tabs_pane "legal", classes: "p-3" do %>
+        <%= render partial: "legal" %>
+      <% end %>
+
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "email" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: "legal" %>
+  </div>
+</div>
+
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th></th>
+  </tr>
+  <% @settings.each_key do |key| %>
+  <tr>
+    <td><%= key %></td>
+    <td><%= link_to 'edit', edit_manager_setting_path(key) %></td>
+  </tr>
+  <% end %>
+</table>

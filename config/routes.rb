@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   namespace :manager do
     resource :dashboard, only: :show, controller: "dashboard"
     resources :employees, only: [:show]
+    resources :settings
   end
 
   namespace :coordinator do
@@ -62,7 +63,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :patrons
     resources :employees
-    resources :locations 
+    resources :locations
     resources :search_areas
     resources :search_tickets
   end
