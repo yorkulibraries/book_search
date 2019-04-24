@@ -1,22 +1,26 @@
 
   <div class="container py-3"  data-ticket-id="<%= ticket.id %>">
-    <h3 class="border-bottom border-gray pb-2 mb-2 ellipsis">
-      <%= ticket.item_title %>
-    </h3>
-
-
-    <h5 class="text-downcase text-capitalize font-weight-light">Search in <%= ticket.location.name %></h5>
-
-    <!-- Always show primary, secondary for lvl 2 -->
     <div class="row">
-      <% SearchArea.primary.where(location_id: ticket.location_id).each do |sa| %>
-         <div class="pr-4 col-sm-3 ellipsis">
-           <span class="fa fa-square-o fs-120i text-muted" style="border-width: 3px;"></span>
-           <span class="fs-110i">&nbsp;<%= sa.name %></span>
-         </div>
-      <% end %>
-    </div>
+      <div class="col-md-9">
+        <h3 class=" border-bottom border-gray pb-2 mb-2 ellipsis">
+          <%= ticket.item_title %>
+        </h3>
+        <h5 class="text-downcase text-capitalize font-weight-light">Search in <%= ticket.location.name %></h5>
 
+        <!-- Always show primary, secondary for lvl 2 -->
+        <div class="row">
+          <% SearchArea.primary.where(location_id: ticket.location_id).each do |sa| %>
+             <div class="pr-4 col-sm-3 ellipsis">
+               <span class="fa fa-square-o fs-120i text-muted" style="border-width: 3px;"></span>
+               <span class="fs-110i">&nbsp;<%= sa.name %></span>
+             </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3 text-center">
+        <img src="http://epsilon.library.yorku.ca/codabar.php?data=<%= ticket.item_id %>" height="90px"/>
+      </div>
+    </div>
 
     <% if ticket.work_logs.count > 1 %>
     <div class="py-2 text-muted font-weight-light">Additional Areas to search in: </div>
