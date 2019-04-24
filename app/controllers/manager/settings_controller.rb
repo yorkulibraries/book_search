@@ -7,6 +7,7 @@ class Manager::SettingsController < Manager::AuthorizedBaseController
   end
 
   def edit
+    @field_name = params[:id]
   end
 
   def update

@@ -1,11 +1,11 @@
 <h5>New Ticket Email</h5>
 <p><strong>Subject: </strong><br/>
   <%= Setting.email_new_ticket_subject %>
-  <%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_subject) %>
+  <%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_subject), remote: true %>
 </p>
 <p><strong>Body: </strong><br/>
   <%= Setting.email_new_ticket_body %>
-  <%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_body) %>
+  <%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_body), remote: true %>
 </p>
 <hr/>
 <h5>Ticket Resolved Email</h5>
