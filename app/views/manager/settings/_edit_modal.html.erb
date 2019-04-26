@@ -1,6 +1,6 @@
-<%= bootstrap_modal id: "edit_setting" do %>
+<%= bootstrap_modal id: "edit_setting", size: "modal-lg" do %>
   <%= bootstrap_modal_header "Edit: #{@field_name.humanize}", dismissable: true %>
   <%= bootstrap_modal_body do %>
     <%= render 'form' %>
-  <% end %>  
+  <% end %>
 <% end %>

@@ -1,12 +1,12 @@
-<%= simple_form_for(@setting, url: manager_setting_path(@setting.var), method: 'patch', remote: true) do |f| %>
+<%= simple_form_for(@setting, url: manager_setting_path(@field_name), method: 'patch', remote: true) do |f| %>
   <%= f.label @field_name %>
-
+  <%= @setting.inspect %>
   <% if @field_type == "text" %>
-    <%= f.input :value, label: false, as: :text %>
+    <%= f.input :value, label: false, as: :text, value: @setting %>
   <% elsif @field_type == "select" %>
-    <%= f.input :value, label: false, collection: @setting.value %>
+    <%= f.input :value, label: false, collection: @setting %>
   <% else %>
-    <%= f.input :value, label: false, as: :string %>
+    <%= f.input :value, label: false, as: :string, input_html: { value: @setting } %>
   <% end %>
   <%= f.button :submit, "Save Setting", class: "btn btn-success" %>
   <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>

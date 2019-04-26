@@ -8,9 +8,12 @@ class Manager::SettingsController < Manager::AuthorizedBaseController
 
   def edit
     @field_name = params[:id]
+    @field_type = params[:field_type]
   end
 
   def update
+    @field_name = params[:id]
+
     if @setting.value != params[:setting][:value]
       @setting.value = params[:setting][:value]
       @setting.save
@@ -21,6 +24,6 @@ class Manager::SettingsController < Manager::AuthorizedBaseController
   end
 
   def get_setting
-    @setting = Setting.find_by(var: params[:id]) || Setting.new(var: params[:id])
+    @setting = Setting["#{params[:id]}"] || Setting.new(var: params[:id])
   end
 end
