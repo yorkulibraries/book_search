@@ -5,6 +5,9 @@ class SearchTicket < ApplicationRecord
   #             :patron_id :location_id  :resolution
   #             :status  :note
 
+  ## CONCERNS
+  include TicketNotifier
+
   ## CALLBACKS
   before_create :set_status_and_resolution_before_create
 

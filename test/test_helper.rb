@@ -11,7 +11,8 @@ class ActiveSupport::TestCase
 
   include FactoryBot::Syntax::Methods
   include ActionMailer::TestHelper
-  include ActiveJob::TestHelper
+  include ActiveJob::TestHelper  
+
 end
 
 

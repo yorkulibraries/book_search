@@ -9,7 +9,8 @@ class TicketMailer < ApplicationMailer
 
     @date = Date.today.strftime("%b %e, %Y")
     @date_short = Date.today.strftime("%m-%d-%Y")
-    @status = @ticket.status
+    @status = @ticket.ticket_status_description
+    @resolution = @ticket.ticket_resolution_description
     @app_url = root_url
 
     @to = ticket.patron.email
@@ -25,7 +26,8 @@ class TicketMailer < ApplicationMailer
 
     @date = Date.today.strftime("%b %e, %Y")
     @date_short = Date.today.strftime("%m-%d-%Y")
-    @status = @ticket.status
+    @status = @ticket.ticket_status_description
+    @resolution = @ticket.ticket_resolution_description
     @app_url = root_url
 
     @to = ticket.patron.email
