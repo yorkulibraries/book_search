@@ -1,5 +1,7 @@
-Hi <%= @patron.name %>,
-
-A New Search Ticket has been created.
-
-Item: <%= @ticket.item_title %>
+<%= mailer_wconvert_to_text @template.render(
+ 'patron_name' => @patron.name,
+ 'item_title' => @ticket.item_title,
+ 'date' = @date,
+ 'short_date' => @date_short,
+ 'app_url' => @app_url)
+%>

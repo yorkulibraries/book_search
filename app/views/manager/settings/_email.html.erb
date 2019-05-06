@@ -7,7 +7,7 @@
 </p>
 <p><strong>Body: </strong><br/>
   <span id="setting_email_new_ticket_body">
-    <%= Setting.email_new_ticket_body %>
+    <%= simple_format Setting.email_new_ticket_body %>
   </span>
   <%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_body, field_type: :text), remote: true %>
 </p>
@@ -21,7 +21,7 @@
 </p>
 <p><strong>Body: </strong><br/>
   <span id="setting_email_ticket_resolved_body">
-    <%= Setting.email_ticket_resolved_body %>
+    <%= simple_format Setting.email_ticket_resolved_body %>
   </span>
   <%= link_to 'edit', edit_manager_setting_path(:email_ticket_resolved_body, field_type: :text), remote: true %>
 </p>

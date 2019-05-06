@@ -39,6 +39,7 @@ gem "rails-settings-cached", "0.7.2"
 gem "nokogiri", "1.8.5"
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'liquid', "4.0.3"
 #gem 'redis', '~> 3.0'
 #gem 'bcrypt', '~> 3.1.7'
 

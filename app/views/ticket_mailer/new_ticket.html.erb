@@ -1,1 +1,6 @@
-Hi <%= @patron.name %>,
+<%= @template.render(
+  'patron_name' => @patron.name,
+  'item_title' => @ticket.item_title,
+  'date' = @date,
+  'short_date' => @date_short,
+  'app_url' => @app_url).html_safe %>

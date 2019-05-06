@@ -1,3 +1,4 @@
 bootstrap_modal_close("edit_setting");
-$("#setting_<%= @field_name %>").text("<%= j @setting.value  %>");
+$("#setting_<%= @field_name %>").empty();
+$("#setting_<%= @field_name %>").append("<%= j @field_value.html_safe  %>");
 $("#setting_<%= @field_name %>").effect("highlight",1000);
