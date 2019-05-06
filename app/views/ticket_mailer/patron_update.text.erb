@@ -1,0 +1,9 @@
+<%= mailer_convert_to_text @template.render(
+  'patron_name' => @patron.name,
+  'item_title' => @ticket.item_title,
+  'date' => @date,
+  'short_date' => @date_short,
+  'status' => @status,
+  'resolution' => @resolution,
+  'message_to_patron' => @message_to_patron,
+  'app_url' => @app_url) %>

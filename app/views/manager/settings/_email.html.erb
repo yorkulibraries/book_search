@@ -24,3 +24,16 @@
   <%= simple_format Setting.email_ticket_resolved_body %>
 </div>
 <%= link_to 'edit', edit_manager_setting_path(:email_ticket_resolved_body, field_type: :text), remote: true %>
+<hr/>
+<h5>Patron Update Email</h5>
+<p><strong>Subject: </strong><br/>
+  <div id="setting_email_ticket_patron_update_subject">
+    <%= Setting.email_ticket_patron_update_subject %>
+  </div>
+  <%= link_to 'edit', edit_manager_setting_path(:email_ticket_patron_update_subject), remote: true %>
+</p>
+<p><strong>Body: </strong></p>
+<div id="setting_email_ticket_patron_update_body">
+  <%= simple_format Setting.email_ticket_patron_update_body %>
+</div>
+<%= link_to 'edit', edit_manager_setting_path(:email_ticket_patron_update_body, field_type: :text), remote: true %>

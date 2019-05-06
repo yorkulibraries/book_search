@@ -16,8 +16,21 @@ class TicketMailerPreview < ActionMailer::Preview
     ticket = SearchTicket.new
     ticket.patron = Patron.new(email: "test@test.com", name: "NAme")
     ticket.item_title = "Test Item Title"
-    ticket.status = SearchTicket::STATUS_FOUND
+    ticket.status = SearchTicket::STATUS_RESOLVED
     ticket.resolution = SearchTicket::RESOLUTION_FOUND
     TicketMailer.ticket_resolved(ticket).deliver_now
+  end
+
+  def patron_update_email
+
+    ticket = SearchTicket.new
+    ticket.patron = Patron.new(email: "test@test.com", name: "NAme")
+    ticket.item_title = "Test Item Title"
+    ticket.status = SearchTicket::STATUS_RESOLVED
+    ticket.resolution = SearchTicket::RESOLUTION_FOUND
+
+    message = "Sorry we are still looking"
+
+    TicketMailer.patron_update(ticket, message).deliver_now
   end
 end

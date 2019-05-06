@@ -5,8 +5,10 @@ defaults: &defaults
   email_new_ticket_body: "New Search Ticket Has been created"
   email_ticket_resolved_subject: "Your Search Ticket Has Been Resolved"
   email_ticket_resolved_body: "Ticket resolved"
+  email_ticket_patron_update_subject: "We have an update for you"
+  email_ticket_patron_update_body: "Here's the latest news about your ticket"
   legal_terms_of_use_title: "Terms of Use Title"
-  legal_terms_of_use_body: "Terms of Use Body"    
+  legal_terms_of_use_body: "Terms of Use Body"
 
 development:
   <<: *defaults

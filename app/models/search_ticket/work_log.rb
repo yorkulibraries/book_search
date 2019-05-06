@@ -8,6 +8,7 @@ class SearchTicket::WorkLog < ApplicationRecord
   WORK_TYPE_SEARCH = "work_type_search"
   WORK_TYPE_NOTE = "work_type_note"
   WORK_TYPE_REVIEW = "work_type_review"
+  WORK_TYPE_PATRON_UPDATE = "work_type_patron_update"
 
   RESULT_UNKNOWN = "unknown"
   RESULT_FOUND = "found"
@@ -15,6 +16,7 @@ class SearchTicket::WorkLog < ApplicationRecord
   RESULT_ANOTHER_SEARCH_REQUESTED = "another_search_requested"
   RESULT_SENT_TO_ACQUISITIONS = "sent_to_acquisitions"
   RESULT_PATRON_CHANGED = "patron_changed"
+  RESULT_PATRON_NOTIFIED = "patron_patron_notified"
 
   RESULTS = [RESULT_UNKNOWN, RESULT_FOUND, RESULT_NOT_FOUND]
 
@@ -58,6 +60,8 @@ class SearchTicket::WorkLog < ApplicationRecord
       return "We have looked for the Item, couldn't find it. We're going to search again."
     when SearchTicket::WorkLog::RESULT_PATRON_CHANGED
       return "We've changed the patron requestor for this ticket"
+    when SearchTicket::WorkLog::RESULT_PATRON_NOTIFIED
+      return "We've sent you an update about Search Ticket Progress"
     when SearchTicket::WorkLog::RESULT_SENT_TO_ACQUISITIONS
       return "After several searches, the item was not found. Acquisitions Department has been notified."
     else

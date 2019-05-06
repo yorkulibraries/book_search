@@ -4,7 +4,7 @@ module MailerHelper
   # Returns the text in UTF-8 format with all HTML tags removed
   #
   # TODO: add support for DL, OL
-  def mailer_wconvert_to_text(html, line_length = 65, from_charset = 'UTF-8')
+  def mailer_convert_to_text(html, line_length = 65, from_charset = 'UTF-8')
     txt = html
 
     # strip text ignored html. Useful for removing
