@@ -9,6 +9,7 @@ class Manager::SettingsController < Manager::AuthorizedBaseController
   def edit
     @field_name = params[:id]
     @field_type = params[:field_type]
+    @field_value = Setting[@field_name]
   end
 
   def update
@@ -17,10 +18,18 @@ class Manager::SettingsController < Manager::AuthorizedBaseController
     if @setting.value != params[:setting][:value]
       @setting.value = params[:setting][:value]
       @setting.save
-      redirect_to admin_settings_path, notice: 'Setting has updated.'
+
+      notice = "Setting value has been updated"
+
     else
-      redirect_to admin_settings_path
+      notice = "No settings value found"
     end
+
+    respond_to do |format|
+      format.html { redirect_to admin_settings_path, notice: notice }
+      format.js
+    end
+    
   end
 
   def get_setting

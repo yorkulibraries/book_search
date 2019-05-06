@@ -1,12 +1,17 @@
-<%= simple_form_for(@setting, url: manager_setting_path(@field_name), method: 'patch', remote: true) do |f| %>
+<%= simple_form_for(:setting, url: manager_setting_path(@field_name), method: 'patch', remote: true) do |f| %>
+
   <%= f.label @field_name %>
-  <%= @setting.inspect %>
+
   <% if @field_type == "text" %>
-    <%= f.input :value, label: false, as: :text, value: @setting %>
+    <style>
+      trix-editor { height: auto; min-height: 300px; }
+    </style>
+    <%= f.input :value, label: false, as: :trix_editor, input_html: {
+        value: @field_value, style: "min-width: 300px;" } %>
   <% elsif @field_type == "select" %>
-    <%= f.input :value, label: false, collection: @setting %>
+    <%= f.input :value, label: false, collection: @field_value %>
   <% else %>
-    <%= f.input :value, label: false, as: :string, input_html: { value: @setting } %>
+    <%= f.input :value, label: false, as: :string, input_html: { value: @field_value } %>
   <% end %>
   <%= f.button :submit, "Save Setting", class: "btn btn-success" %>
   <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>

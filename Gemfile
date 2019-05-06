@@ -29,6 +29,9 @@ gem "rails-html-sanitizer", "1.0.4"
 gem "ffi", ">= 1.9.24"
 gem "rack", ">= 2.0.6"
 
+## TRIX Editor
+gem 'trix'
+
 ## SETTINGS
 gem "rails-settings-cached", "0.7.2"
 
