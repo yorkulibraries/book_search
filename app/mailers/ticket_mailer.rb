@@ -9,7 +9,7 @@ class TicketMailer < ApplicationMailer
 
     @date = Date.today.strftime("%b %e, %Y")
     @date_short = Date.today.strftime("%m-%d-%Y")
-
+    @status = @ticket.status
     @app_url = root_url
 
     @to = ticket.patron.email

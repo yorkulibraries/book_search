@@ -5,5 +5,5 @@
 </p>
 <p><strong>Body: </strong><br/>
   <%= simple_format Setting.legal_terms_of_use_body %>
-  <%= link_to 'edit', edit_manager_setting_path(:legal_terms_of_use_body), remote: true  %>
+  <%= link_to 'edit', edit_manager_setting_path(:legal_terms_of_use_body, field_type: :text), remote: true  %>
 </p>
