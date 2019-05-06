@@ -1,16 +1,8 @@
 <div class="p-3 bg-white rounded box-shadow">
-  <h3 class="border-bottom border-gray pb-2 mb-4">For public good</h3>
+  <h3 class="border-bottom border-gray pb-2 mb-4">
+    <%= Setting.legal_terms_of_use_title %>
+  </h3>
   <div class="container">
-    <p>This service is designed to be used by patrons of York University Libraries. It is free of charge.
-      Our mission is to help all students, staff and faculty find the research materials they need.</p>
-    <p>For this reason, any abuse of the service will be recorded and abuser's privileges suspended until further review.</p>
-    <p>The following common abuse behaviour will not be tolerated:</p>
-    <ul>
-      <li>Using Library staff as a personal concierge service.</li>
-      <li>Tricking staff into looking for items that are present and you don't require them.</li>
-    </ul>
-
-    <p>To see more examples of abuse and related consequences to your Library privilieges, <a href="#">click here</a>.</p>
-    <br/>
+    <%= simple_format Setting.legal_terms_of_use_body.html_safe %>
   </div>
 </div>

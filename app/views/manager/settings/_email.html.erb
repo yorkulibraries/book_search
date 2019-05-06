@@ -1,27 +1,26 @@
 <h5>New Ticket Email</h5>
 <p><strong>Subject: </strong><br/>
-  <span id="setting_email_new_ticket_subject">
+  <div id="setting_email_new_ticket_subject">
     <%= Setting.email_new_ticket_subject %>
-  </span>
+  </div>
   <%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_subject), remote: true %>
 </p>
-<p><strong>Body: </strong><br/>
-  <span id="setting_email_new_ticket_body">
-    <%= simple_format Setting.email_new_ticket_body %>
-  </span>
-  <%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_body, field_type: :text), remote: true %>
-</p>
+<p><strong>Body: </strong><p>
+<div id="setting_email_new_ticket_body">
+  <%= simple_format Setting.email_new_ticket_body %>
+</div>
+<%= link_to 'edit', edit_manager_setting_path(:email_new_ticket_body, field_type: :text), remote: true %>
+
 <hr/>
 <h5>Ticket Resolved Email</h5>
 <p><strong>Subject: </strong><br/>
-  <span id="setting_email_ticket_resolved_subject">
+  <div id="setting_email_ticket_resolved_subject">
     <%= Setting.email_ticket_resolved_subject %>
-  </span>
+  </div>
   <%= link_to 'edit', edit_manager_setting_path(:email_ticket_resolved_subject), remote: true %>
 </p>
-<p><strong>Body: </strong><br/>
-  <span id="setting_email_ticket_resolved_body">
-    <%= simple_format Setting.email_ticket_resolved_body %>
-  </span>
-  <%= link_to 'edit', edit_manager_setting_path(:email_ticket_resolved_body, field_type: :text), remote: true %>
-</p>
+<p><strong>Body: </strong></p>
+<div id="setting_email_ticket_resolved_body">
+  <%= simple_format Setting.email_ticket_resolved_body %>
+</div>
+<%= link_to 'edit', edit_manager_setting_path(:email_ticket_resolved_body, field_type: :text), remote: true %>

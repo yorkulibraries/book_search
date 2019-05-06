@@ -1,9 +1,12 @@
 <h5>Terms of Use</h5>
 <p><strong>Title: </strong><br/>
+  <div id="setting_legal_terms_of_use_title">
   <%= Setting.legal_terms_of_use_title %>
+  </div>
   <%= link_to 'edit', edit_manager_setting_path(:legal_terms_of_use_title), remote: true  %>
-</p>
-<p><strong>Body: </strong><br/>
-  <%= simple_format Setting.legal_terms_of_use_body %>
-  <%= link_to 'edit', edit_manager_setting_path(:legal_terms_of_use_body, field_type: :text), remote: true  %>
-</p>
+<p>
+<p><strong>Body: </strong></p>
+  <div id="setting_legal_terms_of_use_body">
+    <%= simple_format Setting.legal_terms_of_use_body %>
+  </div>
+<%= link_to 'edit', edit_manager_setting_path(:legal_terms_of_use_body, field_type: :text), remote: true  %>
