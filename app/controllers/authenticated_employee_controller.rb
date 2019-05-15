@@ -1,15 +1,21 @@
 class AuthenticatedEmployeeController < ApplicationController
 
   before_action :login_required
-  def logged_in?
+
+  def logged_in_as_employee?
     current_user
   end
 
   def login_required
-    unless logged_in?
+
+    if session[:user_type] != Employee.new.class.name
+      session[:redirect_to_url] = nil
+      redirect_to patron_my_tickets_path, alert: "You are not allowed to access this section of the app."
+    elsif  !logged_in_as_employee?
       session[:redirect_to_url] = request.fullpath unless request.fullpath == login_path
       redirect_to login_url, alert: "You must login before accessing this page"
     end
+
   end
 
 

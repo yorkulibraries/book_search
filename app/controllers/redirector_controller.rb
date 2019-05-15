@@ -14,12 +14,9 @@ class RedirectorController < ApplicationController
     elsif session[:user_type] == Employee.new.class.name
       employee = Employee.find(session[:user_id])
       redirect_to default_employee_path(employee)
-    elsif session[:user_type] == Patron.new.class.name
+    else     
       patron = Patron.find(session[:user_id])
       redirect_to patron_my_tickets_path
-    else
-      # Not Logged in so lets log in first
-      redirect_to login_url
     end
   end
 
